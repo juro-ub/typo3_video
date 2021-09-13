@@ -1,0 +1,90 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+      xmlns:fed="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+      xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+      xmlns:videoportal="http://typo3.org/ns/Jro/Videoportal/ViewHelpers"
+>
+<f:layout name="Default"/>
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+Resources:
+Private:
+Templates:
+List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="content">
+    <h1 class="h1">Overview for category</h1>
+
+    <f:flashMessages/>
+
+    <f:link.action action="new" class="catsTreeFont"><b>New category</b></f:link.action>
+    <div class="Line"></div>
+
+    <f:if condition="{categories}">
+        <f:then>
+        </f:then>
+        <f:else>
+            <div class="catsTreeFont" style="margin-top: 10px;">
+                <f:translate key="tx_videoportal_domain_model_category.no_cats"/>
+            </div>
+        </f:else>
+    </f:if>
+
+    <f:render section="categoryList" arguments="{categories: categories}"/>
+
+    <f:section name="categoryList">
+
+        <ul class="catsTreeUl catsTreeFont">
+            <f:for each="{categories -> fed:iterator.sort(sortBy: 'title')}" as="category">
+                <li class="catsTreeLi">
+                    <f:if condition="{category.parent}">
+                        <div class="catsTreeDiv">
+                            <f:image alt="" class="catsTreeExpand"
+                                     src="EXT:videoportal/Resources/Public/Image/Minus.png"/>
+                            <f:image alt="" class="catsTreeCollapse"
+                                     src="EXT:videoportal/Resources/Public/Image/Plus.png"/>
+                        </div>
+                    </f:if>
+
+                    <div class="catsTreeDiv" style="font-weight: bold;">
+                        {category.title} (ID: {category.uid})
+                        <f:if condition="{category.hidden} == 1"><span
+                                style="font-weight: normal; color: red;">hidden</span></f:if>
+                    </div>
+
+                    <div class="catsTreeDiv" style="padding-left: 15px;">
+                        <f:link.action action="show" arguments="{category : category}">Show</f:link.action>
+                        ,
+                        <f:link.action action="edit" arguments="{category : category}">Edit</f:link.action>
+                        ,
+                        <f:if condition="{category.parent}">
+                            <f:then>
+                                <f:link.action
+                                        onclick="javascript: if(confirmDelete('{f:translate(key: 'tx_videoportal_domain_model_category.delete_confirm_wit_childs')}')) return true; else return false;"
+                                        action="delete" arguments="{category : category}">Delete
+                                </f:link.action>
+                            </f:then>
+                            <f:else>
+                                <f:link.action
+                                        onclick="javascript: if(confirmDelete('{f:translate(key: 'tx_videoportal_domain_model_category.delete_confirm')}')) return true; else return false;"
+                                        action="delete" arguments="{category : category}">Delete
+                                </f:link.action>
+                            </f:else>
+                        </f:if>
+                    </div>
+                    <f:if condition="{category.parent}">
+                        <f:render section="categoryList" arguments="{categories: category.parent}"/>
+                    </f:if>
+                </li>
+            </f:for>
+
+        </ul>
+
+
+    </f:section>
+</f:section>
+</html>

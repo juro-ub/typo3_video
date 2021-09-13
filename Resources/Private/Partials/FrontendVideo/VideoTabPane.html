@@ -1,0 +1,241 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	  xmlns:fed="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	  xmlns:videoportal="http://typo3.org/ns/Jro/Videoportal/ViewHelpers"
+>
+
+
+
+<div id="videoTabPane">
+<!-- the tabs -->
+<ul class="css-tabs" id="tabs">
+	<li><a onclick="window.location = $(this).attr('href');" href="#videoTabPaneContent">Content</a></li>
+	<li><a onclick="window.location = $(this).attr('href');" href="#videoTabPaneTranscript">Transcript</a></li>
+	<li><a onclick="window.location = $(this).attr('href');" href="#videoTabPaneMaterials">Materials</a></li>
+	<li><a onclick="window.location = $(this).attr('href');" href="#videoTabPaneQA">Q&A</a></li>
+	<li><a onclick="window.location = $(this).attr('href');" href="#videoTabPaneAbout">About</a></li>
+	<li><a onclick="window.location = $(this).attr('href');" href="#videoTabPaneNext">What to watch next</a></li>
+</ul>
+ 
+<!-- tab "panes" -->
+<div class="css-panes" id="panes">
+	<div class="jqtab">
+		<table id ="chapters" style="float:left; margin-right: 20px;" border="0">
+			<th align="left">Table of contents</th>		
+
+		</table>	
+		<table border="0">
+		<th align="left">Learning objectives</th>	
+		
+		<tr><td>
+			<f:if condition="{video.learningObjectives} == ''">
+				no learning objectives found!
+			</f:if>
+			<f:format.nl2br>{video.learningObjectives}</f:format.nl2br>
+		</td></tr>
+		</table>
+	<div style="clear: both;"></div>
+	</div>
+	<div class="jqtab">
+	<b>Transcript</b>
+	<div id="transcript">
+	
+	</div>
+	</div>
+	<div class="jqtab">
+		<table  border="0" style="float:left; margin-right: 20px;">
+		<th align="left">Links</th>		
+		<f:if condition="{video.links -> f:count()} == 0">
+			<tr><td>
+				no links found!				
+			</td></tr>
+		</f:if>
+		<f:for each="{video.links}" as="link" iteration="i">
+			<tr><td>
+				<a target="blank" href="{link.link}" >{link.link}</a>
+			</td></tr>
+		</f:for>
+		</table>	
+		<table border="0">
+		<th align="left">Files</th>	
+		
+		<f:if condition="{video.files -> f:count()} == 0">
+			<tr><td>
+				no files found!				
+			</td></tr>
+		</f:if>
+		<f:for each="{video.files}" as="file" iteration="i">
+			<tr><td>
+				
+				<a target="blank" href="{file.originalResource.publicUrl}">{file.originalResource.name}</a>
+			</td></tr>
+		</f:for>
+		</table>
+		<div style="clear: both;"></div>
+	</div>
+	
+	
+	<div class="jqtab" id="#videoTabPaneQATab">
+	
+	<f:render partial="FrontendComment/List" arguments="{comments: comments, files: files, video: video}" />
+
+	</div>
+	
+	
+	
+	<div class="jqtab">
+		
+		<table  border="0" style="float:left; margin-right: 20px;">
+			<th align="left">Details</th>	
+		
+			<tr>
+			<td>
+				Personal Watch Count: 
+			</td>
+			<td>
+				{videoportal:showPersonalWatchcount(video_uid:'{video.uid}')}
+			</td>
+			</tr>
+			
+			<tr>
+			<td>
+				Author(s): 	
+			</td>
+			<td>
+				<f:if condition="{video.authors -> f:count()} == 0">
+					no authors
+				</f:if>
+				<f:for each="{video.authors}" as="t" iteration="i">
+					<f:if condition="{i.isLast}" >
+					<f:then>
+						{t.fullname}
+					</f:then>
+					<f:else>
+						{t.fullname},
+					</f:else>
+					</f:if>
+				</f:for>
+			</td>
+			</tr>
+			
+			<tr>
+			<td>
+				Target Group(s): 	
+			</td>
+			<td>
+				<f:if condition="{video.targetgroups -> f:count()} == 0">
+					no target groups
+				</f:if>
+				<f:for each="{video.targetgroups}" as="t" iteration="i">
+					<f:if condition="{i.isLast}" >
+					<f:then>
+						{t.title}
+					</f:then>
+					<f:else>
+						{t.title},
+					</f:else>
+					</f:if>
+				</f:for>
+			</td>
+			</tr>
+			
+			<tr>
+			<td>
+				Level(s): 	
+			</td>
+			<td>
+				<f:if condition="{video.levels -> f:count()} == 0">
+					no levels
+				</f:if>
+				<f:for each="{video.levels}" as="t" iteration="i">
+					<f:if condition="{i.isLast}" >
+					<f:then>
+						{t.title}
+					</f:then>
+					<f:else>
+						{t.title},
+					</f:else>
+					</f:if>
+				</f:for>
+			</td>
+			</tr>
+			
+			
+			<tr>
+			<td>
+				Published: 	
+			</td>
+			<td>
+				<f:format.date format="d.m.y">{video.crdate}</f:format.date>
+			</td>
+			</tr>
+			
+		</table>	
+		
+		<table border="0">
+		<th align="left">About</th>	
+		
+		<f:if condition="{video.about} == ''">
+			<tr><td>
+				no text available!				
+			</td></tr>
+		</f:if>
+		
+		<tr><td><f:format.nl2br>{video.about}</f:format.nl2br></td></tr>
+
+		</table>
+		<div style="clear: both;"></div>
+	</div>
+
+	<div class="jqtab">
+		
+		<table style="float:left; margin-right: 20px;" border="0">
+			<th align="left">Next Videos</th>		
+			<f:if condition="{video.nextVideos -> f:count()} == 0">
+				<tr><td>no related videos!</td></tr>
+			</f:if>
+			<f:for each="{video.nextVideos}" as="t" iteration="i">
+				<tr><td><f:link.action controller="FrontendVideo" action="show" arguments="{video: t}">{t.title}</f:link.action></td></tr>
+			</f:for>
+		</table>	
+		
+		<table style="float:left; margin-right: 20px;" border="0">
+			<th align="left">Extension Videos</th>		
+			<f:if condition="{video.extensionVideos -> f:count()} == 0">
+				<tr><td>no related videos!</td></tr>
+			</f:if>
+			<f:for each="{video.extensionVideos}" as="t" iteration="i">
+				<tr><td><f:link.action controller="FrontendVideo" action="show" arguments="{video: t}">{t.title}</f:link.action></td></tr>
+			</f:for>
+		</table>	
+		
+		
+		<table style="float:left; margin-right: 20px;" border="0">
+			<th align="left">Requirement Videos</th>		
+			<f:if condition="{video.requirementVideos -> f:count()} == 0">
+				<tr><td>no related videos!</td></tr>
+			</f:if>
+			<f:for each="{video.requirementVideos}" as="t" iteration="i">
+				<tr><td><f:link.action controller="FrontendVideo" action="show" arguments="{video: t}">{t.title}</f:link.action></td></tr>
+			</f:for>
+		</table>	
+		<div style="clear: both;"></div>
+		
+	</div>
+</div>
+
+</div>
+<script type="text/javascript">
+	$(function() {
+// :first selector is optional if you have only one tabs on the page
+		$(".css-tabs:first").tabs(".css-panes:first > div");
+	});
+	<f:if condition="{jumpToTab} == 'videoTabPaneQA'" >
+		$(document).ready(function(){
+		// get handle to the api (must have been constructed before this call)
+		var api = $("#tabs").data("tabs");
+		api.click(3);
+	});
+	</f:if>
+</script>
+</html>

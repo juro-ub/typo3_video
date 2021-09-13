@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-08-07T14:17:18Z" product-name="videoportal">
+		<header/>
+		<body>
+
+			<trans-unit id="observed_comments.description">
+				<source>observedComments</source>
+			</trans-unit>
+			<trans-unit id="my_comments.description">
+				<source>myComments</source>
+			</trans-unit>
+			<trans-unit id="watch_count.description">
+				<source>watchCount</source>
+			</trans-unit>
+			<trans-unit id="users.description">
+				<source>User</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

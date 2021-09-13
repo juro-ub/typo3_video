@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-08-07T14:17:18Z" product-name="videoportal">
+		<header/>
+		<body>
+
+			<trans-unit id="path_mp4.description">
+				<source>pathMp4</source>
+			</trans-unit>
+			<trans-unit id="path_webm.description">
+				<source>pathWebm</source>
+			</trans-unit>
+			<trans-unit id="path_ogg.description">
+				<source>pathOgg</source>
+			</trans-unit>
+			<trans-unit id="time.description">
+				<source>time</source>
+			</trans-unit>
+			<trans-unit id="title.description">
+				<source>title</source>
+			</trans-unit>
+			<trans-unit id="about.description">
+				<source>about</source>
+			</trans-unit>
+			<trans-unit id="exam_relevant.description">
+				<source>examRelevant</source>
+			</trans-unit>
+			<trans-unit id="meta_keywords.description">
+				<source>metaKeywords</source>
+			</trans-unit>
+			<trans-unit id="meta_description.description">
+				<source>metaDescription</source>
+			</trans-unit>
+			<trans-unit id="meta_title.description">
+				<source>metaTitle</source>
+			</trans-unit>
+			<trans-unit id="learning_objectives.description">
+				<source>learningObjectives</source>
+			</trans-unit>
+			<trans-unit id="thumbnail.description">
+				<source>thumbnail</source>
+			</trans-unit>
+			<trans-unit id="target_group.description">
+				<source>targetGroup</source>
+			</trans-unit>
+			<trans-unit id="level.description">
+				<source>level</source>
+			</trans-unit>
+			<trans-unit id="accessibility.description">
+				<source>accessibility</source>
+			</trans-unit>
+			<trans-unit id="tags.description">
+				<source>tags</source>
+			</trans-unit>
+			<trans-unit id="links.description">
+				<source>links</source>
+			</trans-unit>
+			<trans-unit id="categories.description">
+				<source>categories</source>
+			</trans-unit>
+			<trans-unit id="files.description">
+				<source>files</source>
+			</trans-unit>
+			<trans-unit id="transcripts.description">
+				<source>transcripts</source>
+			</trans-unit>
+			<trans-unit id="chapters.description">
+				<source>chapters</source>
+			</trans-unit>
+			<trans-unit id="authors.description">
+				<source>authors</source>
+			</trans-unit>
+			<trans-unit id="comments.description">
+				<source>comments</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

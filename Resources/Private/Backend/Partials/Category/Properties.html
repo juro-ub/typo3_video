@@ -1,0 +1,87 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+      xmlns:fed="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+      xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+      xmlns:videoportal="http://typo3.org/ns/Jro/Videoportal/ViewHelpers"
+>
+<table>
+    <tr>
+        <td width="300">
+            <table>
+                <tr>
+                    <td style="font-weight: bold;" width="100">
+                        <f:translate
+                                key="tx_videoportal_domain_model_category.title"/>
+                    </td>
+                    <td>{category.title}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold;">
+                        <f:translate
+                                key="tx_videoportal_domain_model_category.description"/>
+                    </td>
+                    <td>
+                        <f:if condition="{category.description} == ''">
+                            <f:then>no description</f:then>
+                            <f:else>
+                                <f:format.nl2br>{category.description}</f:format.nl2br>
+                            </f:else>
+
+                        </f:if>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold;">
+                        <f:translate
+                                key="tx_videoportal_domain_model_category.status"/>
+                    </td>
+                    <td>
+                        <f:if condition="{category.hidden}">
+                            <f:then>hidden</f:then>
+                            <f:else>visible</f:else>
+
+                        </f:if>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <p style="font-weight: bold;">
+                <f:translate key="tx_videoportal_domain_model_category.tree_title"/>
+            </p>
+            <f:render section="categoryList"
+                      arguments="{categories: categories, act_uid : category.uid}"/>
+            <f:section
+                    name="categoryList">
+                <ul class="catsTreeUl catsTreeFont">
+                    <f:for
+                            each="{categories -> fed:iterator.sort(sortBy: 'title')}"
+                            as="category">
+                        <li class="catsTreeLi">
+                            <f:if condition="{category.parent}">
+                                <div class="catsTreeDiv">
+                                    <f:image alt="" class="catsTreeExpand"
+                                             src="EXT:videoportal/Resources/Public/Image/Minus.png"/>
+                                    <f:image alt="" class="catsTreeCollapse"
+                                             src="EXT:videoportal/Resources/Public/Image/Plus.png"/>
+                                </div>
+                            </f:if>
+                            <div class="catsTreeDiv">{category.title}(ID:
+                                {category.uid})
+                            </div>
+
+                            <div class="catsTreeDiv">
+                                <f:form.checkbox value="{category.uid}" disabled="true"
+                                                 checked="{f:if(condition: '{act_uid} == {category.uid}', then: 'true')}"/>
+                            </div>
+                            <f:if condition="{category.parent}">
+                                <f:render section="categoryList"
+                                          arguments="{categories: category.parent, act_uid: act_uid}"/>
+                            </f:if>
+                        </li>
+                    </f:for>
+                </ul>
+            </f:section>
+        </td>
+    </tr>
+</table>
+</html>

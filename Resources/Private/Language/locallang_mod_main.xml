@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+    <meta type="array">
+        <type>module</type>
+        <description>Language labels for backend module Videoportal</description>
+    </meta>
+    <data type="array">
+        <languageKey index="default" type="array">
+                     
+            <label index="mlang_labels_tablabel">Videoportal</label>
+            <label index="mlang_tabs_tab">Videoportal</label>
+            <label index="mlang_labels_tabdescr">List of all Modules concerning Videoportal.</label>
+            <label index="mlang_labels_tablabel">Videoportal</label>
+        </languageKey>
+    </data>
+</T3locallang>

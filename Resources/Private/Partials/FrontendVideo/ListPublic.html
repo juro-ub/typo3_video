@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+      xmlns:fed="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+      xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+      xmlns:videoportal="http://typo3.org/ns/Jro/Videoportal/ViewHelpers"
+>
+<f:if condition="{unwatched -> f:count()} > 0">
+    <f:then>
+        <table cellpadding="20">
+            <tr>
+                <th class="h1" valign="bottom" style="padding-bottom: 0px;" colspan="2">Videos</th>
+            </tr>
+            <tr>
+                <td valign="top" align="center" colspan="2" style="padding-bottom: 0px;">
+                    <videoportal:widget.paginate objects="{unwatched}" as="paginatedVideos"
+                                                 configuration="{itemsPerPage: 10, insertAbove: 0, insertBelow: 1, insertSorting: 1}">
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" style="padding-bottom: 0px;">
+                    <f:for each="{paginatedVideos}" as="videoItem" iteration="i">
+                        <f:if condition="{i.cycle} % 6">
+                            <f:then></f:then>
+                            <f:else>
+                </td>
+                <td valign="top">
+                    </f:else>
+</f:if>
+<div class="Line"></div>
+<f:render partial="FrontendVideo/VideoItem" arguments="{video: videoItem, setWatched: 0}"/>
+
+</f:for>
+</td></tr>
+
+<tr>
+    <td colspan="2"> </videoportal:widget.paginate></td>
+</tr>
+
+</table>
+</f:then>
+<f:else>
+    <div class="catsTreeFont" style="margin-top: 10px;">
+        <f:translate key="tx_videoportal_domain_model_video.no_videos"/>
+    </div>
+</f:else>
+</f:if>
+</html>

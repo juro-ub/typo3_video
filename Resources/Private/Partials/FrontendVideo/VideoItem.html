@@ -1,0 +1,81 @@
+<div id="videoLink">
+<f:link.action class="videoItem" controller="FrontendVideo" action="show" arguments="{video: video}">
+
+<div class="videoItemWrapper">
+
+<div class="videoItemThumb">
+	<f:if condition="{video.thumbnail.originalResource.originalFile.uid}">
+	<f:image src="{video.thumbnail.originalResource.originalFile.uid}" alt="thumbnail" width="120px" height="67px"/>
+	</f:if>
+
+</div>
+
+<div class="videoItemTitle">
+{video.title}
+</div>
+
+<div class="videoItemAuthor">
+	Author:
+		<f:if condition="{video.authors -> f:count()} == 0">
+				no authors
+			</f:if>
+			<f:for each="{video.authors}" as="t" iteration="i">
+				<f:if condition="{i.isLast}" >
+				<f:then>
+					{t.fullname}
+				</f:then>
+				<f:else>
+					{t.fullname},
+				</f:else>
+				</f:if>
+			</f:for>
+</div>
+
+<div class="videoItemWatchCount">
+	Watch count:
+{video.watchCount}
+</div>
+
+<f:if condition="{setWatched} == 1" >
+<div class="videoItemWatched">
+	<f:link.action class="videoItem" controller="FrontendVideo" action="switchWatchedStatus" arguments="{video: video}">
+		<f:if condition="{unwatched} == 1" ><f:then>Mark as unwatched</f:then><f:else>Mark as watched</f:else></f:if>
+	</f:link.action>
+	</div>
+</f:if>
+
+
+<div class="videoItemSymbols" >
+<f:if condition="{video.examRelevant}" >
+	<f:then><f:image src="EXT:videoportal/Resources/Public/Image/exam.png" alt="exam relevant" title="exam relevant"/><br></f:then>
+	<f:else></f:else>
+</f:if>
+
+<f:if condition="{f:format.date(date: '-2 days' format: 'U')} < {f:format.date(date: '{video.crdate}', format: 'U')}">
+<f:then>
+   <f:image style="right: 0px; position: absolute;" src="EXT:videoportal/Resources/Public/Image/new.png" alt="exam relevant" title="not older than 2 days" width="35" height="35"/>
+</f:then>
+	<f:else></f:else>
+</f:if>
+</div>
+
+<div class="videoItemAccessibilities" >
+<f:translate key="tx_videoportal_domain_model_video.accessibilities" />: 
+<f:if condition="{video.accessibilities -> f:count()} == 0">
+				no accessibilities
+			</f:if>
+			<f:for each="{video.accessibilities}" as="t" iteration="i">
+				<f:if condition="{i.isLast}" >
+				<f:then>
+					{t.title}
+				</f:then>
+				<f:else>
+					{t.title},
+				</f:else>
+				</f:if>
+			</f:for>
+</div>
+
+</div>
+</f:link.action>
+</div>

@@ -1,0 +1,70 @@
+<label for="comment">
+</label><br />
+	<f:form.textarea property="text" cols="40" rows="15" /><br />
+	
+		<f:form.hidden name="files[0][0]" value="" />
+	<br>
+<p class="h1" style="font-size: 15px; margin: 0;">Add files (max. 10Mb)</p>
+(Allowed: pdf, zip, rar, 7zip, jpg, png, gif, jpeg)<br><br>
+
+<span id="filesContainer">
+		<f:for each="{files}" as="file" iteration="i">
+		<f:if condition="{file.deleted} != 1">
+
+		<span id="file{i.index}" style="">
+		<label class="formTitle" for="files">
+			<f:translate key="tx_videoportal_domain_model_video.files" /> 
+		</label><br />
+			<f:if condition="{file.name}">
+			<f:then>
+			
+			<f:form.hidden name="files[{i.index}][name]" value="{file.name}" style="float: left;"  />
+			<f:form.hidden name="files[{i.index}][type]" value="{file.type}" style="float: left;"  />
+			<f:form.hidden name="files[{i.index}][tmp_name]" value="{file.tmp_name}" style="float: left;"  />
+			<f:form.hidden name="files[{i.index}][error]" value="{file.error}" style="float: left;"  />
+			<f:form.hidden name="files[{i.index}][size]" value="{file.size}" style="float: left;"  />
+			<f:form.hidden name="files[{i.index}][uid]" value="{file.uid}" style="float: left;"  />
+			<f:form.hidden id="deleted{i.index}" name="files[{i.index}][deleted]" value="" style="float: left;"  />
+			{file.name}
+			<a style="clear: left;" href="#bottom" onclick="$('#file{i.index}').hide();$('#deleted{i.index}').attr('value', '1');">(remove)</a>
+			
+			</f:then>
+			<f:else>
+			<f:form.upload name="files[{i.index}]" style="float: left;"  /> 
+			<a style="clear: left;" href="#bottom" onclick="$('#file{i.index}').remove();">(remove)</a>
+			</f:else>
+			</f:if>
+		<br /><br />
+		</span>
+			</f:if>
+		</f:for>
+	
+
+	</span>
+	<div id="bottom"></div>
+	
+	
+		<a href="#bottom" onclick="addFileFields(fileCounter.getC())">+(Add file)</a>
+	<br><br>
+	
+<script>
+		var fileCounter = new function() {
+			this.c = 0;
+			this.initC = function (num) {
+				this.c = num;
+			};
+
+			this.getC = function () {
+				return this.c++;
+			};
+		};
+
+		fileCounter.initC(<f:count subject="{files}" />);
+
+		function addFileFields(i)
+		{
+
+			$( "#filesContainer" ).append('<span id="file'+i+'"><label class="formTitle" for="files">	<f:translate key="tx_videoportal_domain_model_video.files" /> </label><br />	<f:form.upload name="files['+i+']" style="float: left;" />	<a style="clear: left;" href="#bottom" onclick="$(\'#file'+i+'\').remove();">(remove)</a><br /><br /></span>');
+
+		};
+</script>

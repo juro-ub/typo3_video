@@ -1,0 +1,79 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	  xmlns:fed="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	  xmlns:videoportal="http://typo3.org/ns/Jro/Videoportal/ViewHelpers"
+>
+<f:layout name="Default" />
+
+<f:section name="content">
+	
+	<f:if condition="{video}">
+<f:then>
+	
+	<table cellpadding="20">
+		<tr>
+			<td valign="top">
+				<p class="h1">{video.title}</p>
+
+				<div  class="errorContainer" style=" padding: 30px;background-position: 5px 50%; background-image: url({f:uri.resource(path:'Image/error.png')}); background-repeat:no-repeat;" >
+					<f:link.page style="color: black; font-weight: bold;" pageUid="7">You have reached a full access area. Sign up now! </f:link.page>
+				</div>
+								
+				</td>
+				</tr>
+				<tr >
+					<td valign="bottom" style="padding-bottom: 0px;">
+						<p class="h1" style="margin: 0px; ">Related videos</p>
+						</td>
+					</tr>
+				<tr>
+					
+				<td valign="top" width="400px;">
+					
+					
+					<f:if condition="{relatedVideos}">
+						<f:then>
+					
+					<videoportal:widget.paginate objects="{relatedVideos}" as="paginatedVideos" configuration="{itemsPerPage: 10, insertAbove: 0, insertBelow: 1}">
+				
+					<f:for each="{paginatedVideos}" as="videoItem" iteration="i">
+						
+						<f:if condition="{i.cycle} % 6">
+								<f:then></f:then>
+								<f:else>
+								</td><td valign="top" width="400px;">
+									
+									
+									</f:else>
+
+								</f:if>
+								
+								<div class="Line"></div>
+								<f:render partial="FrontendVideo/VideoItem" arguments="{video: videoItem, setWatched: 0}" />
+							
+							</div>
+							
+				 </f:for>
+				  <div class="Line"></div>
+				  <tr><td colspan="2"></videoportal:widget.paginate></td></tr>
+				
+					</f:then>
+					<f:else><p>No related videos available</p></f:else>
+					 </f:if>
+					
+					
+					</td>
+			</tr>
+		
+		</table>
+	
+	</f:then>
+<f:else>
+	<div class="catsTreeFont" style="margin-top: 10px;">
+	no video selected
+	</div>
+</f:else>
+</f:if>	
+	
+</f:section>
+</html>

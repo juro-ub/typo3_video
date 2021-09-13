@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+      xmlns:fed="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+      xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+      xmlns:videoportal="http://typo3.org/ns/Jro/Videoportal/ViewHelpers"
+>
+<f:layout name="Default" />
+
+This template displays a NEW form for the current domain object.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        New.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+<f:section name="content">
+
+<f:render partial="FormErrors" />
+	<h1 class="h1">Question</h1>
+<p>
+	<f:format.nl2br>{videoportal:showCommentText(comment_uid:'{parentCommentUid}')}</f:format.nl2br>
+</p>
+<h1 class="h1">Answer</h1>
+<f:form action="create" controller="FrontendComment" arguments="{parentCommentUid: parentCommentUid, video: video}" enctype="multipart/form-data"  name="newComment" object="{newComment}">
+<f:render partial="FrontendComment/FormFields" arguments="{files: files}"/>
+	<input type="hidden"  name="parentCommentUid" value="{parentCommentUid}" />
+	<f:form.submit value="Create new" /> <f:link.action controller="FrontendVideo" action="show" arguments="{video: video, jumpToTab: 'videoTabPaneQA'}">Cancel</f:link.action>
+</f:form>
+</f:section>
+</html>

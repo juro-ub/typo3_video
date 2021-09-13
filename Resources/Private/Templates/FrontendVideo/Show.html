@@ -1,0 +1,85 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	  xmlns:fed="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	  xmlns:videoportal="http://typo3.org/ns/Jro/Videoportal/ViewHelpers"
+>
+<f:layout name="Default" />
+
+<f:section name="content">
+
+	<f:render partial="FormErrors" />
+
+	<f:if condition="{video}">
+<f:then>
+	
+	<table cellpadding="20">
+		<tr>
+			<td valign="top">
+				<p class="h1">{video.title}</p>
+			
+  <video id="player_video_js" data-setup ='{"controls":true}' preload='auto' class="video-js vjs-default-skin" width="825" height="600" >
+    <source src="fileadmin{video.pathMp4.originalResource.originalFile.identifier}" type="video/mp4" />
+    <source src="fileadmin{video.pathOgg.originalResource.originalFile.identifier}" type="video/ogg" />
+    <source src="fileadmin{video.pathWebm.originalResource.originalFile.identifier}" type="video/webm" />
+	<f:if condition="{video.transcripts.originalResource.originalFile.identifier}">
+	<track id="trackTranscript" kind="captions" src="fileadmin{video.transcripts.originalResource.originalFile.identifier}" srclang="en" label="English" default></track>
+	</f:if>
+	<f:if condition="{video.chapters.originalResource.originalFile.identifier}">
+	<track id="trackChapter" src="fileadmin{video.chapters.originalResource.originalFile.identifier}" kind="chapters" srclang="en" label="English" default></track>
+	</f:if>
+	<b> HTML5 video not supported </b>
+	 <!-- Download links provided for devices that can't play video in the browser. -->
+    <p class="vjs-no-video"><strong>Download Video:</strong>
+      <a href="fileadmin{video.pathMp4.originalResource.originalFile.identifier}">MP4</a>,
+      <a href="fileadmin{video.pathOgg.originalResource.originalFile.identifier}">WebM</a>,
+      <a href="fileadmin{video.pathWebm.originalResource.originalFile.identifier}">Ogg</a><br>
+      <!-- Support VideoJS by keeping this link. -->
+      <a href="http://videojs.com">HTML5 Video Player</a> by VideoJS
+    </p>
+  </video>
+ 
+				
+				
+					<br>
+
+	<f:render partial="FrontendVideo/VideoTabPane" arguments="{video: video, comments: comments, files: files, jumpToTab: jumpToTab}" />
+				
+				
+								
+				</td>
+				<td valign="top" style="min-width: 200px;">
+					
+					<p class="h1">Related videos</p>
+					<f:if condition="{relatedVideos}">
+						<f:then>
+					
+					<videoportal:widget.paginate objects="{relatedVideos}" as="paginatedVideos" configuration="{itemsPerPage: 10, insertAbove: 0, insertBelow: 1}">
+				
+					<f:for each="{paginatedVideos}" as="videoItem" >
+				    <div style="">
+								<div class="Line"></div>
+								<f:render partial="FrontendVideo/VideoItem" arguments="{video: videoItem, setWatched: 0}" />
+							</div>
+							
+				 </f:for>
+				  <div class="Line"></div>
+				 </videoportal:widget.paginate>
+				
+					</f:then>
+					<f:else><p>No related videos available</p></f:else>
+					 </f:if>
+					
+					
+					</td>
+			</tr>
+		
+		</table>
+	</f:then>
+<f:else>
+	<div class="catsTreeFont" style="margin-top: 10px;">
+	no video selected
+	</div>
+</f:else>
+</f:if>
+</f:section>
+</html>

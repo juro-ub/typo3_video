@@ -1,0 +1,73 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+      xmlns:fed="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+      xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+      xmlns:videoportal="http://typo3.org/ns/Jro/Videoportal/ViewHelpers"
+>
+<f:layout name="Default" />
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+Resources:
+Private:
+Templates:
+List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="content">
+    <f:render partial="LoginBox" arguments="{username: username, loginPid: loginPid}"/>
+    <f:if condition="{levels.levels}">
+        <f:then>
+        </f:then>
+        <f:else>
+            <div class="catsTreeFont" style="margin-top: 10px;">
+                <f:translate key="tx_videoportal_domain_model_category.no_cats" />
+            </div>
+        </f:else>
+    </f:if>
+
+    <f:render section="categoryList" arguments="{levels: levels, countAll: countAll, showCommentsId: showCommentsId,showAllId: showAllId }" />
+
+    <f:section name="categoryList">
+        <div>
+            <f:for each="{levels.levels}" as="level"  iteration="i">
+
+                <f:if condition="{level -> f:count()} > 0">
+
+                    <div id="menuContainer"  style="float:left; margin-right: 2px;" class="menuContainer" >
+                        <ul>
+
+                            <f:for each="{level -> fed:iterator.sort(sortBy: 'title')}" as="current_cat" iteration="ii">
+
+                                <li><videoportal:CategoryLink controller="FrontendCategory" arguments="{uid: current_cat.uid, level_id: i.index}" action="list"> {current_cat.title} (<videoportal:CountVideosInCat cat="{current_cat}"></videoportal:CountVideosInCat> trainings) </videoportal:CategoryLink></li>
+                                <f:if condition="{i.isFirst}" >
+                                    <f:if condition="{ii.isLast}" >
+                                        <li><videoportal:CategoryLink controller="FrontendCategory" arguments="{uid: showAllId, level_id: 0, showall: 1 }" action="list">Show All ({countAll} trainings) </videoportal:CategoryLink></li>
+                                        <li><videoportal:CategoryLink controller="FrontendCategory" arguments="{uid: showCommentsId, level_id: 0}" action="list">My Comments </videoportal:CategoryLink></li>
+                                    </f:if>
+                                </f:if>
+                            </f:for>
+
+                        </ul>
+
+                    </div>
+                </f:if>
+            </f:for>
+        </div>
+        <div style="clear: both;"></div>
+    </f:section>
+
+
+    <f:form style="float: left;" action="list" controller="FrontendCategory" arguments="{searchString: searchString}" >
+        <f:form.textfield style="width: 700px;" name="searchString" value="{searchString}"/>
+        <f:form.submit name="submit" id="searchButton" value="Search" />
+    </f:form>
+
+    <div style="clear:both;"></div>
+
+    <f:flashMessages />
+    <div class="Line"></div>
+</f:section>
+</html>

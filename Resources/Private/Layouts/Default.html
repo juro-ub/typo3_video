@@ -1,0 +1,32 @@
+<link href="{f:uri.resource(path:'CSS/tx_videoportal_category_frontend.css')}" rel="stylesheet" />
+<link href="{f:uri.resource(path:'CSS/tx_videoportal.css')}" rel="stylesheet" />
+<link href="{f:uri.resource(path:'CSS/tx_videoportal_frontend.css')}" rel="stylesheet" />
+<link href="{f:uri.resource(path:'CSS/tabs-no-images.css')}" rel="stylesheet" />
+
+<script type="text/javascript" src="{f:uri.resource(path:'Javascript/jquery.tools.min.js')}"></script>
+<script type="text/javascript" src="{f:uri.resource(path:'Javascript/commentTree.js')}"></script>
+<script type="text/javascript" src="{f:uri.resource(path:'Javascript/deleteConfirm.js')}"></script>
+<script type="text/javascript" src="{f:uri.resource(path:'Javascript/webvttNavigation.js')}"></script>
+<script type="text/javascript" src="{f:uri.resource(path:'Javascript/jquery.expander.min.js')}"></script>
+
+<link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet">
+<script src="https://unpkg.com/video.js/dist/video.min.js"></script>
+
+<script type="text/javascript">
+    // you can override default options globally, so they apply to every .expander() call
+    $.expander.defaults.slicePoint = 120;
+    $.expander.defaults.preserveWords = false;
+    $(document).ready(function() {
+        // simple example, using all default options unless overridden globally
+        $('div.expandable').expander();
+    });
+    //set links for tab VideoTabPane
+    $("#paginateContainer > span > a").each(function(){
+        var context = $(this);
+        var url = context.attr("href");
+        url += "#videoTabPaneQA";
+        context.attr("href", url);
+    });
+</script>
+
+<f:render section="content" />

@@ -1,0 +1,9 @@
+<f:layout name="Default" />
+
+<f:section name="content">
+ <f:if condition="{member}">
+	 <f:cache.disable />
+ 	<f:then><f:render partial="FrontendVideo/ListMember" arguments="{watched: watched, unwatched: unwatched}" /></f:then>
+ 		<f:else><f:render partial="FrontendVideo/ListPublic" arguments="{unwatched: unwatched}" /></f:else>
+ 	</f:if>
+</f:section>

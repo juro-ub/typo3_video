@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-08-02T19:33:42Z" product-name="videoportal">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_videoportal_domain_model_category">
+				<source>Category</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_category.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_category.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_category.status">
+				<source>Hidden</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_category.parent">
+				<source>Parent categories</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_category.tree_title">
+				<source>Category tree</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_category.no_cats">
+				<source>no categories available</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_category.delete_confirm_wit_childs">
+				<source>Are you sure you want to delete the category and all childs ?</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_category.delete_confirm">
+				<source>Are you sure you want to delete the category ?</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_videoportal_domain_model_video">
+				<source>Video</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.next_videos">
+				<source>Next videos</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.extension_videos">
+				<source>Extension videos</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.requirement_videos">
+				<source>Requirement videos</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.path_mp4">
+				<source>Mp4</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.path_webm">
+				<source>Webm</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.path_ogg">
+				<source>Ogg</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.time">
+				<source>Date</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.about">
+				<source>About</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.delete_confirm">
+				<source>Are you sure you want to delete the video ?</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.exam_relevant">
+				<source>Relevant for exam</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.meta_keywords">
+				<source>Meta keywords</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.meta_description">
+				<source>Meta description</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.meta_title">
+				<source>Meta title</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.learning_objectives">
+				<source>Learning-Objectives</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.thumbnail">
+				<source>Thumbnail</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.targetgroups">
+				<source>Target-Group</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.levels">
+				<source>Level</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.accessibilities">
+				<source>Accessibility</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.tags">
+				<source>Tags</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.id">
+				<source>ID</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.watchCount">
+				<source>Watch count</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.no_videos">
+				<source>No videos found!</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.no_comments">
+				<source>No comments</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.no_categories">
+				<source>No categories</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.no_authors">
+				<source>No authors</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.author">
+				<source>Author</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.links">
+				<source>Add Link</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.categories">
+				<source>Categories</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.files">
+				<source>Upload File</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.transcripts">
+				<source>Transcript</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.actions">
+				<source>Actions</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.chapters">
+				<source>Chapters</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.authors">
+				<source>Authors</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.comments">
+				<source>Comments</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_video.status">
+				<source>Hidden</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_videoportal_domain_model_tag">
+				<source>Tag</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_tag.name">
+				<source>name</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_videoportal_domain_model_link">
+				<source>Link</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_link.link">
+				<source>link</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_videoportal_domain_model_file">
+				<source>File</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_file.file">
+				<source>File</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_videoportal_domain_model_transcript">
+				<source>Transcript</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_transcript.transcript">
+				<source>Transcript</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_transcript.start">
+				<source>Start(sec)</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_transcript.stop">
+				<source>Stop(sec)</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_videoportal_domain_model_chapter">
+				<source>Chapter</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_chapter.name">
+				<source>Chapter</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_chapter.start">
+				<source>Time(sec)</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_videoportal_domain_model_author">
+				<source>Author</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_author.firstname">
+				<source>firstname</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_author.lastname">
+				<source>lastname</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_videoportal_domain_model_comment">
+				<source>Comment</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_comment.user">
+				<source>User</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_comment.comment">
+				<source>Comment</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_comment.status">
+				<source>Hidden</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_comment.time">
+				<source>Date</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_comment.parent">
+				<source>parent</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_comment.files">
+				<source>files</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_videoportal_domain_model_user">
+				<source>User</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_user.observed_comments">
+				<source>observedComments</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_user.my_comments">
+				<source>myComments</source>
+			</trans-unit>
+			<trans-unit id="tx_videoportal_domain_model_user.watch_count">
+				<source>watchCount</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_videoportal_domain_model_group">
+				<source>Group</source>
+			</trans-unit>
+			
+		</body>
+	</file>
+</xliff>

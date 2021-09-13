@@ -1,0 +1,130 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+      xmlns:fed="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+      xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+      xmlns:videoportal="http://typo3.org/ns/Jro/Videoportal/ViewHelpers"
+>
+
+<f:layout name="Default"/>
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+Resources:
+Private:
+Templates:
+List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+<f:section name="content">
+    <h1 class="h1">Listing for Comment</h1>
+
+    <f:flashMessages/>
+    <script type="text/javascript">
+
+        require(["jquery"], function ($) {
+            $(document).ready(function () {
+                $('.setAsWatched').click(function(){
+                    $(this).parent().parent().css('font-weight','normal');
+                    $(this).hide();
+                });
+            });
+        });
+
+    </script>
+
+    <f:form action="list" style="float: left;" arguments="{searchString: searchString}">
+        <f:form.textfield name="searchString" value="{searchString}"/>
+        <f:form.hidden name="controller" value="Comment"/>
+        <f:form.submit value="Search"/>
+    </f:form>
+    <f:link.action style="clear: left; margin-left: 30px;" action="list" class="catsTreeFont">Show all</f:link.action>
+
+    <br>
+    <br>
+
+    <videoportal:widget.paginate objects="{comments}" as="paginatedComments"
+                                 configuration="{itemsPerPage: 20, insertAbove: 0, insertBelow: 1, insertCrdateSorting: 1, addQueryStringMethod: 'GET,POST'}">
+        <br>
+        <table id="tableCommentShow">
+            <tr>
+                <th>
+                    <f:translate key="tx_videoportal_domain_model_comment.user"/>
+                </th>
+                <th>
+                    <f:translate key="tx_videoportal_domain_model_comment.comment"/>
+                </th>
+                <th>
+                    <f:translate key="tx_videoportal_domain_model_comment.status"/>
+                </th>
+                <th>
+                    <f:translate key="tx_videoportal_domain_model_comment.time"/>
+                </th>
+                <th>Actions</th>
+            </tr>
+
+
+            <f:for each="{paginatedComments}" as="comment">
+                <f:if condition="{videoportal:isWatchedComment(commentUid:'{comment.uid}')}">
+                    <f:then>
+                        <tr>
+                    </f:then>
+                    <f:else>
+                        <tr style="font-weight: bold;">
+                    </f:else>
+                </f:if>
+                <td>
+                    {videoportal:showCommentUser(comment_uid:'{comment.uid}')}
+                </td>
+                <td align="left" width="500" style="text-align: left;">
+                    <div class="expandable">
+                        <f:format.nl2br>{comment.text}</f:format.nl2br>
+                    </div>
+                    <f:if condition="{videoportal:isWatchedComment(commentUid:'{comment.uid}')} == '0'">
+                        <a class="setAsWatched" href="#"
+                           onclick="setAsWatched({comment.uid}); return false;">Set
+                            as watched</a>
+                    </f:if>
+                </td>
+                <td>
+
+                    <f:if condition="{comment.hidden}">
+                        <f:then>
+                            hidden
+                        </f:then>
+                        <f:else>
+                            visible
+                        </f:else>
+                    </f:if>
+
+                </td>
+                <td>
+                    <f:format.date format="d.m.y">{comment.crdate}</f:format.date>
+                </td>
+                <td>
+                    <f:link.action style="color: white;" action="new" arguments="{parentCommentUid: comment.uid}">
+                        <img src="{f:uri.resource(path:'Image/answer.png')}"/>
+                    </f:link.action>
+                    <f:link.action style="color: white;" action="show" arguments="{comment : comment}">
+                        <img src="{f:uri.resource(path:'Image/show.png')}"/>
+                    </f:link.action>
+                    <f:link.action style="color: white;" action="edit" arguments="{comment : comment}">
+                        <img src="{f:uri.resource(path:'Image/edit.png')}"/>
+                    </f:link.action>
+                    <f:link.action
+                            onclick="javascript: if(confirmDelete('Do you really want to delete the comment?')) return true; else return false;"
+                            style="color: white;" action="delete" arguments="{comment : comment}">
+                        <img src="{f:uri.resource(path:'Image/delete.png')}"/>
+                    </f:link.action>
+
+                </td>
+                </tr>
+            </f:for>
+            <tr border="0">
+                <td colspan="5" align="center" border="0" style="border: 0px solid white;">
+    </videoportal:widget.paginate>
+    </td></tr>
+    </table>
+
+</f:section>
+</html>

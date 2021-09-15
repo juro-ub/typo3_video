@@ -1,0 +1,26 @@
+plugin.tx_videoportal_video{
+	settings {
+				#Uid of TYPO3 groups that represent the accessibility for videos
+      	accessibilities.fullmemberuid = 1
+      	accessibilities.partialmemberuid = 2
+      	accessibilities.public = 3
+
+  	}
+
+}
+
+plugin.tx_videoportal_listcats{
+	settings {
+				#Pid of a page that includes the Felogin Plugin
+				felogin.pid = 9
+	}
+}
+
+plugin.tx_felogin_login{
+	settings {
+				#Pid of a page that includes the tx_videoportal_video and tx_videoportal_listcats Plugin
+				redirectPageLogin = 10
+				redirectPageLogout = 10
+				redirectPageLoginError = 10
+	}
+}

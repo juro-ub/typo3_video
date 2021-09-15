@@ -24,14 +24,14 @@ return array(
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ),
-        'searchFields' => 'path_mp4,path_webm,path_ogg,time,title,about,exam_relevant,meta_keywords,meta_description,meta_title,learning_objectives,thumbnail,target_group,level,accessibility,tags,links,categories,files,transcripts,chapters,authors,comments,',
+        'searchFields' => 'path_mp4,path_webm,path_ogg,time,title,about,exam_relevant,meta_keywords,meta_description,meta_title,learning_objectives,thumbnail,targetgroups,levels,accessibilities,tags,links,categories,files,transcripts,chapters,authors,comments,',
         'iconfile' => 'EXT:videoportal/Resources/Public/Icons/tx_videoportal_domain_model_video.gif'
     ),
     'interface' => array(
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, path_mp4, path_webm, path_ogg, time, about, exam_relevant, meta_keywords, meta_description, meta_title, learning_objectives, thumbnail, target_group, level, accessibility, tags, links, categories, files, transcripts, chapters, authors, comments',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, path_mp4, path_webm, path_ogg, time, about, exam_relevant, meta_keywords, meta_description, meta_title, learning_objectives, thumbnail, targetgroups, levels, accessibilities, tags, links, categories, files, transcripts, chapters, authors, comments',
     ),
     'types' => array(
-        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title,path_mp4, path_webm, path_ogg, about, exam_relevant, meta_keywords, meta_description, meta_title, learning_objectives, thumbnail, target_group, level, accessibility, tags, links, categories, files, transcripts, chapters, authors, next_videos,requirement_videos,extension_videos,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title,path_mp4, path_webm, path_ogg, about, exam_relevant, meta_keywords, meta_description, meta_title, learning_objectives, thumbnail, targetgroups, levels, accessibilities, tags, links, categories, files, transcripts, chapters, authors, next_videos,requirement_videos,extension_videos,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
     ),
     'palettes' => array(
         '1' => array('showitem' => ''),
@@ -264,9 +264,15 @@ return array(
             'config' => array(
                 'foreign_table' => 'tx_videoportal_domain_model_targetgroup',
                 'MM' => 'tx_videoportal_video_targetgroup_mm',
-                'type' => 'input',
-                'size' => 30,
-                'eval' => 'trim'
+                'type' => 'select',
+                'renderType' => 'selectCheckBox',
+                'appearance' => array(
+                    'collapseAll' => 0,
+                    'levelLinksPosition' => 'top',
+                    'showSynchronizationLink' => 1,
+                    'showPossibleLocalizationRecords' => 1,
+                    'showAllLocalizationLink' => 1
+                ),
             ),
         ),
         'next_videos' => array(
@@ -305,31 +311,14 @@ return array(
             'config' => array(
                 'foreign_table' => 'tx_videoportal_domain_model_level',
                 'MM' => 'tx_videoportal_video_level_mm',
-                'type' => 'input',
-                'size' => 30,
-                'eval' => 'trim,required',
-                'wizards' => array(
-                    '_PADDING' => 1,
-                    '_VERTICAL' => 1,
-                    'edit' => array(
-                        'type' => 'popup',
-                        'title' => 'Edit',
-                        'script' => 'wizard_edit.php',
-                        'icon' => 'edit2.gif',
-                        'popup_onlyOpenIfSelected' => 1,
-                        'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-                    ),
-                    'add' => array(
-                        'type' => 'script',
-                        'title' => 'Create new',
-                        'icon' => 'add.gif',
-                        'params' => array(
-                            'table' => 'tx_videoportal_domain_model_levels',
-                            'pid' => '###CURRENT_PID###',
-                            'setValue' => 'prepend'
-                        ),
-                        'script' => 'wizard_add.php',
-                    )
+                'type' => 'select',
+                'renderType' => 'selectCheckBox',
+                'appearance' => array(
+                    'collapseAll' => 0,
+                    'levelLinksPosition' => 'top',
+                    'showSynchronizationLink' => 1,
+                    'showPossibleLocalizationRecords' => 1,
+                    'showAllLocalizationLink' => 1
                 ),
             ),
         ),
@@ -337,11 +326,17 @@ return array(
             'exclude' => 1,
             'label' => 'LLL:EXT:videoportal/Resources/Private/Language/locallang_db.xlf:tx_videoportal_domain_model_video.accessibility',
             'config' => array(
+                'type' => 'select',
+                'renderType' => 'selectCheckBox',
                 'foreign_table' => 'fe_groups',
                 'MM' => 'tx_videoportal_video_accessibility_mm',
-                'type' => 'input',
-                'size' => 30,
-                'eval' => 'trim,required'
+                'appearance' => array(
+                    'collapseAll' => 0,
+                    'levelLinksPosition' => 'top',
+                    'showSynchronizationLink' => 1,
+                    'showPossibleLocalizationRecords' => 1,
+                    'showAllLocalizationLink' => 1
+                ),
             ),
         ),
         'links' => array(

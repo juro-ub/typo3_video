@@ -56,9 +56,7 @@ class ShowPersonalWatchcountViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper
     public function render()
     {
         $context = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(Context::class);
-        $userUid = $context->getPropertyFromAspect('backend.user', 'id');
-        if ($userUid <= 0)
-            $userUid = $context->getPropertyFromAspect('frontend.user', 'id');
+        $userUid = $context->getPropertyFromAspect('frontend.user', 'id');
         if ($userUid > 0) {
             $html = "0";
             $user = $this->userRepository->findByUid($userUid);
@@ -73,7 +71,6 @@ class ShowPersonalWatchcountViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper
             }else{
               $html = "User not found!";
             }
-
         } else {
             $html = "You must be logged in to see your watch count!";
         }

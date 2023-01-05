@@ -70,8 +70,6 @@ class AbstractRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $querySettings->setRespectStoragePage(FALSE);
         $querySettings->setRespectSysLanguage(FALSE);
         $this->setDefaultQuerySettings($querySettings);
-
-        $querySettings = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings');
     }
 
     /**
@@ -89,7 +87,6 @@ class AbstractRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         if ((int)$fileUid === 0 || (int)$elementUid === 0) {
             return false;
         }
-        $resourceFactory = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Resource\ResourceFactory::class);
         // Assemble DataHandler data
         $newId = 'NEW1234';
         $data = [];

@@ -44,7 +44,7 @@ class AbstractRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      */
     protected function getQueryBuilder($tableName = "tt_content",$hidden = false)
     {
-        $querySettings = new \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings();
+        $querySettings = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings::class);
         $querySettings->setRespectStoragePage(FALSE);
         $this->setDefaultQuerySettings($querySettings);
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($tableName);
@@ -66,7 +66,7 @@ class AbstractRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      */
     public function initializeObject()
     {
-        $querySettings = new \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings();
+        $querySettings = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings::class);
         $querySettings->setRespectStoragePage(FALSE);
         $querySettings->setRespectSysLanguage(FALSE);
         $this->setDefaultQuerySettings($querySettings);

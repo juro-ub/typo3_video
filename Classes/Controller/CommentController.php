@@ -226,7 +226,7 @@ class CommentController extends \Jro\Videoportal\Controller\AbstractController i
      * @param Jro\Videoportal\Domain\Model\Comment $newComment
      * @param array $files
      * @param integer $parentCommentUid
-     * @TYPO3\CMS\Extbase\Annotation\Validate(param="files", validator="Jro\Videoportal\Validation\Validator\FrontendFilesValidator", options={"types": "pdf,zip,rar,7zip,jpg,png,gif,jpeg", "maxsize": 10000000})
+     * @TYPO3\CMS\Extbase\Annotation\Validate(param="files", validator="Jro\Videoportal\Validation\Validator\FrontendFilesValidator")
      * @return void
      */
     public function createAction(\Jro\Videoportal\Domain\Model\Comment $newComment, $files, $parentCommentUid = 0)
@@ -317,7 +317,7 @@ class CommentController extends \Jro\Videoportal\Controller\AbstractController i
      *
      * @param Jro\Videoportal\Domain\Model\Comment $comment
      * @param array $files
-     * @TYPO3\CMS\Extbase\Annotation\Validate(param="files", validator="Jro\Videoportal\Validation\Validator\FrontendFilesValidator", options={"types": "pdf,zip,rar,7zip,jpg,png,gif,jpeg", "maxsize": 10000000})
+     * @TYPO3\CMS\Extbase\Annotation\Validate(param="files", validator="Jro\Videoportal\Validation\Validator\FrontendFilesValidator")
      * @return void
      */
     public function updateAction(\Jro\Videoportal\Domain\Model\Comment $comment, $files)

@@ -32,7 +32,7 @@ namespace Jro\Videoportal\Domain\Repository;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class GroupRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserGroupRepository
+class GroupRepository extends \TYPO3\CMS\FrontendLogin\Domain\Repository\FrontendUserGroupRepository
 {
     /**
      * dont respect on storage page

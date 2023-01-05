@@ -32,7 +32,7 @@ namespace Jro\Videoportal\Domain\Model;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class BeUser extends \TYPO3\CMS\Extbase\Domain\Model\BackendUser
+class BeUser extends \Jro\Videoportal\Domain\Model\BackendUser
 {
 
     /**

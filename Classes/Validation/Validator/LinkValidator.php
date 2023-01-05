@@ -27,10 +27,10 @@ class LinkValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVali
     }
 
     /**
-     * @param array $links
-     * @return boolean
+     * @param mixed $links
+     * @return void
      */
-    public function isValid($links)
+    public function isValid($links) : void
     {
         ///validate array
         $valid = true;
@@ -43,8 +43,7 @@ class LinkValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVali
                 $valid = false;
             }
             next($links);
-        }
-        return $valid;
+        }        
     }
 }
 

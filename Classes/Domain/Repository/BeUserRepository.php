@@ -32,7 +32,7 @@ namespace Jro\Videoportal\Domain\Repository;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class BeUserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\BackendUserRepository
+class BeUserRepository extends \TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository
 {
     /**
      * dont respect on storage page

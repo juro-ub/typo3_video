@@ -25,24 +25,21 @@ class FilesValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
     }
 
     /**
-     * @param array $files
-     * @return boolean
+     * @param mixed $files
+     * @return void
      */
-    public function isValid($files)
+    public function isValid($files) : void
     {
-        //validate array
-        $valid = true;
+        //validate array        
         foreach ($files as $file) {
             if ($file['name'] && $file['tmp_name'] && $file['deleted'] != '1') {
                 if ($this->uploadFile($file['name'], $file['type'], $file['tmp_name'],
                         $file['size']) === false) {
-                    $this->addError('error while upload', 1262341470);
-                    return false;
+                    $this->addError('error while upload', 1262341470);                    
                 }
             }
         }
-        $this->session->store('files', serialize($files));
-        return $valid;
+        $this->session->store('files', serialize($files));        
     }
 
     protected function uploadFile($name, $type, $temp, $size)

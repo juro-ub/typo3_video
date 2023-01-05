@@ -24,13 +24,12 @@ class ParentCategoryValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Ab
         $this->session = $session;
     }
     /**
-     * @param array $pids
-     * @return boolean
+     * @param mixed $pids
+     * @return void
      */
-    public function isValid($pids)
+    public function isValid($pids) : void
     {
-        $this->session->store('pids', serialize($pids));
-        return true;
+        $this->session->store('pids', serialize($pids));        
     }
 }
 

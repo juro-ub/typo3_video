@@ -31,13 +31,13 @@ class FrontendFilesValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abs
      * @var string
      */
     protected $strListOfAllowedTypes;
-
-    public function __construct($arguments)
+    
+    public function setOptions(array $options): void
     {
-        $this->strListOfAllowedTypes = $arguments['types'];
-        $this->setAllowedTypes($arguments['types']);
-        $this->setMaxSize((int)$arguments['maxsize']);
-        parent::__construct();
+        $this->strListOfAllowedTypes = $options['types'];
+        $this->setAllowedTypes($options['types']);
+        $this->setMaxSize((int)$options['maxsize']);
+        $this->initializeDefaultOptions($options);
     }
 
     /**
@@ -64,13 +64,12 @@ class FrontendFilesValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abs
     }
 
     /**
-     * @param array $files
-     * @return boolean
+     * @param mixed $files
+     * @return void
      */
-    public function isValid($files)
+    public function isValid($files) : void
     {
-        ///validate array
-        $valid = true;
+        ///validate array        
         $size = 0;
         $files_count = 0;
         //check file type
@@ -83,33 +82,28 @@ class FrontendFilesValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abs
                     ->allowedTypes);
                 if (!$allowedFilenameExtension) {
                     $this->addError('Not allowed file type (Allowed: pdf, zip, rar, 7zip, jpg, png, gif, jpeg, 7z)', 1262341470);
-
-                    return false;
+                    
                 }
                 $size += (int)$file['size'];
             }
         }
         //check file count
         if ($files_count > 10) {
-            $this->addError('Only 10 files are allowed', 1262341470);
-            return false;
+            $this->addError('Only 10 files are allowed', 1262341470);            
         }
         //check file size
         if ($size > (int)$this->maxSize) {
-            $this->addError('The size of the files is to big', 1262341470);
-            return false;
+            $this->addError('The size of the files is to big', 1262341470);            
         }
 
         foreach ($files as $file) {
             if ($file['name'] && $file['tmp_name'] && $file['deleted'] != '1') {
                 if ($this->uploadFile($file['name'], $file['type'], $file['tmp_name'],
                         $file['size']) === false) {
-                    $this->addError('error while upload', 1262341470);
-                    return false;
+                    $this->addError('error while upload', 1262341470);                    
                 }
             }
-        }
-        return $valid;
+        }        
     }
 
     protected function uploadFile($name, $type, $temp, $size)

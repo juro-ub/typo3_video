@@ -8,12 +8,12 @@ namespace Jro\Videoportal\ViewHelpers;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class EditMenuLinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\ActionViewHelper
+class EditMenuLinkViewHelper extends \Jro\Videoportal\ViewHelpers\MyActionViewHelper
 {
     /**
      * @return string Rendered link
      */
-    public function render()
+    public function render() : string
     {
         if ($this->matchesCurrentRequest($this->arguments['action'], $this->arguments['arguments'], $this->arguments['controller'])) {
             $cssClass = '	font-family: Arial;

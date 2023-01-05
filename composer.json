@@ -5,7 +5,7 @@
     "authors": [],
     "license": "GPL-2.0-or-later",
     "require": {
-        "typo3/cms-core": "^11.3"
+        "typo3/cms-core": "^12.1"
     },
     "require-dev": {
         "typo3/testing-framework": "^6.8"

@@ -8,7 +8,7 @@ namespace Jro\Videoportal\ViewHelpers;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class CategoryLinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\ActionViewHelper
+class CategoryLinkViewHelper extends \Jro\Videoportal\ViewHelpers\MyActionViewHelper
 {
 
     /**
@@ -27,7 +27,7 @@ class CategoryLinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\ActionVie
     /**
      * @return string Rendered link
      */
-    public function render()
+    public function render() : string
     {
         if ($this->matchesCurrentRequest($this->arguments['action'], $this->arguments['arguments'], $this->arguments['controller'])) {
             $cssClass = '	font-family: Arial;

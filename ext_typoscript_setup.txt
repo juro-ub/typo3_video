@@ -12,15 +12,15 @@ plugin.tx_videoportal_video{
 plugin.tx_videoportal_listcats{
 	settings {
 				#Pid of a page that includes the Felogin Plugin
-				felogin.pid = 9
+				felogin.pid = 1
 	}
 }
 
 plugin.tx_felogin_login{
 	settings {
 				#Pid of a page that includes the tx_videoportal_video and tx_videoportal_listcats Plugin
-				redirectPageLogin = 10
-				redirectPageLogout = 10
-				redirectPageLoginError = 10
+				redirectPageLogin = 2
+				redirectPageLogout = 2
+				redirectPageLoginError = 2
 	}
 }

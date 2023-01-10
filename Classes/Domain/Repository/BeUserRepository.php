@@ -2,6 +2,7 @@
 
 namespace Jro\Videoportal\Domain\Repository;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 /***************************************************************
  *  Copyright notice
  *
@@ -41,7 +42,7 @@ class BeUserRepository extends \TYPO3\CMS\Beuser\Domain\Repository\BackendUserRe
      */
     public function initializeObject()
     {
-        $querySettings = new \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings();
+        $querySettings = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings::class);
         $querySettings->setRespectStoragePage(FALSE);
         $this->setDefaultQuerySettings($querySettings);
     }

@@ -30,8 +30,10 @@ class EditMenuLinkViewHelper extends \Jro\Videoportal\ViewHelpers\MyActionViewHe
 
     protected function matchesCurrentRequest($action, $arguments, $controller)
     {
-        $text = $this->controllerContext->getRequest()->getControllerName();
-        $action_ = $this->controllerContext->getRequest()->getControllerActionName();
+        $renderingContext = $this->renderingContext;
+        $request = $renderingContext->getRequest();
+        
+        $action_ = $request->getControllerActionName();
         if ($action_ == $action) {
             return true;
         }

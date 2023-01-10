@@ -247,7 +247,7 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
         $this->createCommentAndFiles($parentCommentUid, $newComment, $files);
         $this->addCommentToUser($newComment);
         parent::addInfo('Your new Comment was created.');
-        $uriBuilder = $this->controllerContext->getUriBuilder();
+        $uriBuilder = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\TYPO3\CMS\Backend\Routing\UriBuilder');
         $uriBuilder->reset();
         //arguments for the plugins
         $uriBuilder->setArguments(array(
@@ -341,7 +341,7 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
         }
         $this->commentRepository->update($comment);
         parent::addInfo('Your Comment was updated.');
-        $uriBuilder = $this->controllerContext->getUriBuilder();
+        $uriBuilder = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\TYPO3\CMS\Backend\Routing\UriBuilder');
         $uriBuilder->reset();
         $uriBuilder->setArguments(array(
             'tx_videoportal_listcats' => array(

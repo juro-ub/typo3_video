@@ -6,18 +6,6 @@ namespace Jro\Videoportal\Controller;
 class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
     /**
-     * initializeAction
-     *
-     * @return void
-     */
-    public function initializeAction()
-    {
-        if (null === $this->controllerContext) {
-            $this->controllerContext = $this->buildControllerContext();
-        }
-    }
-
-    /**
      * add Warning Flash Message
      *
      * @return void

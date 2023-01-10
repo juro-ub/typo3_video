@@ -30,8 +30,10 @@ class LinkViewHelper extends \Jro\Videoportal\ViewHelpers\MyActionViewHelper
 
     protected function matchesCurrentRequest($action, $arguments, $controller)
     {
-        $text = $this->renderingContext->getControllerContext()->getRequest()->getControllerName();
-        $action_ = $this->renderingContext->getControllerContext()->getRequest()->getControllerActionName();
+        $renderingContext = $this->renderingContext;
+        $request = $renderingContext->getRequest();
+        $text = $request->getControllerName();
+        $action_ = $request->getControllerActionName();
         if ($text == $controller) {
             return true;
         }

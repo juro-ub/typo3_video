@@ -35,17 +35,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class GroupRepository extends \TYPO3\CMS\FrontendLogin\Domain\Repository\FrontendUserGroupRepository
 {
-    /**
-     * dont respect on storage page
-     *
-     * @return void
-     */
-    public function initializeObject()
-    {
-        $querySettings = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings::class);
-        $querySettings->setRespectStoragePage(FALSE);
-        $this->setDefaultQuerySettings($querySettings);
-    }
+
 }
 
 ?>

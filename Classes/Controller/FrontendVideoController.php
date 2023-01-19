@@ -298,9 +298,9 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
     private function setVideoAsWatchedIfUserLoggedIn($video)
     {
         $userAccess = $GLOBALS['TSFE']->fe_user->groupData['uid'];
-        $full = $this->settings['accessibilities']['fullmemberuid'];
-        $partial = $this->settings['accessibilities']['partialmemberuid'];
-        $public = $this->settings['accessibilities']['public'];
+        $full = $this->settings['fullGroupUid'];
+        $partial = $this->settings['partialGroupUid'];
+        $public = $this->settings['publicGroupUid'];
         //get User Id
         $context = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(Context::class);
         $userUid = $context->getPropertyFromAspect('frontend.user', 'id');
@@ -355,9 +355,9 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
     private function forwardIfVideoIsNotAllowedForUser($video)
     {
         $forward = true;
-        $full = $this->settings['accessibilities']['fullmemberuid'];
-        $partial = $this->settings['accessibilities']['partialmemberuid'];
-        $public = $this->settings['accessibilities']['public'];
+        $full = $this->settings['fullGroupUid'];
+        $partial = $this->settings['partialGroupUid'];
+        $public = $this->settings['publicGroupUid'];
         $videoAccess = array();
         $accessibilites = $video->getAccessibilities()->toArray();
         foreach ($accessibilites as $a) {

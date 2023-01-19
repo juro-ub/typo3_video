@@ -203,6 +203,30 @@
 			<trans-unit id="fe_users.tx_extbase_type.Tx_Videoportal_User">
 				<source>Videoportal User</source>
 			</trans-unit>
+                        
+                        <trans-unit id="tx_videoportal_video_flexform.groups.title">
+				<source>Uid of TYPO3 groups that represent the accessibility for videos</source>
+			</trans-unit>
+                        
+                        <trans-unit id="tx_videoportal_video_flexform.groups.partial">
+				<source>Partial Usergroup UID</source>
+			</trans-unit>
+                        
+                        <trans-unit id="tx_videoportal_video_flexform.groups.full">
+				<source>Full Usergroup UID</source>
+			</trans-unit>
+                        
+                        <trans-unit id="tx_videoportal_video_flexform.groups.public">
+				<source>Public Usergroup UID</source>
+			</trans-unit>
+                        
+                        <trans-unit id="tx_videoportal_listcats_flexform.felogin_pid.title">
+				<source>Pid of a page that includes the Felogin Plugin</source>
+			</trans-unit>
+                        
+                        <trans-unit id="tx_videoportal_listcats_flexform.felogin_pid.pid">
+				<source>Page ID with FeLogin</source>
+			</trans-unit>
 			
 		</body>
 	</file>

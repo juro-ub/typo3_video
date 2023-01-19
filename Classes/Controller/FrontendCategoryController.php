@@ -233,7 +233,7 @@ class FrontendCategoryController extends \Jro\Videoportal\Controller\AbstractCon
         //info for login box partial
         $context = GeneralUtility::makeInstance(Context::class);
         $name = $context->getPropertyFromAspect('frontend.user', 'username');
-        $pid = $this->settings['felogin']['pid'];
+        $pid = $this->settings['feloginPid'];
         $this->view->assign('username', $name);
         $this->view->assign('loginPid', $pid);
         //category data

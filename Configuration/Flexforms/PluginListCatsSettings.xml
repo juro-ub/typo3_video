@@ -1,0 +1,28 @@
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>
+                    LLL:EXT:videoportal/Resources/Private/Language/locallang_db.xlf:tx_videoportal_listcats_flexform.felogin_pid.title
+                </sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.feloginPid>
+                        <TCEforms>
+                            <label>LLL:EXT:videoportal/Resources/Private/Language/locallang_db.xlf:tx_videoportal_listcats_flexform.felogin_pid.pid</label>
+                            <config>
+                                <type>input</type>
+                                <eval>num</eval>
+                                <default></default>
+                                <size>3</size>
+                            </config>
+                        </TCEforms>
+                    </settings.feloginPid>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

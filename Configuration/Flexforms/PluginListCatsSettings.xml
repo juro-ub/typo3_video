@@ -16,7 +16,7 @@
                             <config>
                                 <type>input</type>
                                 <eval>num</eval>
-                                <default></default>
+                                <default>0</default>
                                 <size>3</size>
                             </config>
                         </TCEforms>

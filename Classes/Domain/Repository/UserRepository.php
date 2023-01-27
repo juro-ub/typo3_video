@@ -33,7 +33,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class UserRepository extends \TYPO3\CMS\FrontendLogin\Domain\Repository\FrontendUserRepository
+class UserRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepository
 {
 
 }

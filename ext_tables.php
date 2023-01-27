@@ -11,7 +11,7 @@ call_user_func(static function () {
         $_EXTKEY,
         'web',     // Make module a submodule of 'web'
         'videoportalbackendmodul',    // Submodule key
-        '',                        // Position
+        'top',                        // Position
         array(
              \Jro\Videoportal\Controller\CategoryController::class => 'list, show, new, edit, delete, create, update, newStep2',
             \Jro\Videoportal\Controller\VideoController::class => 'list, show, new, edit, delete, create, update, step1, editStep1, editStep2, editStep3, editStep4, editStep1Redirect, editStep2Redirect, editStep3Redirect, step2, step1Redirect, step2Redirect,step3,step3Redirect, step4, stepSave, ajaxSaveRelVideo,ajaxRemoveFileRef',
@@ -56,9 +56,9 @@ call_user_func(static function () {
     *
     * */
     //define types when create a new user
-    $GLOBALS['TCA']['fe_groups']['columns']['tx_extbase_type']['config']['items'] = "Tx_Extbase_Domain_Model_FrontendUserGroup";
-    $GLOBALS['TCA']['fe_users']['columns']['tx_extbase_type']['config']['items'] = "Tx_Extbase_Domain_Model_FrontendUser";
-    $GLOBALS['TCA']['be_users']['columns']['tx_extbase_type']['config']['items'] = "Tx_Extbase_Domain_Model_BackendUser";
+    $GLOBALS['TCA']['fe_groups']['columns']['tx_extbase_type']['config']['items'] = "tx_videoportal_domain_model_group";
+    $GLOBALS['TCA']['fe_users']['columns']['tx_extbase_type']['config']['items'] = "tx_videoportal_domain_model_user";
+    $GLOBALS['TCA']['be_users']['columns']['tx_extbase_type']['config']['items'] = "tx_videoportal_domain_model_beuser";
     //Not needed since TYPO3 v7
     //\TYPO3\CMS\Core\Utility\GeneralUtility::loadTCA('fe_users');
 

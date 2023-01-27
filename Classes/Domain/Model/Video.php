@@ -160,7 +160,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * accessibility
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup>
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Group>
      * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $accessibilities;
@@ -646,7 +646,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the accessibilities
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup> $accessibilities
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Group> $accessibilities
      */
     public function getAccessibilities()
     {
@@ -656,7 +656,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the accessibilities
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup> $accessibilities
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Group> $accessibilities
      * @return void
      */
     public function setAccessibilities($accessibilities)
@@ -667,10 +667,10 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Adds a Accessibility
      *
-     * @param \TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup $accessibility
+     * @param \Jro\Videoportal\Domain\Model\Group $accessibility
      * @return void
      */
-    public function addAccessibility(\TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup $accessibility)
+    public function addAccessibility(\Jro\Videoportal\Domain\Model\Group $accessibility)
     {
         $this->accessibilities->attach($accessibility);
     }
@@ -678,10 +678,10 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Removes a Accessibility
      *
-     * @param \TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup $AccessibilityToRemove The Accessibility to be removed
+     * @param \Jro\Videoportal\Domain\Model\Group $AccessibilityToRemove The Accessibility to be removed
      * @return void
      */
-    public function removeAccessibility(\TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup $accessibilityToRemove)
+    public function removeAccessibility(\Jro\Videoportal\Domain\Model\Group $accessibilityToRemove)
     {
         $this->accessibilities->detach($accessibilityToRemove);
     }

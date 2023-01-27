@@ -33,7 +33,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class BeUserRepository extends \TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository
+class BeUserRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepository
 {
     /**
      * dont respect on storage page

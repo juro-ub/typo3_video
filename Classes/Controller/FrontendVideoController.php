@@ -197,7 +197,9 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
         $context = GeneralUtility::makeInstance(Context::class);
         $userUid = $context->getPropertyFromAspect('frontend.user', 'id');
         $loggedIn = $context->getPropertyFromAspect('frontend.user', 'isLoggedIn');
-        $watched = false;
+        //stores the watched and unwatched videos
+        $watched = array();
+        $unwatched = array();
         if ($this->session->get('cat_id'))
             $session_catuid = unserialize($this->session->get('cat_id'));
         if ($session_catuid == FrontendCategoryController::showCommentsCatItem) {
@@ -270,9 +272,9 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
      *
      * @param Jro\Videoportal\Domain\Model\Video $video
      * @param string $jumpToTab
-     * @return void
+     * @return Response
      */
-    public function showAction(\Jro\Videoportal\Domain\Model\Video $video, $jumpToTab = '')
+    public function showAction(\Jro\Videoportal\Domain\Model\Video $video, $jumpToTab = '') : Response
     {
         $this->forwardIfVideoIsNotAllowedForUser($video);
         $this->setVideoAsWatchedIfUserLoggedIn($video);
@@ -292,6 +294,8 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
         $this->view->assign('comments', $comments);
         $this->view->assign('relatedVideos', $relatedVideos);
         $this->view->assign('jumpToTab', $jumpToTab);
+        
+        return $this->htmlResponse();
     }
 
     /**

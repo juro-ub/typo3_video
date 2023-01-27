@@ -4,7 +4,7 @@ namespace Jro\Videoportal\Controller;
 
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use Psr\Http\Message\ResponseInterface\ResponseInterface;
+use TYPO3\CMS\Core\Http\Response;
 /***************************************************************
  *  Copyright notice
  *
@@ -192,9 +192,9 @@ class FrontendCategoryController extends \Jro\Videoportal\Controller\AbstractCon
      * @param string $searchString
      * @param string $submit
      * @param string $showall
-     * @return ResponseInterface
+     * @return Response
      */
-    public function listAction($uid = -1, $level_id = -1, $searchString = "", $submit = "", $showall = "0") : ResponseInterface
+    public function listAction($uid = -1, $level_id = -1, $searchString = "", $submit = "", $showall = "0") : Response
     {
         $levels = array();
         if ((!$this->session->get('cat_id')) || $uid == self::showAllCatItem || $uid == self::showCommentsCatItem) {

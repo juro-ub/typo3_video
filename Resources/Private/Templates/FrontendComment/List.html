@@ -21,11 +21,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:flashMessages />
 
-<videoportal:widget.paginate objects="{comments}" as="paginatedComments" configuration="{itemsPerPage: 10, insertAbove: 0, insertBelow: 1, insertSorting: 0, addQueryStringMethod: 'GET,POST'}">
-		
-<f:render section="commentList" arguments="{comments: paginatedComments}" />
 
-</videoportal:widget.paginate>
+<f:render section="commentList" arguments="{comments: comments}" />
 
 <f:section name="commentList">
 	<ul class="commentTreeUl">

@@ -16,12 +16,12 @@
 	<f:if condition="{comments -> f:count()} == 0">
 		<f:then>	No video questions and answers found!</f:then>
 		<f:else>
-				<videoportal:widget.paginate objects="{comments}" as="paginatedComments" configuration="{itemsPerPage: 6, insertAbove: 0, insertBelow: 1, insertSorting: 0, addQueryStringMethod: 'GET,POST'}">
+				
 		<videoportal:counter reset="true" />
-<f:render section="commentList" arguments="{comments: paginatedComments, video: video}" />
+<f:render section="commentList" arguments="{comments: comments, video: video}" />
 
 <div style="clear: both;"></div>
-</videoportal:widget.paginate>
+
 			</f:else>
 			
 			</f:if>

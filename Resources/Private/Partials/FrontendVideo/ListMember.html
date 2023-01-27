@@ -16,11 +16,11 @@
 		<f:then>
 			<tr><td align="center">
 				<div id="sortingText" >
-				<videoportal:widget.paginate objects="{unwatched}" as="paginatedVideos" configuration="{itemsPerPage: 10, insertAbove: 0, insertBelow: 1, insertSorting: 1}">
+				
 				</div>
 			</td></tr>
 
-  <f:for each="{paginatedVideos}" as="videoItem">
+  <f:for each="{unwatched}" as="videoItem">
     <tr>
 			<td><div class="Line"></div>
 				<f:render partial="FrontendVideo/VideoItem" arguments="{video: videoItem, setWatched: 1}" />
@@ -29,7 +29,7 @@
 			</tr>
  </f:for>
 
-<tr><td style="padding-top: 15px;"></videoportal:widget.paginate></td></tr>
+<tr><td style="padding-top: 15px;"></td></tr>
 
 </table>
 
@@ -64,11 +64,11 @@
 		<f:if condition="{watched -> f:count()} > 0">
 <f:then>
 	<tr><td align="center"><div id="sortingText" >
-		<videoportal:widget.paginate objects="{watched}" as="paginatedVideosUnwatched" configuration="{itemsPerPage: 10, insertAbove: 0, insertBelow: 1, insertSorting: 1}">
+		
 	</div>
 	</td>
 	</tr>
-  <f:for each="{paginatedVideosUnwatched}" as="videoItem">
+  <f:for each="{watched}" as="videoItem">
     <tr>
 			<td>
 				<div class="Line"></div>
@@ -77,7 +77,7 @@
 				</td>
 			</tr>
  </f:for>
- <tr><td style="padding-top: 15px;"></videoportal:widget.paginate></td></tr>
+ <tr><td style="padding-top: 15px;"></td></tr>
  
 </table>
 

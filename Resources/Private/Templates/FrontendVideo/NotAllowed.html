@@ -34,9 +34,8 @@
 					<f:if condition="{relatedVideos}">
 						<f:then>
 					
-					<videoportal:widget.paginate objects="{relatedVideos}" as="paginatedVideos" configuration="{itemsPerPage: 10, insertAbove: 0, insertBelow: 1}">
-				
-					<f:for each="{paginatedVideos}" as="videoItem" iteration="i">
+
+					<f:for each="{relatedVideos}" as="videoItem" iteration="i">
 						
 						<f:if condition="{i.cycle} % 6">
 								<f:then></f:then>
@@ -55,7 +54,7 @@
 							
 				 </f:for>
 				  <div class="Line"></div>
-				  <tr><td colspan="2"></videoportal:widget.paginate></td></tr>
+				  <tr><td colspan="2"></td></tr>
 				
 					</f:then>
 					<f:else><p>No related videos available</p></f:else>

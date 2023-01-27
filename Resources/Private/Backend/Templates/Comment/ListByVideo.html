@@ -41,10 +41,6 @@ Otherwise your changes will be overwritten the next time you save the extension 
     <br>
     <f:if condition="{comments -> f:count()} > 0">
         <f:then>
-
-            <videoportal:widget.paginate objects="{comments}" as="paginatedComments"
-                                         configuration="{itemsPerPage: 20, insertAbove: 0, insertBelow: 1, insertCrdateSorting: 1, addQueryStringMethod: 'GET,POST'}">
-
                 <br>
                 <table id="tableCommentShow">
                     <tr>
@@ -63,7 +59,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
                         <th>Actions</th>
                     </tr>
 
-                    <f:render section="commentList" arguments="{comments: paginatedComments, video: video}"/>
+                    <f:render section="commentList" arguments="{comments: comments, video: video}"/>
                     <f:section name="commentList">
                         <f:for each="{comments}" as="comment">
                             <f:if condition="{videoportal:isWatchedComment(commentUid:'{comment.uid}')}">
@@ -131,7 +127,6 @@ Otherwise your changes will be overwritten the next time you save the extension 
                     </f:section>
                     <tr border="0">
                         <td colspan="5" align="center" border="0" style="border: 0px solid white;">
-            </videoportal:widget.paginate>
             </td></tr>
             </table>
         </f:then>

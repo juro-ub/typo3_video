@@ -53,9 +53,8 @@
 					<f:if condition="{relatedVideos}">
 						<f:then>
 					
-					<videoportal:widget.paginate objects="{relatedVideos}" as="paginatedVideos" configuration="{itemsPerPage: 10, insertAbove: 0, insertBelow: 1}">
-				
-					<f:for each="{paginatedVideos}" as="videoItem" >
+
+					<f:for each="{relatedVideos}" as="videoItem" >
 				    <div style="">
 								<div class="Line"></div>
 								<f:render partial="FrontendVideo/VideoItem" arguments="{video: videoItem, setWatched: 0}" />
@@ -63,8 +62,6 @@
 							
 				 </f:for>
 				  <div class="Line"></div>
-				 </videoportal:widget.paginate>
-				
 					</f:then>
 					<f:else><p>No related videos available</p></f:else>
 					 </f:if>

@@ -197,6 +197,7 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
         $context = GeneralUtility::makeInstance(Context::class);
         $userUid = $context->getPropertyFromAspect('frontend.user', 'id');
         $loggedIn = $context->getPropertyFromAspect('frontend.user', 'isLoggedIn');
+        $watched = false;
         if ($this->session->get('cat_id'))
             $session_catuid = unserialize($this->session->get('cat_id'));
         if ($session_catuid == FrontendCategoryController::showCommentsCatItem) {

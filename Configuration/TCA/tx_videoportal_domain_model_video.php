@@ -129,7 +129,7 @@ return array(
                 'maxitems' => 1,
                 'eval' => 'required',
             ),
-                $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']. ',mp4'
+                'mp4'
             )
         ),
         'path_webm' => array(
@@ -143,7 +143,7 @@ return array(
                 'minitems' => 0,
                 'maxitems' => 1,
             ),
-                $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']. ',webm'
+                'webm'
             )
         ),
         'path_ogg' => array(
@@ -157,7 +157,7 @@ return array(
                 'minitems' => 0,
                 'maxitems' => 1,
             ),
-                $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']. ',ogg,ogv'
+                ',ogg,ogv'
             )
         ),
         'time' => array(
@@ -346,7 +346,6 @@ return array(
                 'type' => 'inline',
                 'foreign_table' => 'tx_videoportal_domain_model_link',
                 'foreign_field' => 'video',
-                'MM' => 'tx_videoportal_video_link_mm',
                 'maxitems' => 9999,
                 'appearance' => array(
                     'collapseAll' => 0,
@@ -428,7 +427,6 @@ return array(
             'config' => array(
                 'type' => 'inline',
                 'foreign_table' => 'tx_videoportal_domain_model_author',
-                'MM' => 'tx_videoportal_video_author_mm',
                 'foreign_field' => 'video',
                 'maxitems' => 9999,
                 'appearance' => array(

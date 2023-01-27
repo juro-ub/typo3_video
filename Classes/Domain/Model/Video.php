@@ -82,7 +82,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @var string
      * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-     * @TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"minimum": 1, "maximum": 50})
+     * @TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"minimum": 1, "maximum": 500})
      */
     protected $about;
 

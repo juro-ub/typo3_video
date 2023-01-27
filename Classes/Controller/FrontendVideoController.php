@@ -4,7 +4,7 @@ namespace Jro\Videoportal\Controller;
 
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-
+use TYPO3\CMS\Core\Http\Response;
 /***************************************************************
  *  Copyright notice
  *
@@ -188,9 +188,9 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
 
     /**
      * action list
-     * @return void
+     * @return Response
      */
-    public function listAction()
+    public function listAction() : Response
     {
         $videos = null;
         $session_catuid = 0;
@@ -245,6 +245,8 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
             $this->view->assign('member', true);//load the template partial for member
         $this->view->assign('unwatched', $unwatched);
         $this->view->assign('watched', $watched);
+        
+        return $this->htmlResponse();
     }
 
     /**

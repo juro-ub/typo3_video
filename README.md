@@ -1,4 +1,4 @@
-## TYPO3 10.4
+## TYPO3 12.1
 
 ### [Thema]
 Masterarbeit Projekt: Konzeption und Entwicklung einer Video-Lernplattform

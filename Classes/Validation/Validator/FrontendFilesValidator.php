@@ -11,6 +11,11 @@ namespace Jro\Videoportal\Validation\Validator;
 class FrontendFilesValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator
 {
 
+    protected $supportedOptions = array(
+        'types' => 'Valid types as a comma seperated list',
+        'maxsize' => 'The maximum size of a file'
+    );
+    
     /**
      * The allowed types
      *

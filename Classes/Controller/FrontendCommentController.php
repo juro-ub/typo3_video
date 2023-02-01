@@ -215,10 +215,10 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      * @param array $files
      * @param Jro\Videoportal\Domain\Model\Video $video
      * @param integer $parentCommentUid
-     * @TYPO3\CMS\Extbase\Annotation\Validate(param="files", validator="Jro\Videoportal\Validation\Validator\FrontendFilesValidator")
+     * @TYPO3\CMS\Extbase\Annotation\Validate(param="files", validator="Jro\Videoportal\Validation\Validator\FrontendFilesValidator", options={"types": "pdf,zip,rar,7zip,jpg,png,gif,jpeg", "maxsize": 10000000})
      * @return void
      */
-    public function createAction(\Jro\Videoportal\Domain\Model\Comment $newComment, $files, \Jro\Videoportal\Domain\Model\Video $video = null, $parentCommentUid = 0)
+    public function createAction(\Jro\Videoportal\Domain\Model\Comment $newComment, array $files, \Jro\Videoportal\Domain\Model\Video $video = null, int $parentCommentUid = 0)
     {
         $this->forwardIfNotLoggedIn();
         if ($submit == "Cancel") {
@@ -233,15 +233,15 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
     }
 
 
-    /**
+    /** 
      * action createMyComment
      * @param Jro\Videoportal\Domain\Model\Comment $newComment
      * @param array $files
      * @param integer $parentCommentUid
-     * @TYPO3\CMS\Extbase\Annotation\Validate(param="files", validator="Jro\Videoportal\Validation\Validator\FrontendFilesValidator")
+     * @TYPO3\CMS\Extbase\Annotation\Validate(param="files", validator="Jro\Videoportal\Validation\Validator\FrontendFilesValidator", options={"types": "pdf,zip,rar,7zip,jpg,png,gif,jpeg", "maxsize": 10000000})
      * @return void
      */
-    public function createMyCommentAction(\Jro\Videoportal\Domain\Model\Comment $newComment, $files, $parentCommentUid = 0)
+    public function createMyCommentAction(\Jro\Videoportal\Domain\Model\Comment $newComment, array $files, int $parentCommentUid = 0)
     {
         $this->forwardIfNotLoggedIn();
         $this->createCommentAndFiles($parentCommentUid, $newComment, $files);
@@ -324,10 +324,10 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      *
      * @param Jro\Videoportal\Domain\Model\Comment $comment
      * @param array $files
-     * @TYPO3\CMS\Extbase\Annotation\Validate(param="files", validator="Jro\Videoportal\Validation\Validator\FrontendFilesValidator")
+     * @TYPO3\CMS\Extbase\Annotation\Validate(param="files", validator="Jro\Videoportal\Validation\Validator\FrontendFilesValidator", options={"types": "pdf,zip,rar,7zip,jpg,png,gif,jpeg", "maxsize": 10000000})
      * @return void
      */
-    public function updateAction(\Jro\Videoportal\Domain\Model\Comment $comment, $files)
+    public function updateAction(\Jro\Videoportal\Domain\Model\Comment $comment, array $files)
     {
         //update files
         $uidNew = $comment->getUid();

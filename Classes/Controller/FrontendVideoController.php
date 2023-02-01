@@ -180,6 +180,7 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
      */
     public function searchAction($searchString = "") : Response
     {
+        $res = array();
         if (strlen($searchString) >= 3) {
             $res = $this->videoRepository->findByStr($searchString, $hidden = false);//no hidden fields
         }
@@ -295,13 +296,14 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
      * @return Response
      */
     public function showAction(\Jro\Videoportal\Domain\Model\Video $video, $jumpToTab = '') : Response
-    {
-        $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder::class);
-        $uri = $uriBuilder
+    {        
+        if(!$this->isVideoAllowedForUser($video)){
+            $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder::class);
+            $uri = $uriBuilder
                 ->reset()
                 ->uriFor('notAllowed', array('video' => $video), 'FrontendVideo', 'videoportal', 'Video');
-        return new RedirectResponse($uri);
-        $this->forwardIfVideoIsNotAllowedForUser($video);
+            return new RedirectResponse($uri);
+        }
         $this->setVideoAsWatchedIfUserLoggedIn($video);
         $this->incrUserWatchCount($video);
         $relatedVideos = $this->videoRepository->findRelatedVideos($video);
@@ -354,7 +356,13 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
      */
     private function incrUserWatchCount($video)
     {
-        $this->forwardIfVideoIsNotAllowedForUser($video);
+        if (!$this->isVideoAllowedForUser($video)) {
+            $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder::class);
+            $uri = $uriBuilder
+                    ->reset()
+                    ->uriFor('notAllowed', array('video' => $video), 'FrontendVideo', 'videoportal', 'Video');
+            return new RedirectResponse($uri);
+        }
         $context = GeneralUtility::makeInstance(Context::class);
         $userUid = $context->getPropertyFromAspect('frontend.user', 'id');
         $loggedIn = $context->getPropertyFromAspect('frontend.user', 'isLoggedIn');
@@ -382,11 +390,10 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
 
     /**
      * @param Jro\Videoportal\Domain\Model\Video $video
-     * @return Response
+     * @return bool
      */
-    private function forwardIfVideoIsNotAllowedForUser($video) : Response
+    private function isVideoAllowedForUser($video) : bool
     {
-        $forward = true;
         $full = $this->settings['fullGroupUid'];
         $partial = $this->settings['partialGroupUid'];
         $public = $this->settings['publicGroupUid'];
@@ -398,25 +405,21 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
         $userAccess = $GLOBALS['TSFE']->fe_user->groupData['uid'];
         //check video is public
         if (in_array($public, $videoAccess) || count($videoAccess) == 0) {
-            $forward = false;
+            return true;
         } //check video is partial
         else if (in_array($partial, $videoAccess)) {
             //check if user is partial or full
-            if (in_array($partial, $userAccess) || in_array($full, $userAccess))
-                $forward = false;
+            if (in_array($partial, $userAccess) || in_array($full, $userAccess)){
+                return true;
+            }
         } //check video is full
         else if (in_array($full, $videoAccess)) {
             //check if user is full
-            if (in_array($full, $userAccess))
-                $forward = false;
+            if (in_array($full, $userAccess)){
+                return true;
+            }
         }        
-        if ($forward){
-            $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder::class);
-            $uri = $uriBuilder
-                ->reset()
-                ->uriFor('notAllowed', array('video' => $video), 'FrontendVideo', 'videoportal', 'Video');
-            return new RedirectResponse($uri);
-        }
+        return false;
     }
 
     /**
@@ -463,19 +466,21 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
 
     /**
      * if logged in return $user else forward to notAllowed
-     * @return Jro\Videoportal\Domain\Model\User $user
+     * @return : Response
      */
-    private function forwardIfNotLoggedIn()
+    private function forwardIfNotLoggedIn() : Response
     {
         $context = GeneralUtility::makeInstance(Context::class);
         $loggedIn = $context->getPropertyFromAspect('frontend.user', 'isLoggedIn');
         $userUid = $context->getPropertyFromAspect('frontend.user', 'id');
         if (!$loggedIn) {
             parent::addInfo('This action is only allowed for partial or full members', "");
-            $this->redirect('list');
-
+            $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder::class);
+            $uri = $uriBuilder
+                ->reset()
+                ->uriFor('list', null, 'FrontendVideo', 'videoportal', 'Video');
         } else {
-            return $this->userRepository->findByUid($userUid);
+            return $this->htmlResponse();
         }
     }
 

@@ -154,8 +154,10 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
             $comments = $user->getObservedComments();
         }
         $uids = array();
-        foreach ($comments as $c) {
-            array_push($uids, $c->getUid());
+        if (isset($comments)) {
+            foreach ($comments as $c) {
+                array_push($uids, $c->getUid());
+            }
         }
         $comments = $this->commentRepository->findByUids($uids);
         $this->view->assign('comments', $comments);
@@ -406,7 +408,7 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
 
     /**
      * checks user login
-     * @return void
+     * @return : Response
      */
     private function forwardIfNotLoggedIn() : Response
     {
@@ -420,9 +422,8 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
                     ->reset()
                     ->uriFor('notAllowed', null, 'FrontendComment', 'videoportal', 'Video');
             return new RedirectResponse($uri);
-        } else {
-            return $this->userRepository->findByUid($userUid);
         }
+        return $this->htmlResponse();
     }
 
     /**

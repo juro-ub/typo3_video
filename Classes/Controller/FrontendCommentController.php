@@ -3,7 +3,8 @@ namespace Jro\Videoportal\Controller;
 
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-
+use TYPO3\CMS\Core\Http\Response;
+use TYPO3\CMS\Core\Http\RedirectResponse;
 /***************************************************************
  *  Copyright notice
  *
@@ -98,23 +99,25 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
     /**
      * action list
      *
-     * @return void
+     * @return Response
      */
-    public function listAction()
+    public function listAction() : Response
     {
         $comments = $this->commentRepository->findAll();
         $files = array();
         parent::fillArray($files);
         $this->view->assign('files', $files);
         $this->view->assign('comments', $comments);
+        
+        return $this->htmlResponse();
     }
 
     /**
      * user action listMyComments
      *
-     * @return void
+     * @return Response
      */
-    public function listMyCommentsAction()
+    public function listMyCommentsAction() : Response
     {
         $this->forwardIfNotLoggedIn();
         $context = GeneralUtility::makeInstance(Context::class);
@@ -124,20 +127,24 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
             $comments = $user->getMyComments();
         }
         $uids = array();
-        foreach ($comments as $c) {
-            array_push($uids, $c->getUid());
+        if (isset($comments)) {
+            foreach ($comments as $c) {
+                array_push($uids, $c->getUid());
+            }
         }
         $comments = $this->commentRepository->findByUids($uids);
         $this->view->assign('comments', $comments);
         $this->view->assign('listOption', 'myquestions');
+        
+        return $this->htmlResponse();
     }
 
     /**
      * user action listObservedComments
      *
-     * @return void
+     * @return Response
      */
-    public function listObservedCommentsAction()
+    public function listObservedCommentsAction() : Response
     {
         $this->forwardIfNotLoggedIn();
         $context = GeneralUtility::makeInstance(Context::class);
@@ -152,17 +159,21 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
         }
         $comments = $this->commentRepository->findByUids($uids);
         $this->view->assign('comments', $comments);
+        
+        return $this->htmlResponse();
     }
 
     /**
      * action show
      *
      * @param Jro\Videoportal\Domain\Model\Comment $comment
-     * @return void
+     * @return Response
      */
-    public function showAction(\Jro\Videoportal\Domain\Model\Comment $comment = null)
+    public function showAction(\Jro\Videoportal\Domain\Model\Comment $comment = null) : Response
     {
         $this->view->assign('comment', $comment);
+        
+        return $this->htmlResponse();
     }
 
     /**
@@ -172,9 +183,9 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      * @param Jro\Videoportal\Domain\Model\Video $video
      * @param integer $parentCommentUid
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("newComment")
-     * @return void
+     * @return Response
      */
-    public function newAction(\Jro\Videoportal\Domain\Model\Comment $newComment = null, \Jro\Videoportal\Domain\Model\Video $video = null, $parentCommentUid = 0)
+    public function newAction(\Jro\Videoportal\Domain\Model\Comment $newComment = null, \Jro\Videoportal\Domain\Model\Video $video = null, $parentCommentUid = 0) : Response
     {
         if ($newComment == null) {
             // workaround for fluid bug ##5636
@@ -186,6 +197,8 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
         $this->view->assign('files', $files);
         $this->view->assign('parentCommentUid', $parentCommentUid);
         $this->view->assign('video', $video);
+        
+        return $this->htmlResponse();
     }
 
     /**
@@ -194,9 +207,9 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      * @param Jro\Videoportal\Domain\Model\Comment $newComment
      * @param integer $parentCommentUid
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("newComment")
-     * @return void
+     * @return Response
      */
-    public function newMyCommentAction(\Jro\Videoportal\Domain\Model\Comment $newComment = null, $parentCommentUid = 0)
+    public function newMyCommentAction(\Jro\Videoportal\Domain\Model\Comment $newComment = null, $parentCommentUid = 0) : Response
     {
         if ($newComment == null) {
             // workaround for fluid bug ##5636
@@ -207,6 +220,8 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
         $this->view->assign('newComment', $newComment);
         $this->view->assign('files', $files);
         $this->view->assign('parentCommentUid', $parentCommentUid);
+        
+        return $this->htmlResponse();
     }
 
     /**
@@ -216,9 +231,9 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      * @param Jro\Videoportal\Domain\Model\Video $video
      * @param integer $parentCommentUid
      * @TYPO3\CMS\Extbase\Annotation\Validate(param="files", validator="Jro\Videoportal\Validation\Validator\FrontendFilesValidator", options={"types": "pdf,zip,rar,7zip,jpg,png,gif,jpeg", "maxsize": 10000000})
-     * @return void
+     * @return Response
      */
-    public function createAction(\Jro\Videoportal\Domain\Model\Comment $newComment, array $files, \Jro\Videoportal\Domain\Model\Video $video = null, int $parentCommentUid = 0)
+    public function createAction(\Jro\Videoportal\Domain\Model\Comment $newComment, array $files, \Jro\Videoportal\Domain\Model\Video $video = null, int $parentCommentUid = 0) : Response
     {
         $this->forwardIfNotLoggedIn();
         if ($submit == "Cancel") {
@@ -229,7 +244,11 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
         $this->addCommentToVideo($newComment, $video, $parentCommentUid);
 
         parent::addInfo('Your new Comment was created.');
-        $this->redirect('show', 'FrontendVideo', null, array('video' => $video, 'jumpToTab' => 'videoTabPaneQA'));
+        $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder::class);
+        $uri = $uriBuilder
+                ->reset()
+                ->uriFor('show', array('video' => $video, 'jumpToTab' => 'videoTabPaneQA'), 'FrontendVideo', 'videoportal', 'Video');
+        return new RedirectResponse($uri);
     }
 
 
@@ -239,9 +258,9 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      * @param array $files
      * @param integer $parentCommentUid
      * @TYPO3\CMS\Extbase\Annotation\Validate(param="files", validator="Jro\Videoportal\Validation\Validator\FrontendFilesValidator", options={"types": "pdf,zip,rar,7zip,jpg,png,gif,jpeg", "maxsize": 10000000})
-     * @return void
+     * @return Response
      */
-    public function createMyCommentAction(\Jro\Videoportal\Domain\Model\Comment $newComment, array $files, int $parentCommentUid = 0)
+    public function createMyCommentAction(\Jro\Videoportal\Domain\Model\Comment $newComment, array $files, int $parentCommentUid = 0) : Response
     {
         $this->forwardIfNotLoggedIn();
         $this->createCommentAndFiles($parentCommentUid, $newComment, $files);
@@ -262,7 +281,7 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
             )
         ));
         $uri = $uriBuilder->build();
-        $this->redirectToUri($uri);
+        return new RedirectResponse($uri);
     }
 
     /**
@@ -270,14 +289,18 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      *
      * @param Jro\Videoportal\Domain\Model\Comment $comment
      * @param Jro\Videoportal\Domain\Model\Video $video
-     * @return void
+     * @return Response
      */
-    public function switchObserveStatusAction(\Jro\Videoportal\Domain\Model\Comment $comment, \Jro\Videoportal\Domain\Model\Video $video)
+    public function switchObserveStatusAction(\Jro\Videoportal\Domain\Model\Comment $comment, \Jro\Videoportal\Domain\Model\Video $video) : Response
     {
         $this->forwardIfNotLoggedIn();
         $this->switchObservedStatus($comment);
         parent::addInfo('Status for Comment was updated.');
-        $this->redirect('show', 'FrontendVideo', null, array('video' => $video, 'jumpToTab' => 'videoTabPaneQA'));
+        $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder::class);
+        $uri = $uriBuilder
+                ->reset()
+                ->uriFor('show', array('video' => $video, 'jumpToTab' => 'videoTabPaneQA'), 'FrontendVideo', 'videoportal', 'Video');
+        return new RedirectResponse($uri);
     }
 
 
@@ -285,14 +308,18 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      * action switchObserveStatus MyCommentsTemplate
      *
      * @param Jro\Videoportal\Domain\Model\Comment $comment
-     * @return void
+     * @return Response
      */
-    public function switchObserveStatusMyCommentsAction(\Jro\Videoportal\Domain\Model\Comment $comment)
+    public function switchObserveStatusMyCommentsAction(\Jro\Videoportal\Domain\Model\Comment $comment) : Response
     {
         $this->forwardIfNotLoggedIn();
         $this->switchObservedStatus($comment);
         parent::addInfo('Status for Comment was updated.');
-        $this->redirect('listMyComments');
+        $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder::class);
+        $uri = $uriBuilder
+                ->reset()
+                ->uriFor('listMyComments', null, 'FrontendComment', 'videoportal', 'Video');
+        return new RedirectResponse($uri);
     }
 
     /**
@@ -300,9 +327,9 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      *
      * @param Jro\Videoportal\Domain\Model\Comment $comment
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("comment")
-     * @return void
+     * @return Response
      */
-    public function editAction(\Jro\Videoportal\Domain\Model\Comment $comment)
+    public function editAction(\Jro\Videoportal\Domain\Model\Comment $comment) : Response
     {
         //generate file array for tpl
         $files = array();
@@ -317,6 +344,8 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
         parent::fillArray($files);
         $this->view->assign('comment', $comment);
         $this->view->assign('files', $files);
+        
+        return $this->htmlResponse();
     }
 
     /**
@@ -325,9 +354,9 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      * @param Jro\Videoportal\Domain\Model\Comment $comment
      * @param array $files
      * @TYPO3\CMS\Extbase\Annotation\Validate(param="files", validator="Jro\Videoportal\Validation\Validator\FrontendFilesValidator", options={"types": "pdf,zip,rar,7zip,jpg,png,gif,jpeg", "maxsize": 10000000})
-     * @return void
+     * @return Response
      */
-    public function updateAction(\Jro\Videoportal\Domain\Model\Comment $comment, array $files)
+    public function updateAction(\Jro\Videoportal\Domain\Model\Comment $comment, array $files) : Response
     {
         //update files
         $uidNew = $comment->getUid();
@@ -355,44 +384,53 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
             )
         ));
         $uri = $uriBuilder->build();
-        $this->redirectToUri($uri);
+        return new RedirectResponse($uri);
     }
 
     /**
      * action delete
      *
      * @param Jro\Videoportal\Domain\Model\Comment $comment
-     * @return void
+     * @return Response
      */
-    public function deleteAction(\Jro\Videoportal\Domain\Model\Comment $comment)
+    public function deleteAction(\Jro\Videoportal\Domain\Model\Comment $comment) : Response
     {
         $this->commentRepository->remove($comment);
         parent::addInfo('Your Comment was removed.');
-        $this->redirect('list');
+        $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder::class);
+        $uri = $uriBuilder
+                ->reset()
+                ->uriFor('list', null, 'FrontendComment', 'videoportal', 'Video');
+        return new RedirectResponse($uri);
     }
 
     /**
      * checks user login
      * @return void
      */
-    private function forwardIfNotLoggedIn()
+    private function forwardIfNotLoggedIn() : Response
     {
         $context = GeneralUtility::makeInstance(Context::class);
         $loggedIn = $context->getPropertyFromAspect('frontend.user', 'isLoggedIn');
         $userUid = $context->getPropertyFromAspect('frontend.user', 'id');
         if (!$loggedIn) {
             parent::addInfo('This action is only allowed for partial or full members');
-            $this->redirect('notAllowed');
+            $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder::class);
+            $uri = $uriBuilder
+                    ->reset()
+                    ->uriFor('notAllowed', null, 'FrontendComment', 'videoportal', 'Video');
+            return new RedirectResponse($uri);
         } else {
             return $this->userRepository->findByUid($userUid);
         }
     }
 
     /**
-     * @return void
+     * @return Response
      */
-    public function notAllowedAction()
+    public function notAllowedAction() : Response
     {
+        return $this->htmlResponse();
     }
 
     /**

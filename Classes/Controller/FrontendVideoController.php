@@ -5,6 +5,7 @@ namespace Jro\Videoportal\Controller;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Http\Response;
+use TYPO3\CMS\Core\Core\Environment;
 /***************************************************************
  *  Copyright notice
  *
@@ -294,7 +295,7 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
         $this->view->assign('comments', $comments);
         $this->view->assign('relatedVideos', $relatedVideos);
         $this->view->assign('jumpToTab', $jumpToTab);
-        
+        $this->view->assign('fileadminUrl', '/fileadmin');
         return $this->htmlResponse();
     }
 

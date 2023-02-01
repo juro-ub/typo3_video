@@ -18,21 +18,21 @@
 				<p class="h1">{video.title}</p>
 			
   <video id="player_video_js" data-setup ='{"controls":true}' preload='auto' class="video-js vjs-default-skin" width="825" height="600" >
-    <source src="fileadmin{video.pathMp4.originalResource.originalFile.identifier}" type="video/mp4" />
-    <source src="fileadmin{video.pathOgg.originalResource.originalFile.identifier}" type="video/ogg" />
-    <source src="fileadmin{video.pathWebm.originalResource.originalFile.identifier}" type="video/webm" />
+    <source src="{fileadminUrl}/{video.pathMp4.originalResource.originalFile.identifier}" type="video/mp4" />
+    <source src="{fileadminUrl}/{video.pathOgg.originalResource.originalFile.identifier}" type="video/ogg" />
+    <source src="{fileadminUrl}/{video.pathWebm.originalResource.originalFile.identifier}" type="video/webm" />
 	<f:if condition="{video.transcripts.originalResource.originalFile.identifier}">
-	<track id="trackTranscript" kind="captions" src="fileadmin{video.transcripts.originalResource.originalFile.identifier}" srclang="en" label="English" default></track>
+	<track id="trackTranscript" kind="captions" src="{fileadminUrl}/{video.transcripts.originalResource.originalFile.identifier}" srclang="en" label="English" default></track>
 	</f:if>
 	<f:if condition="{video.chapters.originalResource.originalFile.identifier}">
-	<track id="trackChapter" src="fileadmin{video.chapters.originalResource.originalFile.identifier}" kind="chapters" srclang="en" label="English" default></track>
+	<track id="trackChapter" src="{fileadminUrl}/{video.chapters.originalResource.originalFile.identifier}" kind="chapters" srclang="en" label="English" default></track>
 	</f:if>
 	<b> HTML5 video not supported </b>
 	 <!-- Download links provided for devices that can't play video in the browser. -->
     <p class="vjs-no-video"><strong>Download Video:</strong>
-      <a href="fileadmin{video.pathMp4.originalResource.originalFile.identifier}">MP4</a>,
-      <a href="fileadmin{video.pathOgg.originalResource.originalFile.identifier}">WebM</a>,
-      <a href="fileadmin{video.pathWebm.originalResource.originalFile.identifier}">Ogg</a><br>
+      <a href="{fileadminUrl}/{video.pathMp4.originalResource.originalFile.identifier}">MP4</a>,
+      <a href="{fileadminUrl}/{video.pathOgg.originalResource.originalFile.identifier}">WebM</a>,
+      <a href="{fileadminUrl}/{video.pathWebm.originalResource.originalFile.identifier}">Ogg</a><br>
       <!-- Support VideoJS by keeping this link. -->
       <a href="http://videojs.com">HTML5 Video Player</a> by VideoJS
     </p>

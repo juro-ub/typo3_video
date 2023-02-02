@@ -4,27 +4,6 @@ defined('TYPO3') || die();
 call_user_func(static function () {
     $_EXTKEY = "videoportal";
 
-    /**
-     * Registers a Backend Module
-     */
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-        $_EXTKEY,
-        'web',     // Make module a submodule of 'web'
-        'videoportalbackendmodul',    // Submodule key
-        'top',                        // Position
-        array(
-             \Jro\Videoportal\Controller\CategoryController::class => 'list, show, new, edit, delete, create, update, newStep2',
-            \Jro\Videoportal\Controller\VideoController::class => 'list, show, new, edit, delete, create, update, step1, editStep1, editStep2, editStep3, editStep4, editStep1Redirect, editStep2Redirect, editStep3Redirect, step2, step1Redirect, step2Redirect,step3,step3Redirect, step4, stepSave, ajaxSaveRelVideo,ajaxRemoveFileRef',
-            \Jro\Videoportal\Controller\CommentController::class => 'list, show, new, edit, delete, create, update, newStep2, listByVideo, setCommentAsWatchedAjax',
-            \Jro\Videoportal\Controller\LevelController::class => 'list, show, new, edit, delete, create, update',
-        ),
-        array(
-            'access' => 'user,group',
-            'icon' => 'EXT:' . $_EXTKEY . '/Resources/Public/Icons/Extension.svg',
-            'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_videoportalbackendmodul.xlf',
-        )
-    );
-
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Videoportal');
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_videoportal_domain_model_category', 'EXT:videoportal/Resources/Private/Language/locallang_csh_tx_videoportal_domain_model_category.xlf');

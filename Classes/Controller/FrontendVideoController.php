@@ -479,6 +479,7 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
             $uri = $uriBuilder
                 ->reset()
                 ->uriFor('list', null, 'FrontendVideo', 'videoportal', 'Video');
+            return new RedirectResponse($uri);
         } else {
             return $this->htmlResponse();
         }

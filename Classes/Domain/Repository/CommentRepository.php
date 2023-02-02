@@ -74,15 +74,15 @@ class CommentRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepos
             $backendUser = false;
             $builder = $this->getQueryBuilder('tx_videoportal_video_my_comment_mm');
             $query = $builder->select('uid_local')->from('tx_videoportal_video_my_comment_mm')->where($builder->expr()->eq('uid_foreign', $builder->createNamedParameter($uid)));
-            $row = $query->execute()->fetch(0);
-            if($row != null && $row['uid_local'] != null)
-                $userUid = $row['uid_local'];
+            $val = $query->setMaxResults(1)->execute()->fetchOne();
+            if($val != null)
+                $userUid = $val;
             if ($userUid == -1) {
                 $builder = $this->getQueryBuilder('tx_videoportal_video_beuser_my_comment_mm');
                 $query = $builder->select('uid_local')->from('tx_videoportal_video_beuser_my_comment_mm')->where($builder->expr()->eq('uid_foreign', $builder->createNamedParameter($uid)));
-                $row = $query->execute()->fetch(0);
-                if (isset($row['uid_local'])) {
-                    $userUid = $row['uid_local'];
+                $val = $query->setMaxResults(1)->execute()->fetchOne();
+                if (isset($val)) {
+                    $userUid = $val;
                     $backendUser = true;
                 }
             }
@@ -95,9 +95,9 @@ class CommentRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepos
             if ($userUid != -1) {
                 $builder = $this->getQueryBuilder($table);
                 $query = $builder->select('username')->from($table)->where($builder->expr()->eq('uid', $builder->createNamedParameter($userUid)));
-                $row = $query->execute()->fetch(0);
-                if (isset($row['username'])) {
-                    return $row['username'];
+                $val = $query->setMaxResults(1)->execute()->fetchOne();
+                if (isset($val)) {
+                    return $val;
                 }
             }
         }

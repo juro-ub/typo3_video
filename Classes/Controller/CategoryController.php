@@ -1,7 +1,7 @@
 <?php
 
 namespace Jro\Videoportal\Controller;
-
+use TYPO3\CMS\Core\Http\Response;
 /***************************************************************
  *  Copyright notice
  *
@@ -79,23 +79,25 @@ class CategoryController extends \Jro\Videoportal\Controller\AbstractController
     /**
      * action list
      *
-     * @return void
+     * @return Response
      */
-    public function listAction()
+    public function listAction() : Response
     {
         $this->cleanUpSessionData();
         $categories = $this->categoryRepository->findAll();
         $categories = $this->removeDuplicatedCats($categories);
         $this->view->assign('categories', $categories);
+        
+        return $this->htmlResponse();
     }
 
     /**
      * action show
      *
      * @param Jro\Videoportal\Domain\Model\Category $category
-     * @return void
+     * @return Response
      */
-    public function showAction(\Jro\Videoportal\Domain\Model\Category $category)
+    public function showAction(\Jro\Videoportal\Domain\Model\Category $category) : Response
     {
         $categories = $this->categoryRepository->findAll();
         $pids = array();
@@ -106,6 +108,8 @@ class CategoryController extends \Jro\Videoportal\Controller\AbstractController
         $this->view->assign('categories', $categories);
         $this->view->assign('pids', $pids);
         $this->view->assign('category', $category);
+        
+        return $this->htmlResponse();
     }
 
     /**
@@ -113,9 +117,9 @@ class CategoryController extends \Jro\Videoportal\Controller\AbstractController
      *
      * @param Jro\Videoportal\Domain\Model\Category $newCategory
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("newCategory")
-     * @return void
+     * @return Response
      */
-    public function newAction(\Jro\Videoportal\Domain\Model\Category $newCategory = null)
+    public function newAction(\Jro\Videoportal\Domain\Model\Category $newCategory = null): Response
     {
         if ($newCategory == null) { // workaround for fluid bug ##5636
             $newCategory = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Jro\Videoportal\Domain\Model\Category');
@@ -129,6 +133,8 @@ class CategoryController extends \Jro\Videoportal\Controller\AbstractController
             $pids = unserialize($this->session->get('pids'));
         }
         $this->view->assign('pids', $pids);
+        
+        return $this->htmlResponse();
     }
 
     /**
@@ -136,9 +142,9 @@ class CategoryController extends \Jro\Videoportal\Controller\AbstractController
      * @param Jro\Videoportal\Domain\Model\Category $newCategory
      * @param array $pids
      * @TYPO3\CMS\Extbase\Annotation\Validate(param="pids", validator="Jro\Videoportal\Validation\Validator\ParentCategoryValidator")
-     * @return void
+     * @return Response
      */
-    public function createAction(\Jro\Videoportal\Domain\Model\Category $newCategory, array $pids)
+    public function createAction(\Jro\Videoportal\Domain\Model\Category $newCategory, array $pids) : Response
     {
         //set parent categories
         $ischild = false;
@@ -164,9 +170,9 @@ class CategoryController extends \Jro\Videoportal\Controller\AbstractController
      * action edit
      * @param Jro\Videoportal\Domain\Model\Category $category
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("category")
-     * @return void
+     * @return Response
      */
-    public function editAction(\Jro\Videoportal\Domain\Model\Category $category)
+    public function editAction(\Jro\Videoportal\Domain\Model\Category $category) : Response
     {
         $categories = $this->categoryRepository->findAll();
         $categories = $this->removeDuplicatedCats($categories);
@@ -189,6 +195,8 @@ class CategoryController extends \Jro\Videoportal\Controller\AbstractController
         $this->view->assign('category', $category);
         $this->view->assign('categories', $categories);
         $this->view->assign('pids', $pids);
+        
+        return $this->htmlResponse();
     }
 
     /**

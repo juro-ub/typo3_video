@@ -7,8 +7,4 @@ module.tx_videoportal_videoportalbackendmodul {
 		# cat=module.tx_videoportal/file; type=string; label=Path to template layouts (BE)
 		layoutRootPath = EXT:videoportal/Resources/Private/Backend/Layouts/
 	}
-	persistence {
-		# Pid of the Storage Folder
-		storagePid = 7
-	}
 }

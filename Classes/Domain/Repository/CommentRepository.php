@@ -34,33 +34,6 @@ namespace Jro\Videoportal\Domain\Repository;
  */
 class CommentRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepository
 {
-    /**
-     * Create a file reference for a comment
-     *
-     * @return void
-     */
-    public function myFileOperationsFal($filename, $filetype, $filesize, $uidNew, $fieldname)
-    {
-        $contentElement = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord(
-            'tx_videoportal_domain_model_comment',
-            (int)$uidNew
-        );
-        $newSysFields = array(
-            'pid' => 0,
-            'identifier' => '/user_upload/' . $filename,
-            'mime_type' => $filetype,
-            'name' => $filename,
-            'size' => $filesize,
-            'storage' => 1,
-            'tstamp' => time()
-        );
-        $affectedRows = $this->getQueryBuilder("sys_file")
-            ->insert('sys_file')
-            ->values($newSysFields)
-            ->execute();
-        $uid_local = $this->getQueryBuilder("sys_file")->getConnection()->lastInsertId();
-        $this->fileReferenceCreate($uid_local, $uidNew, $contentElement['pid'], $fieldname, "tx_videoportal_domain_model_comment");
-    }
 
     /**
      * find the owner for a comment

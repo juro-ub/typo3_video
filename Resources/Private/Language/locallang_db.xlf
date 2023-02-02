@@ -183,9 +183,6 @@
 			<trans-unit id="tx_videoportal_domain_model_comment.parent">
 				<source>Parent</source>
 			</trans-unit>
-			<trans-unit id="tx_videoportal_domain_model_comment.files">
-				<source>Files</source>
-			</trans-unit>
 
 			<trans-unit id="tx_videoportal_domain_model_user">
 				<source>User</source>

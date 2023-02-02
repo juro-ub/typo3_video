@@ -31,7 +31,7 @@ return array(
         'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, path_mp4, path_webm, path_ogg, time, about, exam_relevant, meta_keywords, meta_description, meta_title, learning_objectives, thumbnail, targetgroups, levels, accessibilities, tags, links, categories, files, transcripts, chapters, authors, comments',
     ),
     'types' => array(
-        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title,path_mp4, path_webm, path_ogg, about, exam_relevant, meta_keywords, meta_description, meta_title, learning_objectives, thumbnail, targetgroups, levels, accessibilities, tags, links, categories, files, transcripts, chapters, authors, next_videos,requirement_videos,extension_videos,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title,path_mp4, path_webm, path_ogg, about, exam_relevant, meta_keywords, meta_description, meta_title, learning_objectives, thumbnail, targetgroups, levels, accessibilities, tags, links, categories, files, transcripts, chapters, authors, next_videos,requirement_videos,extension_videos,comments,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
     ),
     'palettes' => array(
         '1' => array('showitem' => ''),
@@ -439,7 +439,7 @@ return array(
             ),
         ),
         'comments' => array(
-            'exclude' => 1,
+            'exclude' => 0,
             'label' => 'LLL:EXT:videoportal/Resources/Private/Language/locallang_db.xlf:tx_videoportal_domain_model_video.comments',
             'config' => array(
                 'type' => 'inline',

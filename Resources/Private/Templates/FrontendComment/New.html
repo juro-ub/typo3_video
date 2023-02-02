@@ -24,7 +24,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 </p>
 <h1 class="h1">Answer</h1>
 <f:form action="create" controller="FrontendComment" arguments="{parentCommentUid: parentCommentUid, video: video}" enctype="multipart/form-data"  name="newComment" object="{newComment}">
-<f:render partial="FrontendComment/FormFields" arguments="{files: files}"/>
+<f:render partial="FrontendComment/FormFields" />
 	<input type="hidden"  name="parentCommentUid" value="{parentCommentUid}" />
 	<f:form.submit value="Create new" /> <f:link.action controller="FrontendVideo" action="show" arguments="{video: video, jumpToTab: 'videoTabPaneQA'}">Cancel</f:link.action>
 </f:form>

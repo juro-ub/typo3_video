@@ -253,7 +253,6 @@ CREATE TABLE tx_videoportal_domain_model_comment (
 	status tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	time int(11) DEFAULT '0' NOT NULL,
 	parent int(11) unsigned DEFAULT '0' NOT NULL,
-	files int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,

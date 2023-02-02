@@ -68,13 +68,6 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $childs;
 
     /**
-     * files
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
-     */
-    protected $files;
-
-    /**
      * __construct
      *
      * @return Comment
@@ -98,7 +91,6 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
          * You may modify the constructor of this class instead
          */
 
-        $this->files = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->childs = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
 
@@ -186,50 +178,6 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->childs = $childs;
     }
-
-    /**
-     * Adds a File
-     *
-     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $file
-     * @return void
-     */
-    public function addFile(\TYPO3\CMS\Extbase\Domain\Model\FileReference $file)
-    {
-        $this->files->attach($file);
-    }
-
-    /**
-     * Removes a File
-     *
-     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $fileToRemove The File to be removed
-     * @return void
-     */
-    public function removeFile(\TYPO3\CMS\Extbase\Domain\Model\FileReference $fileToRemove)
-    {
-        $this->files->detach($fileToRemove);
-    }
-
-    /**
-     * Returns the files
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $files
-     */
-    public function getFiles()
-    {
-        return $this->files;
-    }
-
-    /**
-     * Sets the files
-     *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $files
-     * @return void
-     */
-    public function setFiles(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $files)
-    {
-        $this->files = $files;
-    }
-
     /**
      * Returns the hidden
      *

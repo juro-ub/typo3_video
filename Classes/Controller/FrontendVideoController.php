@@ -313,9 +313,6 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
         $comments = $this->commentRepository->findByVideoId($video->getUid());
         $newComment = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Jro\Videoportal\Domain\Model\Comment');
 
-        $files = array();
-        parent::fillArray($files);
-        $this->view->assign('files', $files);
         $this->view->assign('newComment', $newComment);
         $this->view->assign('video', $video);
         $this->view->assign('comments', $comments);

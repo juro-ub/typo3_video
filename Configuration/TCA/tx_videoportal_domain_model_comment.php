@@ -24,14 +24,14 @@ return array(
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ),
-        'searchFields' => 'comment,status,time,parent,files,',
+        'searchFields' => 'comment,status,time,parent,',
         'iconfile' => 'EXT:videoportal/Resources/Public/Icons/tx_videoportal_domain_model_comment.gif'
     ),
     'interface' => array(
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, comment, status, time, parent, files',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, comment, text, status, time, parent',
     ),
     'types' => array(
-        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, comment, status, time, parent, files,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, comment, text, status, time, parent,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
     ),
     'palettes' => array(
         '1' => array('showitem' => ''),
@@ -145,24 +145,6 @@ return array(
                 ),
             ),
         ),
-
-
-        'files' => array(
-            'exclude' => 1,
-            'label' => 'files',
-            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig('files', array(
-                'appearance' => array(
-                    'collapseAll' => 0,
-                    'levelLinksPosition' => 'top',
-                    'showSynchronizationLink' => 1,
-                    'showPossibleLocalizationRecords' => 1,
-                    'showAllLocalizationLink' => 1,
-                    'createNewRelationLinkTitle' => 'LLL:EXT:cms/locallang_ttc.xlf:images.addFileReference'
-                ),
-            ),
-                $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']),
-        ),
-
 
         'video' => array(
             'config' => array(

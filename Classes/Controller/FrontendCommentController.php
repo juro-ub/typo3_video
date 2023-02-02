@@ -104,9 +104,6 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
     public function listAction() : Response
     {
         $comments = $this->commentRepository->findAll();
-        $files = array();
-        parent::fillArray($files);
-        $this->view->assign('files', $files);
         $this->view->assign('comments', $comments);
         
         return $this->htmlResponse();
@@ -193,10 +190,7 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
             // workaround for fluid bug ##5636
             $newComment = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Jro\Videoportal\Domain\Model\Comment');
         }
-        $files = array();
-        parent::fillArray($files);
         $this->view->assign('newComment', $newComment);
-        $this->view->assign('files', $files);
         $this->view->assign('parentCommentUid', $parentCommentUid);
         $this->view->assign('video', $video);
         
@@ -217,10 +211,7 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
             // workaround for fluid bug ##5636
             $newComment = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Jro\Videoportal\Domain\Model\Comment');
         }
-        $files = array();
-        parent::fillArray($files);
         $this->view->assign('newComment', $newComment);
-        $this->view->assign('files', $files);
         $this->view->assign('parentCommentUid', $parentCommentUid);
         
         return $this->htmlResponse();
@@ -229,19 +220,14 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
     /**
      * action create
      * @param Jro\Videoportal\Domain\Model\Comment $newComment
-     * @param array $files
      * @param Jro\Videoportal\Domain\Model\Video $video
-     * @param integer $parentCommentUid
-     * @TYPO3\CMS\Extbase\Annotation\Validate(param="files", validator="Jro\Videoportal\Validation\Validator\FrontendFilesValidator", options={"types": "pdf,zip,rar,7zip,jpg,png,gif,jpeg", "maxsize": 10000000})
+     * @param integer $parentCommentUid     
      * @return Response
      */
-    public function createAction(\Jro\Videoportal\Domain\Model\Comment $newComment, array $files, \Jro\Videoportal\Domain\Model\Video $video = null, int $parentCommentUid = 0) : Response
+    public function createAction(\Jro\Videoportal\Domain\Model\Comment $newComment, \Jro\Videoportal\Domain\Model\Video $video = null, int $parentCommentUid = 0) : Response
     {
         $this->forwardIfNotLoggedIn();
-        if ($submit == "Cancel") {
-            $this->redirect('show', 'FrontendVideo', null, array("video" => ""));
-        }
-        $this->createCommentAndFiles($parentCommentUid, $newComment, $files);
+        $this->createComment($parentCommentUid, $newComment);
         $this->addCommentToUser($newComment);
         $this->addCommentToVideo($newComment, $video, $parentCommentUid);
 
@@ -257,15 +243,13 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
     /** 
      * action createMyComment
      * @param Jro\Videoportal\Domain\Model\Comment $newComment
-     * @param array $files
-     * @param integer $parentCommentUid
-     * @TYPO3\CMS\Extbase\Annotation\Validate(param="files", validator="Jro\Videoportal\Validation\Validator\FrontendFilesValidator", options={"types": "pdf,zip,rar,7zip,jpg,png,gif,jpeg", "maxsize": 10000000})
+     * @param integer $parentCommentUid     
      * @return Response
      */
-    public function createMyCommentAction(\Jro\Videoportal\Domain\Model\Comment $newComment, array $files, int $parentCommentUid = 0) : Response
+    public function createMyCommentAction(\Jro\Videoportal\Domain\Model\Comment $newComment, int $parentCommentUid = 0) : Response
     {
         $this->forwardIfNotLoggedIn();
-        $this->createCommentAndFiles($parentCommentUid, $newComment, $files);
+        $this->createComment($parentCommentUid, $newComment);
         $this->addCommentToUser($newComment);
         parent::addInfo('Your new Comment was created.');
         $uriBuilder = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\TYPO3\CMS\Backend\Routing\UriBuilder');
@@ -333,46 +317,21 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      */
     public function editAction(\Jro\Videoportal\Domain\Model\Comment $comment) : Response
     {
-        //generate file array for tpl
-        $files = array();
-        if ($comment->getFiles() != null) {
-            $filesComment = $comment->getFiles()->toArray();
-            foreach ($filesComment as $f) {
-                array_push($files, array('name' => $f->getOriginalResource()
-                    ->getOriginalFile()->getName(), 'uid' => $f->getOriginalResource()
-                    ->getUid()));
-            }
-        }
-        parent::fillArray($files);
-        $this->view->assign('comment', $comment);
-        $this->view->assign('files', $files);
-        
+        $this->view->assign('comment', $comment); 
         return $this->htmlResponse();
     }
 
     /**
      * action update
      *
-     * @param Jro\Videoportal\Domain\Model\Comment $comment
-     * @param array $files
-     * @TYPO3\CMS\Extbase\Annotation\Validate(param="files", validator="Jro\Videoportal\Validation\Validator\FrontendFilesValidator", options={"types": "pdf,zip,rar,7zip,jpg,png,gif,jpeg", "maxsize": 10000000})
+     * @param Jro\Videoportal\Domain\Model\Comment $comment     
      * @return Response
      */
-    public function updateAction(\Jro\Videoportal\Domain\Model\Comment $comment, array $files) : Response
+    public function updateAction(\Jro\Videoportal\Domain\Model\Comment $comment) : Response
     {
-        //update files
-        $uidNew = $comment->getUid();
-        foreach ($files as $file) {
-            if ($file['name'] && $file['tmp_name'] && $file['deleted'] != '1') {
-                $sysFileCreate = $this->commentRepository->myFileOperationsFal($file['name'], $file['type'], $file['size'], $uidNew, "files");
-            }
-            if ($file['deleted'] == '1') {
-                $this->commentRepository->removeFile($file['uid']);
-            }
-        }
         $this->commentRepository->update($comment);
         parent::addInfo('Your Comment was updated.');
-        $uriBuilder = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\TYPO3\CMS\Backend\Routing\UriBuilder');
+        $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder::class);
         $uriBuilder->reset();
         $uriBuilder->setArguments(array(
             'tx_videoportal_listcats' => array(
@@ -435,10 +394,10 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
     }
 
     /**
-     * create comment and files
+     * create comment
      * @return void
      */
-    private function createCommentAndFiles($parentCommentUid, $newComment, $files)
+    private function createComment($parentCommentUid, $newComment)
     {
         $parent = $this->commentRepository->findByUid($parentCommentUid);
         if ($parent != null) {
@@ -450,15 +409,6 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
         $this->persistenceManager->persistAll();
 
         $uidNew = $newComment->getUid();
-
-        foreach ($files as $file) {
-            if ($file['name'] && $file['tmp_name'] && $file['deleted'] != '1') {
-                $sysFileCreate = $this->commentRepository->myFileOperationsFal($file['name'], $file['type'], $file['size'], $uidNew, "files");
-            }
-            if ($file['deleted'] == '1') {
-                $this->commentRepository->removeFile($file['uid']);
-            }
-        }
     }
 
     /**

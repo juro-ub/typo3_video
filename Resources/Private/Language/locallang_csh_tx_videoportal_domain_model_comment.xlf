@@ -16,9 +16,6 @@
 			<trans-unit id="parent.description">
 				<source>parent</source>
 			</trans-unit>
-			<trans-unit id="files.description">
-				<source>files</source>
-			</trans-unit>
 		</body>
 	</file>
 </xliff>

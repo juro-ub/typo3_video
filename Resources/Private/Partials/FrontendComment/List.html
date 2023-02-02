@@ -45,19 +45,6 @@
 			</div>
 			<div class="commentTreeDiv" style="clear: both;">
 			<div class="expandable" style="margin-right: 10px;"><f:format.nl2br>{comment.text}</f:format.nl2br></div>
-			<f:if condition="{comment.files -> f:count()} > 0">
-			<div style="margin-right: 10px; color: #999999;">(Appendix: <f:for each="{comment.files}" as="file" iteration="if">
-				<f:if condition="{if.isLast}" >
-					<f:then>
-						<a style="color:  #999999;" target="blank" href="{file.originalResource.publicUrl}">{file.originalResource.name}</a>)
-					</f:then>
-					<f:else>
-						<a style="color:  #999999;" target="blank" href="{file.originalResource.publicUrl}">{file.originalResource.name}</a>,
-					</f:else>
-				</f:if>
-			</f:for>
-			</div>
-			</f:if>
 			<!--<f:link.action action="edit" controller="FrontendComment" arguments="{comment: comment}" >Edit</f:link.action>-->
 			<f:if condition="{comment.childs}">
 			<f:then>

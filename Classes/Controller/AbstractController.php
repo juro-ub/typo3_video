@@ -34,20 +34,6 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     {
         $this->addFlashMessage($text, $header, \TYPO3\CMS\Core\Messaging\FlashMessage::OK);
     }
-
-    /**
-     * if the size of the array is less than 4 set size to 4
-     * @param array $c
-     * @return void
-     */
-    protected function fillArray(&$c)
-    {
-        for ($i = 0; $i < 4; $i++) {
-            if ($i > (count($c) - 1)) {
-                array_push($c, "");
-            }
-        }
-    }
 }
 
 ?>

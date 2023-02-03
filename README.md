@@ -41,3 +41,7 @@ Configure the following settings of the plugins.\
   "Video Plugin": settings.publicGroupUid, settings.partialGroupUid, settings.fullGroupUid\
 After you have created the "Video" page, you must set the redirect after a successfull login in the fe_login plugin\
 ![alt text](https://github.com/juro-ub/typo3_video/raw/main/ReadmeImages/Backend/Video.png)
+
+### 4
+Create a template record for the pages and include the static extension template
+![alt text](https://github.com/juro-ub/typo3_video/raw/main/ReadmeImages/Backend/Template.png)

@@ -2,7 +2,7 @@
 
 namespace Jro\Videoportal\Domain\Model;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013
@@ -23,9 +23,11 @@ namespace Jro\Videoportal\Domain\Model;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
+
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
 /**
  *
  *
@@ -33,8 +35,8 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Group extends AbstractEntity
-{
+class Group extends AbstractEntity {
+
     /**
      * @var string
      */
@@ -55,8 +57,7 @@ class Group extends AbstractEntity
      *
      * @param string $title
      */
-    public function __construct($title = '')
-    {
+    public function __construct($title = '') {
         $this->setTitle($title);
         $this->subgroup = new ObjectStorage();
     }
@@ -66,8 +67,7 @@ class Group extends AbstractEntity
      *
      * @param string $title
      */
-    public function setTitle($title)
-    {
+    public function setTitle($title) {
         $this->title = $title;
     }
 
@@ -76,8 +76,7 @@ class Group extends AbstractEntity
      *
      * @return string
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -86,8 +85,7 @@ class Group extends AbstractEntity
      *
      * @param string $description
      */
-    public function setDescription($description)
-    {
+    public function setDescription($description) {
         $this->description = $description;
     }
 
@@ -96,8 +94,7 @@ class Group extends AbstractEntity
      *
      * @return string
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
@@ -107,8 +104,7 @@ class Group extends AbstractEntity
      *
      * @param ObjectStorage<Group> $subgroup An object storage containing the subgroups to add
      */
-    public function setSubgroup(ObjectStorage $subgroup)
-    {
+    public function setSubgroup(ObjectStorage $subgroup) {
         $this->subgroup = $subgroup;
     }
 
@@ -117,8 +113,7 @@ class Group extends AbstractEntity
      *
      * @param Group $subgroup
      */
-    public function addSubgroup(Group $subgroup)
-    {
+    public function addSubgroup(Group $subgroup) {
         $this->subgroup->attach($subgroup);
     }
 
@@ -127,8 +122,7 @@ class Group extends AbstractEntity
      *
      * @param Group $subgroup
      */
-    public function removeSubgroup(Group $subgroup)
-    {
+    public function removeSubgroup(Group $subgroup) {
         $this->subgroup->detach($subgroup);
     }
 
@@ -138,10 +132,10 @@ class Group extends AbstractEntity
      *
      * @return ObjectStorage<Group> An object storage containing the subgroups
      */
-    public function getSubgroup()
-    {
+    public function getSubgroup() {
         return $this->subgroup;
     }
+
 }
 
 ?>

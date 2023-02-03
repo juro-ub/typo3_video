@@ -1,33 +1,33 @@
 .errorContainer{
 
-	color: #aa0225;
-	background-color: #f6d3cf;
-	border: 1px solid #d66c68;
+    color: #aa0225;
+    background-color: #f6d3cf;
+    border: 1px solid #d66c68;
 
 }
 
 .LoginBox{
-		position: absolute;
-		right: 0;
+    position: absolute;
+    right: 0;
 }
 .LoginBox {
-	font-family: Arial;
-	font-size: 13px;
-	font-weight: normal;
-	font-style: normal;
-	text-decoration: none;
-	color: #151515;
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none;
+    color: #151515;
 }
 
 
 #sortingText a{
-	color: blue;
-	text-decoration: underline;
+    color: blue;
+    text-decoration: underline;
 }
 
 .tableRahmen{
 
-/*	border-width:2px;
-  border-style:solid;
-  border-color:#BDBDBD;*/
+    /*	border-width:2px;
+      border-style:solid;
+      border-color:#BDBDBD;*/
 }

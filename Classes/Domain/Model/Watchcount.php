@@ -2,7 +2,7 @@
 
 namespace Jro\Videoportal\Domain\Model;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013
@@ -23,7 +23,7 @@ namespace Jro\Videoportal\Domain\Model;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  *
@@ -32,8 +32,7 @@ namespace Jro\Videoportal\Domain\Model;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Watchcount extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
-{
+class Watchcount extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
     /**
      * videoId
@@ -51,14 +50,12 @@ class Watchcount extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $count;
 
-
     /**
      * Returns the videoId
      *
      * @return \integer $videoId
      */
-    public function getVideoId()
-    {
+    public function getVideoId() {
         return $this->videoId;
     }
 
@@ -68,8 +65,7 @@ class Watchcount extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \integer $videoId
      * @return void
      */
-    public function setVideoId($videoId)
-    {
+    public function setVideoId($videoId) {
         $this->videoId = $videoId;
     }
 
@@ -78,8 +74,7 @@ class Watchcount extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \integer $count
      */
-    public function getCount()
-    {
+    public function getCount() {
         return $this->count;
     }
 
@@ -89,8 +84,7 @@ class Watchcount extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \integer $count
      * @return void
      */
-    public function setCount($count)
-    {
+    public function setCount($count) {
         $this->count = $count;
     }
 

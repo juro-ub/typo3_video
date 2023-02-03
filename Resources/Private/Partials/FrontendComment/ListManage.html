@@ -1,75 +1,79 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en"
-	  xmlns:fed="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
-	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
-	  xmlns:videoportal="http://typo3.org/ns/Jro/Videoportal/ViewHelpers"
->
-<videoportal:counter reset="true" />
-<table><tr><td valign="top" align="left">
-<div>
-	<h1 class="h1" id="headerQA"></h1>
-	<f:if condition="{comments -> f:count()} == 0">
-		<f:then>No video questions and answers found!</f:then>
-				<f:else>
-					
-	<f:render section="commentList" arguments="{comments: comments, listOption: listOption}" />
-				</f:else>
-</f:if>
-<f:section name="commentList">
-	<f:if condition="{videoportal:counter()} == 0" >
-		<f:then>
-	<ul class="commentTreeUl" style="padding-left: 0px; margin-top: 0px;">
-		</f:then>
-		<f:else>
-			<ul class="commentTreeUl" style="">
-		</f:else>
-	</f:if>
-	<f:for each="{comments}" as="comment" iteration="i">	
-		<li class="commentTreeLi" style="" >
-			<div id="marker{comment.uid}"></div>
-			<div class="commentTreeDiv" style="clear: both;font-family: Arial;font-size: 13px;font-weight: bold;font-style: normal;text-decoration: none; color: #009DE0;">
-				{videoportal:showCommentUser(comment_uid:'{comment.uid}')}, <f:format.date format="d.m.Y - H:i:s">{comment.crdate}</f:format.date>
-			</div>
-			<div class="commentTreeDiv" style="clear: both;">
-			<div class="expandable" style="margin-right: 10px;"><f:format.nl2br>{comment.text}</f:format.nl2br></div>
-			</div>
+      xmlns:fed="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+      xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+      xmlns:videoportal="http://typo3.org/ns/Jro/Videoportal/ViewHelpers"
+      >
+    <videoportal:counter reset="true" />
+    <table><tr><td valign="top" align="left">
+                <div>
+                    <h1 class="h1" id="headerQA"></h1>
+                    <f:if condition="{comments -> f:count()} == 0">
+                        <f:then>No video questions and answers found!</f:then>
+                        <f:else>
 
-			<div class="commentTreeDiv" style="margin-right: 8px; clear: both; color:  #999999;">
-			<f:link.action style="color:  #999999;" action="newMyComment" controller="FrontendComment" arguments="{parentCommentUid: comment.uid}" >Answer</f:link.action>
-			</div>
-			
-			<f:if condition="{listOption} == 'myquestions'" >
-			<div class="commentTreeDiv" style="margin-right: 8px; color:  #999999;">
-			<f:link.action style="color:  #999999;" action="edit" controller="FrontendComment" arguments="{comment: comment}" >Edit</f:link.action>
-			</div>
-			</f:if>
-			
-			<f:if condition="{comment.childs}">
-			<f:then>
-				
-				<div class="commentTreeDiv" style="margin-right: 8px; color:  #999999;">
-					<a style="color:  #999999;" id="hide{comment.uid}" href="#headerQA" class="commentTreeExpand" >Hide answers(<f:count subject="{comment.childs}" />)</a>
-					<a style="color:  #999999;" href="#headerQA" class="commentTreeCollapse" >Show answers(<f:count subject="{comment.childs}" />)</a>
-				</div>
-			</f:then>
-			<f:else>
-			</f:else>
-			</f:if>
-			<div class="commentTreeDiv" style="color:  #999999;">
-					<f:link.action additionalParams="{tx_videoportal_listcats: {uid: 999999998, level_id: 0}}" style="color:  #999999;" controller="FrontendComment" action="switchObserveStatusMyComments" arguments="{comment: comment}">
-						<f:if condition="{videoportal:isObserveComment(commentUid:'{comment.uid}')} == 1" ><f:then>Don't observe</f:then><f:else>Observe</f:else></f:if>
-					</f:link.action>
-			</div>
-			<f:if condition="{comment.childs}">
-			<f:render section="commentList" arguments="{comments: comment.childs}" />
-			</f:if>
-		</li>
-		<f:if condition="{i.isLast}" >	
-			</ul>
-		</f:if>
-	</f:for>
-</f:section>
-</div>
-</td>
-</tr>
-</table>
+                            <f:render section="commentList" arguments="{comments: comments, listOption: listOption}" />
+                        </f:else>
+                    </f:if>
+                    <f:section name="commentList">
+                        <f:if condition="{videoportal:counter()} == 0" >
+                            <f:then>
+                                <ul class="commentTreeUl" style="padding-left: 0px; margin-top: 0px;">
+                            </f:then>
+                            <f:else>
+                                <ul class="commentTreeUl" style="">
+                            </f:else>
+                        </f:if>
+                        <f:for each="{comments}" as="comment" iteration="i">	
+                            <li class="commentTreeLi" style="" >
+                                <div id="marker{
+                                         comment.uid
+                                     }"></div>
+                                <div class="commentTreeDiv" style="clear: both;font-family: Arial;font-size: 13px;font-weight: bold;font-style: normal;text-decoration: none; color: #009DE0;">
+                                    {videoportal:showCommentUser(comment_uid:'{comment.uid}')}, <f:format.date format="d.m.Y - H:i:s">{comment.crdate}</f:format.date>
+                                </div>
+                                <div class="commentTreeDiv" style="clear: both;">
+                                    <div class="expandable" style="margin-right: 10px;"><f:format.nl2br>{comment.text}</f:format.nl2br></div>
+                                </div>
+
+                                <div class="commentTreeDiv" style="margin-right: 8px; clear: both; color:  #999999;">
+                                    <f:link.action style="color:  #999999;" action="newMyComment" controller="FrontendComment" arguments="{parentCommentUid: comment.uid}" >Answer</f:link.action>
+                                </div>
+
+                                <f:if condition="{listOption} == 'myquestions'" >
+                                    <div class="commentTreeDiv" style="margin-right: 8px; color:  #999999;">
+                                        <f:link.action style="color:  #999999;" action="edit" controller="FrontendComment" arguments="{comment: comment}" >Edit</f:link.action>
+                                    </div>
+                                </f:if>
+
+                                <f:if condition="{comment.childs}">
+                                    <f:then>
+
+                                        <div class="commentTreeDiv" style="margin-right: 8px; color:  #999999;">
+                                            <a style="color:  #999999;" id="hide{
+                                                   comment.uid
+                                               }" href="#headerQA" class="commentTreeExpand" >Hide answers(<f:count subject="{comment.childs}" />)</a>
+                                            <a style="color:  #999999;" href="#headerQA" class="commentTreeCollapse" >Show answers(<f:count subject="{comment.childs}" />)</a>
+                                        </div>
+                                    </f:then>
+                                    <f:else>
+                                    </f:else>
+                                </f:if>
+                                <div class="commentTreeDiv" style="color:  #999999;">
+                                    <f:link.action additionalParams="{tx_videoportal_listcats: {uid: 999999998, level_id: 0}}" style="color:  #999999;" controller="FrontendComment" action="switchObserveStatusMyComments" arguments="{comment: comment}">
+                                        <f:if condition="{videoportal:isObserveComment(commentUid:'{comment.uid}')} == 1" ><f:then>Don't observe</f:then><f:else>Observe</f:else></f:if>
+                                    </f:link.action>
+                                </div>
+                                <f:if condition="{comment.childs}">
+                                    <f:render section="commentList" arguments="{comments: comment.childs}" />
+                                </f:if>
+                            </li>
+                            <f:if condition="{i.isLast}" >	
+                                </ul>
+                            </f:if>
+                        </f:for>
+                    </f:section>
+                </div>
+            </td>
+        </tr>
+    </table>
 </html>

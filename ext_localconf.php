@@ -1,6 +1,7 @@
 <?php
+
 if (!defined('TYPO3')) {
-    die ('Access denied.');
+    die('Access denied.');
 }
 call_user_func(static function () {
     $_EXTKEY = "videoportal";
@@ -8,38 +9,36 @@ call_user_func(static function () {
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptConstants('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:videoportal/Configuration/TypoScript/constants.typoscript">');
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        $_EXTKEY,
-        'Video',
-        array(
-            \Jro\Videoportal\Controller\FrontendVideoController::class => 'list,show,notAllowed,switchWatchedStatus, search, showByUid',
-            \Jro\Videoportal\Controller\FrontendCommentController::class => 'new,create,list, delete, edit, update, switchObserveStatus, listMyComments, listObservedComments,notAllowed,newMyComment,createMyComment,listMyComments,switchObserveStatusMyComments'
-
-        ),
-        // non-cacheable actions
-        array(
-            \Jro\Videoportal\Controller\FrontendVideoController::class => 'list,show,notAllowed,switchWatchedStatus, search, showByUid',
-            \Jro\Videoportal\Controller\FrontendCommentController::class => 'new,create,list, delete, edit, update, switchObserveStatus, listMyComments, listObservedComments,notAllowed,newMyComment,createMyComment,listMyComments,switchObserveStatusMyComments'
-        )
+            $_EXTKEY,
+            'Video',
+            array(
+                \Jro\Videoportal\Controller\FrontendVideoController::class => 'list,show,notAllowed,switchWatchedStatus, search, showByUid',
+                \Jro\Videoportal\Controller\FrontendCommentController::class => 'new,create,list, delete, edit, update, switchObserveStatus, listMyComments, listObservedComments,notAllowed,newMyComment,createMyComment,listMyComments,switchObserveStatusMyComments'
+            ),
+            // non-cacheable actions
+            array(
+                \Jro\Videoportal\Controller\FrontendVideoController::class => 'list,show,notAllowed,switchWatchedStatus, search, showByUid',
+                \Jro\Videoportal\Controller\FrontendCommentController::class => 'new,create,list, delete, edit, update, switchObserveStatus, listMyComments, listObservedComments,notAllowed,newMyComment,createMyComment,listMyComments,switchObserveStatusMyComments'
+            )
     );
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        $_EXTKEY,
-        'ListCats',
-        array(
-            \Jro\Videoportal\Controller\FrontendCategoryController::class => 'list',
-            \Jro\Videoportal\Controller\FrontendCommentController::class => 'new'
-
-        ),
-        // non-cacheable actions
-        array(
-            \Jro\Videoportal\Controller\FrontendCategoryController::class => 'list',
-            \Jro\Videoportal\Controller\FrontendCommentController::class => 'new'
-        )
+            $_EXTKEY,
+            'ListCats',
+            array(
+                \Jro\Videoportal\Controller\FrontendCategoryController::class => 'list',
+                \Jro\Videoportal\Controller\FrontendCommentController::class => 'new'
+            ),
+            // non-cacheable actions
+            array(
+                \Jro\Videoportal\Controller\FrontendCategoryController::class => 'list',
+                \Jro\Videoportal\Controller\FrontendCommentController::class => 'new'
+            )
     );
 
     // wizards
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-        'mod {
+            'mod {
             wizards.newContentElement.wizardItems.plugins {
                 elements {
                     video {
@@ -68,14 +67,14 @@ call_user_func(static function () {
 
     $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
     $iconRegistry->registerIcon(
-        'videoportal-plugin-video',
-        \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-        ['source' => 'EXT:videoportal/Resources/Public/Icons/Extension.svg']
+            'videoportal-plugin-video',
+            \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+            ['source' => 'EXT:videoportal/Resources/Public/Icons/Extension.svg']
     );
     $iconRegistry->registerIcon(
-        'videoportal-plugin-cats',
-        \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-        ['source' => 'EXT:videoportal/Resources/Public/Icons/Extension.svg']
+            'videoportal-plugin-cats',
+            \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+            ['source' => 'EXT:videoportal/Resources/Public/Icons/Extension.svg']
     );
 });
 ?>

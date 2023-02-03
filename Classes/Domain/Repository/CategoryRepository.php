@@ -2,7 +2,7 @@
 
 namespace Jro\Videoportal\Domain\Repository;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013
@@ -23,7 +23,7 @@ namespace Jro\Videoportal\Domain\Repository;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  *
@@ -32,16 +32,14 @@ namespace Jro\Videoportal\Domain\Repository;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class CategoryRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepository
-{
+class CategoryRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepository {
 
     /**
      * override sorting for findAll
      *
      * @return \TYPO3\CMS\Extbase\Persistence\Generic\Query
      */
-    public function findAll()
-    {
+    public function findAll() {
         $query = $this->createQuery();
         $query->setOrderings(array('title' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
         return $query->execute();

@@ -7,7 +7,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Http\Response;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Http\RedirectResponse;
-/***************************************************************
+
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013
@@ -27,7 +28,7 @@ use TYPO3\CMS\Core\Http\RedirectResponse;
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  * *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  *
@@ -36,8 +37,7 @@ use TYPO3\CMS\Core\Http\RedirectResponse;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractController
-{
+class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractController {
 
     /**
      * videoRepository
@@ -45,7 +45,6 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
      * @var Jro\Videoportal\Domain\Repository\VideoRepository
      */
     protected $videoRepository;
-
 
     /**
      * groupRepository
@@ -87,75 +86,64 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
      */
     protected $session;
 
-
     /**
      * @var Jro\Videoportal\Domain\Service\ArgumentService
      */
     protected $argumentService;
 
-
     /**
      * @param Jro\Videoportal\Domain\Repository\CategoryRepository $rep
      */
-    public function injectCategoryRepository(\Jro\Videoportal\Domain\Repository\CategoryRepository $rep)
-    {
+    public function injectCategoryRepository(\Jro\Videoportal\Domain\Repository\CategoryRepository $rep) {
         $this->categoryRepository = $rep;
     }
 
     /**
      * @param Jro\Videoportal\Domain\Repository\VideoRepository $video
      */
-    public function injectVideoRepository(\Jro\Videoportal\Domain\Repository\VideoRepository $video)
-    {
+    public function injectVideoRepository(\Jro\Videoportal\Domain\Repository\VideoRepository $video) {
         $this->videoRepository = $video;
     }
 
     /**
      * @param Jro\Videoportal\Domain\Repository\UserRepository $user
      */
-    public function injectUserRepository(\Jro\Videoportal\Domain\Repository\UserRepository $user)
-    {
+    public function injectUserRepository(\Jro\Videoportal\Domain\Repository\UserRepository $user) {
         $this->userRepository = $user;
     }
 
     /**
      * @param Jro\Videoportal\Domain\Service\ArgumentService $service
      */
-    public function injectArgumentService(\Jro\Videoportal\Domain\Service\ArgumentService $service)
-    {
+    public function injectArgumentService(\Jro\Videoportal\Domain\Service\ArgumentService $service) {
         $this->argumentService = $service;
     }
 
     /**
      * @param Jro\Videoportal\Domain\Repository\CommentRepository $comment
      */
-    public function injectCommentRepository(\Jro\Videoportal\Domain\Repository\CommentRepository $comment)
-    {
+    public function injectCommentRepository(\Jro\Videoportal\Domain\Repository\CommentRepository $comment) {
         $this->commentRepository = $comment;
     }
 
     /**
      * @param Jro\Videoportal\Domain\Session\FrontendSessionHandler $session
      */
-    public function injectSession(\Jro\Videoportal\Domain\Session\FrontendSessionHandler $session)
-    {
+    public function injectSession(\Jro\Videoportal\Domain\Session\FrontendSessionHandler $session) {
         $this->session = $session;
     }
-
 
     /**
      * @param Jro\Videoportal\Domain\Repository\WatchcountRepository $wc
      */
-    public function injectWatchcountRepository(\Jro\Videoportal\Domain\Repository\WatchcountRepository $wc)
-    {
+    public function injectWatchcountRepository(\Jro\Videoportal\Domain\Repository\WatchcountRepository $wc) {
         $this->watchcountRepository = $wc;
     }
 
     /**
      * @param Jro\Videoportal\Domain\Repository\GroupRepository $group
      */
-    public function injectGroupRepository(\Jro\Videoportal\Domain\Repository\GroupRepository $group)
-    {
+    public function injectGroupRepository(\Jro\Videoportal\Domain\Repository\GroupRepository $group) {
         $this->groupRepository = $group;
     }
 
@@ -164,12 +152,11 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
      *
      * @return void
      */
-    public function initializeAction()
-    {
+    public function initializeAction() {
         parent::initializeAction();
         // Storage Key setzen
         $this->session->setStorageKey(
-            'fe_sessiondata'
+                'fe_sessiondata'
         );
     }
 
@@ -178,16 +165,15 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
      * @param string $searchString
      * @return Response
      */
-    public function searchAction($searchString = "") : Response
-    {
+    public function searchAction($searchString = ""): Response {
         $res = array();
         if (strlen($searchString) >= 3) {
-            $res = $this->videoRepository->findByStr($searchString, $hidden = false);//no hidden fields
+            $res = $this->videoRepository->findByStr($searchString, $hidden = false); //no hidden fields
         }
         if (strlen($searchString) < 3)
             $this->addInfo('The search text must have 3 or more characters');
         $this->view->assign('unwatched', $res);
-        
+
         return $this->htmlResponse();
     }
 
@@ -195,8 +181,7 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
      * action list
      * @return Response
      */
-    public function listAction() : Response
-    {
+    public function listAction(): Response {
         $videos = null;
         $session_catuid = 0;
         $context = GeneralUtility::makeInstance(Context::class);
@@ -210,17 +195,16 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
             $session_catuid = unserialize($this->session->get('cat_id'));
         if ($session_catuid == FrontendCategoryController::showCommentsCatItem) {
             $uri = $uriBuilder
-                ->reset()
-                ->uriFor('listMyComments', null, 'FrontendComment', 'videoportal', 'Video');
+                    ->reset()
+                    ->uriFor('listMyComments', null, 'FrontendComment', 'videoportal', 'Video');
             return new RedirectResponse($uri);
         }
         if ($this->argumentService->hasArgument('tx_videoportal_listcats', 'searchString')) {
 
             $uri = $uriBuilder
-                ->reset()
-                ->uriFor('search', array('searchString' => $this->argumentService->getArgument('tx_videoportal_listcats', 'searchString')), 'FrontendVideo', 'videoportal', 'Video');
+                    ->reset()
+                    ->uriFor('search', array('searchString' => $this->argumentService->getArgument('tx_videoportal_listcats', 'searchString')), 'FrontendVideo', 'videoportal', 'Video');
             return new RedirectResponse($uri);
-            
         } else if ($this->argumentService->hasArgument('tx_videoportal_listcats', 'uid') && !$this->argumentService->hasArgument('tx_videoportal_listcats', 'showall')) {
             $catuid = $this->argumentService->getArgument('tx_videoportal_listcats', 'uid');
             if ($catuid == FrontendCategoryController::showCommentsCatItem) {
@@ -258,10 +242,10 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
             }
         }
         if ($loggedIn)
-            $this->view->assign('member', true);//load the template partial for member
+            $this->view->assign('member', true); //load the template partial for member
         $this->view->assign('unwatched', $unwatched);
         $this->view->assign('watched', $watched);
-        
+
         return $this->htmlResponse();
     }
 
@@ -271,17 +255,16 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
      * @param integer $videoUid
      * @return Response
      */
-    public function showByUidAction($videoUid) : Response
-    {
+    public function showByUidAction($videoUid): Response {
         $video = $this->videoRepository->findByUid($videoUid);
         $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder::class);
         if ($video == null) {
             parent::addInfo('No video found!');
             $uri = $uriBuilder
-                ->reset()
-                ->uriFor('list', null, 'FrontendVideo', 'videoportal', 'Video');
+                    ->reset()
+                    ->uriFor('list', null, 'FrontendVideo', 'videoportal', 'Video');
             return new RedirectResponse($uri);
-        }        
+        }
         $uri = $uriBuilder
                 ->reset()
                 ->uriFor('show', array('video' => $video), 'FrontendVideo', 'videoportal', 'Video');
@@ -295,13 +278,12 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
      * @param string $jumpToTab
      * @return Response
      */
-    public function showAction(\Jro\Videoportal\Domain\Model\Video $video, $jumpToTab = '') : Response
-    {        
-        if(!$this->isVideoAllowedForUser($video)){
+    public function showAction(\Jro\Videoportal\Domain\Model\Video $video, $jumpToTab = ''): Response {
+        if (!$this->isVideoAllowedForUser($video)) {
             $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder::class);
             $uri = $uriBuilder
-                ->reset()
-                ->uriFor('notAllowed', array('video' => $video), 'FrontendVideo', 'videoportal', 'Video');
+                    ->reset()
+                    ->uriFor('notAllowed', array('video' => $video), 'FrontendVideo', 'videoportal', 'Video');
             return new RedirectResponse($uri);
         }
         $this->setVideoAsWatchedIfUserLoggedIn($video);
@@ -326,8 +308,7 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
      * @param Jro\Videoportal\Domain\Model\Video $video
      * @return void
      */
-    private function setVideoAsWatchedIfUserLoggedIn($video)
-    {
+    private function setVideoAsWatchedIfUserLoggedIn($video) {
         $userAccess = $GLOBALS['TSFE']->fe_user->groupData['uid'];
         $full = $this->settings['fullGroupUid'];
         $partial = $this->settings['partialGroupUid'];
@@ -339,7 +320,7 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
         //only partial and full members can see already watched videos
         if (in_array($partial, $userAccess) || in_array($full, $userAccess)) {
             $context = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(Context::class);
-            if ($context->getPropertyFromAspect('frontend.user', 'isLoggedIn') ){
+            if ($context->getPropertyFromAspect('frontend.user', 'isLoggedIn')) {
                 $u = $this->userRepository->findByUid($userUid);
                 $u->addWatchedVideo($video);
                 $this->userRepository->update($u);
@@ -351,8 +332,7 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
      * @param Jro\Videoportal\Domain\Model\Video $video
      * @return void
      */
-    private function incrUserWatchCount($video)
-    {
+    private function incrUserWatchCount($video) {
         if (!$this->isVideoAllowedForUser($video)) {
             $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder::class);
             $uri = $uriBuilder
@@ -365,7 +345,8 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
         $loggedIn = $context->getPropertyFromAspect('frontend.user', 'isLoggedIn');
         if ($loggedIn) {
             $user = $this->userRepository->findByUid($userUid);
-            if ($user == null) return;
+            if ($user == null)
+                return;
             $counts = $user->getWatchcount();
             $found = false;
             foreach ($counts as $count) {
@@ -389,8 +370,7 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
      * @param Jro\Videoportal\Domain\Model\Video $video
      * @return bool
      */
-    private function isVideoAllowedForUser($video) : bool
-    {
+    private function isVideoAllowedForUser($video): bool {
         $full = $this->settings['fullGroupUid'];
         $partial = $this->settings['partialGroupUid'];
         $public = $this->settings['publicGroupUid'];
@@ -406,16 +386,16 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
         } //check video is partial
         else if (in_array($partial, $videoAccess)) {
             //check if user is partial or full
-            if (in_array($partial, $userAccess) || in_array($full, $userAccess)){
+            if (in_array($partial, $userAccess) || in_array($full, $userAccess)) {
                 return true;
             }
         } //check video is full
         else if (in_array($full, $videoAccess)) {
             //check if user is full
-            if (in_array($full, $userAccess)){
+            if (in_array($full, $userAccess)) {
                 return true;
             }
-        }        
+        }
         return false;
     }
 
@@ -423,8 +403,7 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
      * @param Jro\Videoportal\Domain\Model\Video $video
      * @return Response
      */
-    public function notAllowedAction(\Jro\Videoportal\Domain\Model\Video $video) : Response
-    {
+    public function notAllowedAction(\Jro\Videoportal\Domain\Model\Video $video): Response {
         $relatedVideos = $this->videoRepository->findRelatedVideos($video);
         $this->view->assign('video', $video);
         $this->view->assign('relatedVideos', $relatedVideos);
@@ -436,8 +415,7 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
      * @param Jro\Videoportal\Domain\Model\Video $video
      * @return Response
      */
-    public function switchWatchedStatusAction(\Jro\Videoportal\Domain\Model\Video $video) : Response
-    {
+    public function switchWatchedStatusAction(\Jro\Videoportal\Domain\Model\Video $video): Response {
         $this->forwardIfNotLoggedIn();
         $context = GeneralUtility::makeInstance(Context::class);
         $userUid = $context->getPropertyFromAspect('frontend.user', 'id');
@@ -465,8 +443,7 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
      * if logged in return $user else forward to notAllowed
      * @return : Response
      */
-    private function forwardIfNotLoggedIn() : Response
-    {
+    private function forwardIfNotLoggedIn(): Response {
         $context = GeneralUtility::makeInstance(Context::class);
         $loggedIn = $context->getPropertyFromAspect('frontend.user', 'isLoggedIn');
         $userUid = $context->getPropertyFromAspect('frontend.user', 'id');
@@ -474,8 +451,8 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
             parent::addInfo('This action is only allowed for partial or full members', "");
             $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder::class);
             $uri = $uriBuilder
-                ->reset()
-                ->uriFor('list', null, 'FrontendVideo', 'videoportal', 'Video');
+                    ->reset()
+                    ->uriFor('list', null, 'FrontendVideo', 'videoportal', 'Video');
             return new RedirectResponse($uri);
         } else {
             return $this->htmlResponse();
@@ -487,10 +464,10 @@ class FrontendVideoController extends \Jro\Videoportal\Controller\AbstractContro
      *
      * @return void
      */
-    protected function cleanUpSessionData()
-    {
-
+    protected function cleanUpSessionData() {
+        
     }
+
 }
 
 ?>

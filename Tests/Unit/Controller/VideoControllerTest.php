@@ -1,6 +1,8 @@
 <?php
+
 namespace Jro\Videoportal\Tests;
-/***************************************************************
+
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013 
@@ -21,7 +23,7 @@ namespace Jro\Videoportal\Tests;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  * Test case for class Tx_Videoportal_Controller_VideoController.
@@ -35,25 +37,27 @@ namespace Jro\Videoportal\Tests;
  *
  */
 class VideoControllerTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
-	/**
-	 * @var 
-	 */
-	protected $fixture;
 
-	public function setUp() {
-		$this->fixture = new \Jro\Videoportal\Domain\Model\Video();
-	}
+    /**
+     * @var 
+     */
+    protected $fixture;
 
-	public function tearDown() {
-		unset($this->fixture);
-	}
+    public function setUp() {
+        $this->fixture = new \Jro\Videoportal\Domain\Model\Video();
+    }
 
-	/**
-	 * @test
-	 */
-	public function dummyMethod() {
-		$this->markTestIncomplete();
-	}
+    public function tearDown() {
+        unset($this->fixture);
+    }
+
+    /**
+     * @test
+     */
+    public function dummyMethod() {
+        $this->markTestIncomplete();
+    }
 
 }
+
 ?>

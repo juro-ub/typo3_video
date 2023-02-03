@@ -1,6 +1,7 @@
 <?php
 
 namespace Jro\Videoportal\ViewHelpers;
+
 /**
  *
  *
@@ -8,8 +9,8 @@ namespace Jro\Videoportal\ViewHelpers;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class ShowCommentTextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
-{
+class ShowCommentTextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper {
+
     /**
      * commentRepository
      *
@@ -20,23 +21,19 @@ class ShowCommentTextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstra
     /**
      * @param Jro\Videoportal\Domain\Repository\CommentRepository $comment
      */
-    public function injectCommentRepository(\Jro\Videoportal\Domain\Repository\CommentRepository $comment)
-    {
+    public function injectCommentRepository(\Jro\Videoportal\Domain\Repository\CommentRepository $comment) {
         $this->commentRepository = $comment;
     }
-
 
     /**
      * Arguments Initialization
      *
      */
-    public function initializeArguments()
-    {
+    public function initializeArguments() {
         $this->registerArgument('comment_uid', 'string', 'the uid', TRUE);
     }
 
-    public function render()
-    {
+    public function render() {
         $html = "";
 
         $comment = $this->commentRepository->findByUid($this->arguments['comment_uid']);
@@ -47,6 +44,7 @@ class ShowCommentTextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstra
             $html = $comment->getText();
         return $html;
     }
+
 }
 
 ?>

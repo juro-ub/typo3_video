@@ -1,11 +1,11 @@
 <div class="LoginBox">
-<f:if condition="{username}">
-	<f:then>
-		<span>Username: </span>{username}<br>
-		<f:link.page pageUid="{loginPid}" additionalParams="{logintype:'logout'}">Logout</f:link.page>
-	</f:then>
-	<f:else>
-	<f:link.page target="_blank" pageUid="{loginPid}">Login</f:link.page>
-	</f:else>
-</f:if>
+    <f:if condition="{username}">
+        <f:then>
+            <span>Username: </span>{username}<br>
+            <f:link.page pageUid="{loginPid}" additionalParams="{logintype:'logout'}">Logout</f:link.page>
+        </f:then>
+        <f:else>
+            <f:link.page target="_blank" pageUid="{loginPid}">Login</f:link.page>
+        </f:else>
+    </f:if>
 </div>

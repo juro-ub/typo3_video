@@ -9,8 +9,7 @@ namespace Jro\Videoportal\Domain\Session;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class FrontendSessionHandler extends \TYPO3\CMS\Extbase\Persistence\Repository
-{
+class FrontendSessionHandler extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
     /**
      * @var string
@@ -20,8 +19,7 @@ class FrontendSessionHandler extends \TYPO3\CMS\Extbase\Persistence\Repository
     /**
      * @param string $storageKey
      */
-    public function setStorageKey($storageKey)
-    {
+    public function setStorageKey($storageKey) {
         $this->storageKey = $storageKey;
     }
 
@@ -31,8 +29,7 @@ class FrontendSessionHandler extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param mixed $value
      * @return boolean
      */
-    public function store($key, $value)
-    {
+    public function store($key, $value) {
         $data = $GLOBALS['TSFE']->fe_user->getSessionData($this->storageKey);
         $data[$key] = $value;
         return $GLOBALS['TSFE']->fe_user->setAndSaveSessionData($this->storageKey, $data);
@@ -43,21 +40,18 @@ class FrontendSessionHandler extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param string $key
      * @return boolean
      */
-    public function delete($key)
-    {
+    public function delete($key) {
         $data = $GLOBALS['TSFE']->fe_user->getSessionData($this->storageKey);
         unset($data[$key]);
         return $GLOBALS['TSFE']->fe_user->setAndSaveSessionData($this->storageKey, $data);
     }
-
 
     /**
      * Wert auslesen
      * @param string $key
      * @return mixed
      */
-    public function get($key)
-    {
+    public function get($key) {
         $data = $GLOBALS['TSFE']->fe_user->getSessionData($this->storageKey);
         return isset($data[$key]) ? $data[$key] : NULL;
     }

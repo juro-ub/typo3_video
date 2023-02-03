@@ -1,12 +1,12 @@
 # Module configuration
 module.tx_videoportal_web_videoportalvideoportalbackendmodul {
 	view {
-		templateRootPaths.0 = EXT:videoportal/Resources/Private/Backend/Templates/
-        templateRootPaths.1 = {$module.tx_videoportal_videoportalbackendmodul.view.templateRootPath}
-        partialRootPaths.0 = EXT:videoportal/Resources/Private/Backend/Partials/
-        partialRootPaths.1 = {$module.tx_videoportal_videoportalbackendmodul.view.partialRootPath}
-        layoutRootPaths.0 = EXT:videoportal/Resources/Private/Backend/Layouts/
-        layoutRootPaths.1 = {$module.tx_videoportal_videoportalbackendmodul.view.layoutRootPath}
+            templateRootPaths.0 = EXT:videoportal/Resources/Private/Backend/Templates/
+            templateRootPaths.1 = {$module.tx_videoportal_videoportalbackendmodul.view.templateRootPath}
+            partialRootPaths.0 = EXT:videoportal/Resources/Private/Backend/Partials/
+            partialRootPaths.1 = {$module.tx_videoportal_videoportalbackendmodul.view.partialRootPath}
+            layoutRootPaths.0 = EXT:videoportal/Resources/Private/Backend/Layouts/
+            layoutRootPaths.1 = {$module.tx_videoportal_videoportalbackendmodul.view.layoutRootPath}
 	}
 
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Jro\Videoportal\ViewHelpers;
 
 /*
@@ -31,8 +32,8 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Exception;
  * </f:for>
  * ```
  */
-class SortViewHelper extends AbstractViewHelper
-{
+class SortViewHelper extends AbstractViewHelper {
+
     use TemplateVariableViewHelperTrait;
     use ArrayConsumingViewHelperTrait;
 
@@ -61,29 +62,28 @@ class SortViewHelper extends AbstractViewHelper
         'SORT_FLAG_CASE'
     ];
 
-    public function initializeArguments(): void
-    {
+    public function initializeArguments(): void {
         $this->registerArgument('subject', 'mixed', 'The array/Traversable instance to sort');
         $this->registerArgument(
-            'sortBy',
-            'string',
-            'Which property/field to sort by - leave out for numeric sorting based on indexes(keys)'
+                'sortBy',
+                'string',
+                'Which property/field to sort by - leave out for numeric sorting based on indexes(keys)'
         );
         $this->registerArgument(
-            'order',
-            'string',
-            'ASC, DESC, RAND or SHUFFLE. RAND preserves keys, SHUFFLE does not - but SHUFFLE is faster',
-            false,
-            'ASC'
+                'order',
+                'string',
+                'ASC, DESC, RAND or SHUFFLE. RAND preserves keys, SHUFFLE does not - but SHUFFLE is faster',
+                false,
+                'ASC'
         );
         $this->registerArgument(
-            'sortFlags',
-            'string',
-            'Constant name from PHP for `SORT_FLAGS`: `SORT_REGULAR`, `SORT_STRING`, `SORT_NUMERIC`, ' .
-            '`SORT_NATURAL`, `SORT_LOCALE_STRING` or `SORT_FLAG_CASE`. You can provide a comma seperated list or ' .
-            'array to use a combination of flags.',
-            false,
-            'SORT_REGULAR'
+                'sortFlags',
+                'string',
+                'Constant name from PHP for `SORT_FLAGS`: `SORT_REGULAR`, `SORT_STRING`, `SORT_NUMERIC`, ' .
+                '`SORT_NATURAL`, `SORT_LOCALE_STRING` or `SORT_FLAG_CASE`. You can provide a comma seperated list or ' .
+                'array to use a combination of flags.',
+                false,
+                'SORT_REGULAR'
         );
         $this->registerAsArgument();
     }
@@ -98,9 +98,9 @@ class SortViewHelper extends AbstractViewHelper
      * @return mixed
      */
     public static function renderStatic(
-        array $arguments,
-        \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext
+            array $arguments,
+            \Closure $renderChildrenClosure,
+            RenderingContextInterface $renderingContext
     ) {
         $candidate = !empty($arguments['as']) ? $arguments['subject'] : $renderChildrenClosure();
         if ($candidate instanceof ObjectStorage) {
@@ -111,10 +111,10 @@ class SortViewHelper extends AbstractViewHelper
         }
 
         return static::renderChildrenWithVariableOrReturnInputStatic(
-            $sorted,
-            $arguments['as'],
-            $renderingContext,
-            $renderChildrenClosure
+                        $sorted,
+                        $arguments['as'],
+                        $renderingContext,
+                        $renderChildrenClosure
         );
     }
 
@@ -125,8 +125,7 @@ class SortViewHelper extends AbstractViewHelper
      * @param array $arguments
      * @return array
      */
-    protected static function sortArray($array, $arguments)
-    {
+    protected static function sortArray($array, $arguments) {
         $sorted = [];
         foreach ($array as $index => $object) {
             if (true === isset($arguments['sortBy'])) {
@@ -162,8 +161,7 @@ class SortViewHelper extends AbstractViewHelper
      * @param array $arguments
      * @return ObjectStorage
      */
-    protected static function sortObjectStorage($storage, $arguments)
-    {
+    protected static function sortObjectStorage($storage, $arguments) {
         /** @var ObjectStorage $temp */
         $temp = GeneralUtility::makeInstance(ObjectStorage::class);
         foreach ($storage as $item) {
@@ -185,8 +183,7 @@ class SortViewHelper extends AbstractViewHelper
      * @param array $arguments
      * @return mixed
      */
-    protected static function getSortValue($object, $arguments)
-    {
+    protected static function getSortValue($object, $arguments) {
         $field = $arguments['sortBy'];
         $value = ObjectAccess::getPropertyPath($object, $field);
         if (true === $value instanceof \DateTimeInterface) {
@@ -207,20 +204,20 @@ class SortViewHelper extends AbstractViewHelper
      * @return int
      * @throws Exception
      */
-    protected static function getSortFlags($arguments)
-    {
+    protected static function getSortFlags($arguments) {
         $constants = static::arrayFromArrayOrTraversableOrCSVStatic($arguments['sortFlags']);
         $flags = 0;
         foreach ($constants as $constant) {
             if (false === in_array($constant, static::$allowedSortFlags)) {
                 ErrorUtility::throwViewHelperException(
-                    'The constant "' . $constant . '" you\'re trying to use as a sortFlag is not allowed. Allowed ' .
-                    'constants are: ' . implode(', ', static::$allowedSortFlags) . '.',
-                    1404220538
+                        'The constant "' . $constant . '" you\'re trying to use as a sortFlag is not allowed. Allowed ' .
+                        'constants are: ' . implode(', ', static::$allowedSortFlags) . '.',
+                        1404220538
                 );
             }
             $flags = $flags | constant(trim($constant));
         }
         return $flags;
     }
+
 }

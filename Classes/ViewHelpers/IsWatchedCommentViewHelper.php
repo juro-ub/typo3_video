@@ -1,6 +1,7 @@
 <?php
 
 namespace Jro\Videoportal\ViewHelpers;
+
 /**
  *
  *
@@ -8,8 +9,7 @@ namespace Jro\Videoportal\ViewHelpers;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class IsWatchedCommentViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
-{
+class IsWatchedCommentViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper {
 
     /**
      * @var \Jro\Videoportal\Domain\Session\BackendSessionHandler
@@ -19,8 +19,7 @@ class IsWatchedCommentViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstr
     /**
      * @param Jro\Videoportal\Domain\Session\BackendSessionHandler $session
      */
-    public function injectSession(\Jro\Videoportal\Domain\Session\BackendSessionHandler $session)
-    {
+    public function injectSession(\Jro\Videoportal\Domain\Session\BackendSessionHandler $session) {
         $this->session = $session;
     }
 
@@ -34,8 +33,7 @@ class IsWatchedCommentViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstr
     /**
      * @param Jro\Videoportal\Domain\Repository\BeUserRepository $user
      */
-    public function injectBeUserRepository(\Jro\Videoportal\Domain\Repository\BeUserRepository $user)
-    {
+    public function injectBeUserRepository(\Jro\Videoportal\Domain\Repository\BeUserRepository $user) {
         $this->beUserRepository = $user;
     }
 
@@ -43,13 +41,11 @@ class IsWatchedCommentViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstr
      * Arguments Initialization
      *
      */
-    public function initializeArguments()
-    {
+    public function initializeArguments() {
         $this->registerArgument('commentUid', 'integer', TRUE);
     }
 
-    public function render()
-    {
+    public function render() {
         $cuid = $this->arguments['commentUid'];
         $beuser = $GLOBALS['BE_USER']->user;
 
@@ -63,11 +59,11 @@ class IsWatchedCommentViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstr
                         return '1';
                     }
                 }
-
             }
         }
         return '0';
     }
+
 }
 
 ?>

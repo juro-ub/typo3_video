@@ -1,12 +1,12 @@
-(function( $ ){
-    $.fn.toggleCommment = function() {
-        if($(this).is(":hidden")){
+(function ($) {
+    $.fn.toggleCommment = function () {
+        if ($(this).is(":hidden")) {
             $(this).show();
-        }else{
+        } else {
             $(this).hide();
         }
     };
-})( jQuery );
+})(jQuery);
 $(document).ready(function () {
 
     $(".commentTreeExpand").unbind('click').click(function () {

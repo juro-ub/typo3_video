@@ -9,8 +9,7 @@ namespace Jro\Videoportal\Domain\Session;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class BackendSessionHandler extends \TYPO3\CMS\Extbase\Persistence\Repository
-{
+class BackendSessionHandler extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
     /**
      * @var string
@@ -32,7 +31,7 @@ class BackendSessionHandler extends \TYPO3\CMS\Extbase\Persistence\Repository
      */
     public function store($key, $value) {
         $data = $GLOBALS['BE_USER']->getSessionData($this->storageKey);
-        $data[ $key ] = $value;
+        $data[$key] = $value;
         return $GLOBALS['BE_USER']->setAndSaveSessionData($this->storageKey, $data);
     }
 
@@ -43,10 +42,9 @@ class BackendSessionHandler extends \TYPO3\CMS\Extbase\Persistence\Repository
      */
     public function delete($key) {
         $data = $GLOBALS['BE_USER']->getSessionData($this->storageKey);
-        unset($data[ $key ]);
+        unset($data[$key]);
         return $GLOBALS['BE_USER']->setAndSaveSessionData($this->storageKey, $data);
     }
-
 
     /**
      * Wert auslesen
@@ -55,7 +53,7 @@ class BackendSessionHandler extends \TYPO3\CMS\Extbase\Persistence\Repository
      */
     public function get($key) {
         $data = $GLOBALS['BE_USER']->getSessionData($this->storageKey);
-        return isset($data[ $key ]) ? $data[ $key ] : NULL;
+        return isset($data[$key]) ? $data[$key] : NULL;
     }
 
 }

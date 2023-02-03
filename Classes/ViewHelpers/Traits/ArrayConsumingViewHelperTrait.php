@@ -26,18 +26,17 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
  *   tag contents while also converting it to array.
  * - merge arrays with a switch to respect TYPO3 version.
  */
-trait ArrayConsumingViewHelperTrait
-{
+trait ArrayConsumingViewHelperTrait {
+
     /**
      * Override of VhsViewHelperTrait equivalent. Does what
      * that function does, but also ensures an array return.
      */
-    protected function getArgumentFromArgumentsOrTagContentAndConvertToArray(string $argumentName): array
-    {
+    protected function getArgumentFromArgumentsOrTagContentAndConvertToArray(string $argumentName): array {
         return static::getArgumentFromArgumentsOrTagContentAndConvertToArrayStatic(
-            $this->arguments,
-            $argumentName,
-            $this->buildRenderChildrenClosure()
+                        $this->arguments,
+                        $argumentName,
+                        $this->buildRenderChildrenClosure()
         );
     }
 
@@ -46,9 +45,9 @@ trait ArrayConsumingViewHelperTrait
      * that function does, but also ensures an array return.
      */
     protected static function getArgumentFromArgumentsOrTagContentAndConvertToArrayStatic(
-        array $arguments,
-        string $argumentName,
-        \Closure $renderChildrenClosure
+            array $arguments,
+            string $argumentName,
+            \Closure $renderChildrenClosure
     ): array {
         if (!isset($arguments[$argumentName])) {
             $value = $renderChildrenClosure();
@@ -61,8 +60,7 @@ trait ArrayConsumingViewHelperTrait
     /**
      * @param mixed $candidate
      */
-    protected static function arrayFromArrayOrTraversableOrCSVStatic($candidate, bool $useKeys = true): array
-    {
+    protected static function arrayFromArrayOrTraversableOrCSVStatic($candidate, bool $useKeys = true): array {
         if ($candidate instanceof QueryResultInterface) {
             return $candidate->toArray();
         }
@@ -79,13 +77,11 @@ trait ArrayConsumingViewHelperTrait
         return [];
     }
 
-    protected function mergeArrays(array $array1, array $array2): array
-    {
+    protected function mergeArrays(array $array1, array $array2): array {
         return static::mergeArraysStatic($array1, $array2);
     }
 
-    protected static function mergeArraysStatic(array $array1, array $array2): array
-    {
+    protected static function mergeArraysStatic(array $array1, array $array2): array {
         ArrayUtility::mergeRecursiveWithOverrule($array1, $array2);
         return $array1;
     }
@@ -93,8 +89,8 @@ trait ArrayConsumingViewHelperTrait
     /**
      * @param mixed $subject
      */
-    protected static function assertIsArrayOrIterator($subject): bool
-    {
+    protected static function assertIsArrayOrIterator($subject): bool {
         return is_array($subject) || $subject instanceof \Traversable;
     }
+
 }

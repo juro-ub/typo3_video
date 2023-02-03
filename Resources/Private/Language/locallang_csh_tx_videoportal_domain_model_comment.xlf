@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2013-08-07T14:17:18Z" product-name="videoportal">
-		<header/>
-		<body>
+    <file source-language="en" datatype="plaintext" original="messages" date="2013-08-07T14:17:18Z" product-name="videoportal">
+        <header/>
+        <body>
 
-			<trans-unit id="comment.description">
-				<source>comment</source>
-			</trans-unit>
-			<trans-unit id="status.description">
-				<source>status</source>
-			</trans-unit>
-			<trans-unit id="time.description">
-				<source>time</source>
-			</trans-unit>
-			<trans-unit id="parent.description">
-				<source>parent</source>
-			</trans-unit>
-		</body>
-	</file>
+            <trans-unit id="comment.description">
+                <source>comment</source>
+            </trans-unit>
+            <trans-unit id="status.description">
+                <source>status</source>
+            </trans-unit>
+            <trans-unit id="time.description">
+                <source>time</source>
+            </trans-unit>
+            <trans-unit id="parent.description">
+                <source>parent</source>
+            </trans-unit>
+        </body>
+    </file>
 </xliff>

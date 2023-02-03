@@ -3,7 +3,8 @@
 namespace Jro\Videoportal\Domain\Repository;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-/***************************************************************
+
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013
@@ -24,7 +25,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  *
@@ -33,9 +34,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class GroupRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepository
-{
-
+class GroupRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepository {
+    
 }
 
 ?>

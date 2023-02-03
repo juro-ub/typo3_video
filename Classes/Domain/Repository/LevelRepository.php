@@ -2,7 +2,7 @@
 
 namespace Jro\Videoportal\Domain\Repository;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013
@@ -23,7 +23,7 @@ namespace Jro\Videoportal\Domain\Repository;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  *
@@ -32,8 +32,8 @@ namespace Jro\Videoportal\Domain\Repository;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class LevelRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepository
-{
-
+class LevelRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepository {
+    
 }
+
 ?>

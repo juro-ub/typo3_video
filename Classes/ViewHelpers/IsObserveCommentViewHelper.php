@@ -1,6 +1,7 @@
 <?php
 
 namespace Jro\Videoportal\ViewHelpers;
+
 /**
  *
  *
@@ -8,8 +9,7 @@ namespace Jro\Videoportal\ViewHelpers;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class IsObserveCommentViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
-{
+class IsObserveCommentViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper {
 
     /**
      * @var \Jro\Videoportal\Domain\Session\BackendSessionHandler
@@ -19,8 +19,7 @@ class IsObserveCommentViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstr
     /**
      * @param Jro\Videoportal\Domain\Session\BackendSessionHandler $session
      */
-    public function injectSession(\Jro\Videoportal\Domain\Session\BackendSessionHandler $session)
-    {
+    public function injectSession(\Jro\Videoportal\Domain\Session\BackendSessionHandler $session) {
         $this->session = $session;
     }
 
@@ -34,8 +33,7 @@ class IsObserveCommentViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstr
     /**
      * @param Jro\Videoportal\Domain\Repository\UserRepository $user
      */
-    public function injectFeUserRepository(\Jro\Videoportal\Domain\Repository\UserRepository $user)
-    {
+    public function injectFeUserRepository(\Jro\Videoportal\Domain\Repository\UserRepository $user) {
         $this->feUserRepository = $user;
     }
 
@@ -43,13 +41,11 @@ class IsObserveCommentViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstr
      * Arguments Initialization
      *
      */
-    public function initializeArguments()
-    {
+    public function initializeArguments() {
         $this->registerArgument('commentUid', 'integer', TRUE);
     }
 
-    public function render()
-    {
+    public function render() {
         $cuid = $this->arguments['commentUid'];
         $feuser = $GLOBALS['TSFE']->fe_user->user;
         if ($feuser) {
@@ -66,6 +62,7 @@ class IsObserveCommentViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstr
         }
         return '0';
     }
+
 }
 
 ?>

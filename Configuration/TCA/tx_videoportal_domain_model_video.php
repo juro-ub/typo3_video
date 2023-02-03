@@ -1,6 +1,7 @@
 <?php
+
 if (!defined('TYPO3')) {
-    die ('Access denied.');
+    die('Access denied.');
 }
 
 return array(
@@ -128,8 +129,8 @@ return array(
                 'minitems' => 1,
                 'maxitems' => 1,
                 'eval' => 'required',
-            ),
-                'mp4'
+                    ),
+                    'mp4'
             )
         ),
         'path_webm' => array(
@@ -142,8 +143,8 @@ return array(
                 ),
                 'minitems' => 0,
                 'maxitems' => 1,
-            ),
-                'webm'
+                    ),
+                    'webm'
             )
         ),
         'path_ogg' => array(
@@ -156,8 +157,8 @@ return array(
                 ),
                 'minitems' => 0,
                 'maxitems' => 1,
-            ),
-                ',ogg,ogv'
+                    ),
+                    ',ogg,ogv'
             )
         ),
         'time' => array(
@@ -255,8 +256,8 @@ return array(
                 'minitems' => 0,
                 'maxitems' => 1,
                 'eval' => 'required',
-            ),
-                $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'])
+                    ),
+                    $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'])
         ),
         'targetgroups' => array(
             'exclude' => 1,
@@ -356,7 +357,6 @@ return array(
                 ),
             ),
         ),
-
         'categories' => array(
             'exclude' => 0,
             'label' => 'LLL:EXT:videoportal/Resources/Private/Language/locallang_db.xlf:tx_videoportal_domain_model_video.categories',
@@ -376,7 +376,6 @@ return array(
                 ),
             ),
         ),
-
         'files' => array(
             'exclude' => 1,
             'label' => 'LLL:EXT:videoportal/Resources/Private/Language/locallang_db.xlf:tx_videoportal_domain_model_video.files',
@@ -389,10 +388,9 @@ return array(
                     'showAllLocalizationLink' => 1,
                     'createNewRelationLinkTitle' => 'LLL:EXT:cms/locallang_ttc.xlf:images.addFileReference'
                 ),
-            ),
+                    ),
             ),
         ),
-
         'transcripts' => array(
             'exclude' => 1,
             'label' => 'Transcript Vtt File',
@@ -403,8 +401,8 @@ return array(
                 ),
                 'minitems' => 0,
                 'maxitems' => 1,
-            ),
-                $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']. ',vtt'
+                    ),
+                    $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'] . ',vtt'
             )
         ),
         'chapters' => array(
@@ -417,8 +415,8 @@ return array(
                 ),
                 'minitems' => 0,
                 'maxitems' => 1,
-            ),
-                $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']. ',vtt'
+                    ),
+                    $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'] . ',vtt'
             )
         ),
         'authors' => array(

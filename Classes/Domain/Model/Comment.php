@@ -4,7 +4,7 @@ namespace Jro\Videoportal\Domain\Model;
 
 use TYPO3\CMS\Extbase\Annotation;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013
@@ -25,7 +25,7 @@ use TYPO3\CMS\Extbase\Annotation;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  *
@@ -34,8 +34,7 @@ use TYPO3\CMS\Extbase\Annotation;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
-{
+class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
     /**
      * text
@@ -72,8 +71,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return Comment
      */
-    public function __construct()
-    {
+    public function __construct() {
         //Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
     }
@@ -83,14 +81,12 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return void
      */
-    protected function initStorageObjects()
-    {
+    protected function initStorageObjects() {
         /**
          * Do not modify this method!
          * It will be rewritten on each save in the extension builder
          * You may modify the constructor of this class instead
          */
-
         $this->childs = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
 
@@ -99,8 +95,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $comment
      */
-    public function getText()
-    {
+    public function getText() {
         return $this->text;
     }
 
@@ -110,8 +105,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $comment
      * @return void
      */
-    public function setText($comment)
-    {
+    public function setText($comment) {
         $this->text = $comment;
     }
 
@@ -120,8 +114,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return DateTime $crdate
      */
-    public function getCrdate()
-    {
+    public function getCrdate() {
         return $this->crdate;
     }
 
@@ -131,8 +124,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param DateTime $crdate
      * @return void
      */
-    public function setCrdate($crdate)
-    {
+    public function setCrdate($crdate) {
         $this->crdate = $crdate;
     }
 
@@ -142,8 +134,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Comment $child
      * @return void
      */
-    public function addChild(\Jro\Videoportal\Domain\Model\Comment $child)
-    {
+    public function addChild(\Jro\Videoportal\Domain\Model\Comment $child) {
         $this->childs->attach($child);
     }
 
@@ -153,8 +144,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Comment $childToRemove The Comment to be removed
      * @return void
      */
-    public function removeChild(\Jro\Videoportal\Domain\Model\Comment $childToRemove)
-    {
+    public function removeChild(\Jro\Videoportal\Domain\Model\Comment $childToRemove) {
         $this->childs->detach($childToRemove);
     }
 
@@ -163,8 +153,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Comment> $childs
      */
-    public function getChilds()
-    {
+    public function getChilds() {
         return $this->childs;
     }
 
@@ -174,17 +163,16 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Comment> $childs
      * @return void
      */
-    public function setChilds(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $childs)
-    {
+    public function setChilds(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $childs) {
         $this->childs = $childs;
     }
+
     /**
      * Returns the hidden
      *
      * @return boolean $hidden
      */
-    public function getHidden()
-    {
+    public function getHidden() {
         return $this->hidden;
     }
 
@@ -194,8 +182,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param boolean $hidden
      * @return void
      */
-    public function setHidden($hidden)
-    {
+    public function setHidden($hidden) {
         $this->hidden = $hidden;
     }
 
@@ -204,10 +191,10 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return boolean
      */
-    public function isHidden()
-    {
+    public function isHidden() {
         return $this->getHidden();
     }
+
 }
 
 ?>

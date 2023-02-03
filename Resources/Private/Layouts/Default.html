@@ -17,15 +17,15 @@
     $.expander.defaults.slicePoint = 120;
     $.expander.defaults.preserveWords = false;
     $(document).ready(function() {
-        // simple example, using all default options unless overridden globally
-        $('div.expandable').expander();
+    // simple example, using all default options unless overridden globally
+    $('div.expandable').expander();
     });
     //set links for tab VideoTabPane
     $("#videoTabPaneQATab a").each(function(){
-        var context = $(this);
-        var url = context.attr("href");
-        url += "#videoTabPaneQA";
-        context.attr("href", url);
+    var context = $(this);
+    var url = context.attr("href");
+    url += "#videoTabPaneQA";
+    context.attr("href", url);
     });
 </script>
 

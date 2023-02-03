@@ -1,105 +1,105 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en"
-	  xmlns:fed="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
-	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
-	  xmlns:videoportal="http://typo3.org/ns/Jro/Videoportal/ViewHelpers"
->
-<div class="notYetWatchedContainer" style="width: 400px;float: left; margin-right: 50px;">
-<table id="notYetWatched" class="tableRahmen">
-	<tr>
-		<th class="h1">Not yet watched
-			<f:if condition="{unwatched -> f:count()} == 0">
-			<div class="Line"></div>
-			</f:if>
-			</th>
-		</tr>
-		<f:if condition="{unwatched -> f:count()} > 0">
-		<f:then>
-			<tr><td align="center">
-				<div id="sortingText" >
-				
-				</div>
-			</td></tr>
+      xmlns:fed="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+      xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+      xmlns:videoportal="http://typo3.org/ns/Jro/Videoportal/ViewHelpers"
+      >
+    <div class="notYetWatchedContainer" style="width: 400px;float: left; margin-right: 50px;">
+        <table id="notYetWatched" class="tableRahmen">
+            <tr>
+                <th class="h1">Not yet watched
+                    <f:if condition="{unwatched -> f:count()} == 0">
+                        <div class="Line"></div>
+                    </f:if>
+                </th>
+            </tr>
+            <f:if condition="{unwatched -> f:count()} > 0">
+                <f:then>
+                    <tr><td align="center">
+                            <div id="sortingText" >
 
-  <f:for each="{unwatched}" as="videoItem">
-    <tr>
-			<td><div class="Line"></div>
-				<f:render partial="FrontendVideo/VideoItem" arguments="{video: videoItem, setWatched: 1}" />
-					
-				</td>
-			</tr>
- </f:for>
+                            </div>
+                        </td></tr>
 
-<tr><td style="padding-top: 15px;"></td></tr>
+                    <f:for each="{unwatched}" as="videoItem">
+                        <tr>
+                            <td><div class="Line"></div>
+                                <f:render partial="FrontendVideo/VideoItem" arguments="{video: videoItem, setWatched: 1}" />
 
-</table>
+                            </td>
+                        </tr>
+                    </f:for>
 
-</div>
-	
-</f:then>
-<f:else>
-	<tr>
-			<td width="400">
-				<div class="catsTreeFont" style="margin-top: 10px;">
-	<f:translate key="tx_videoportal_domain_model_video.no_videos" />
-	</div>
-					<div class="Line"></div>
-				</td>
-			</tr>
-	</table></div>
-</f:else>
-</f:if>	
+                    <tr><td style="padding-top: 15px;"></td></tr>
 
-<div class="notYetWatchedContainer" style="width: 400px; float: left;">
-<table id="notYetWatched" class="tableRahmen">
-	<tr>
-		<th class="h1">Already watched
-			
-			<f:if condition="{watched -> f:count()} == 0">
-			<div class="Line"></div>
-			</f:if>
-			
-			
-			</th>
-		</tr>
-		<f:if condition="{watched -> f:count()} > 0">
-<f:then>
-	<tr><td align="center"><div id="sortingText" >
-		
-	</div>
-	</td>
-	</tr>
-  <f:for each="{watched}" as="videoItem">
-    <tr>
-			<td>
-				<div class="Line"></div>
-				<f:render partial="FrontendVideo/VideoItem" arguments="{video: videoItem, setWatched: 1, unwatched: 1}" />
-					
-				</td>
-			</tr>
- </f:for>
- <tr><td style="padding-top: 15px;"></td></tr>
- 
-</table>
+                    </table>
 
-	</div>
-	
-	</f:then>
+                    </div>
 
-<f:else>
-<tr>
-			<td width="400">
-				<div class="catsTreeFont" style="margin-top: 10px;">
-	<f:translate key="tx_videoportal_domain_model_video.no_videos" />
-	</div>
-					<div class="Line"></div>
-				</td>
-			</tr>
-	</table></div>
-</f:else>
-</f:if>	
+                </f:then>
+                <f:else>
+                    <tr>
+                        <td width="400">
+                            <div class="catsTreeFont" style="margin-top: 10px;">
+                                <f:translate key="tx_videoportal_domain_model_video.no_videos" />
+                            </div>
+                            <div class="Line"></div>
+                        </td>
+                    </tr>
+                    </table></div>
+                </f:else>
+            </f:if>	
 
-<div style="clear: left;"></div>
-</html>
+            <div class="notYetWatchedContainer" style="width: 400px; float: left;">
+                <table id="notYetWatched" class="tableRahmen">
+                    <tr>
+                        <th class="h1">Already watched
+
+                            <f:if condition="{watched -> f:count()} == 0">
+                                <div class="Line"></div>
+                            </f:if>
+
+
+                        </th>
+                    </tr>
+                    <f:if condition="{watched -> f:count()} > 0">
+                        <f:then>
+                            <tr><td align="center"><div id="sortingText" >
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <f:for each="{watched}" as="videoItem">
+                                <tr>
+                                    <td>
+                                        <div class="Line"></div>
+                                        <f:render partial="FrontendVideo/VideoItem" arguments="{video: videoItem, setWatched: 1, unwatched: 1}" />
+
+                                    </td>
+                                </tr>
+                            </f:for>
+                            <tr><td style="padding-top: 15px;"></td></tr>
+
+                            </table>
+
+                            </div>
+
+                        </f:then>
+
+                        <f:else>
+                            <tr>
+                                <td width="400">
+                                    <div class="catsTreeFont" style="margin-top: 10px;">
+                                        <f:translate key="tx_videoportal_domain_model_video.no_videos" />
+                                    </div>
+                                    <div class="Line"></div>
+                                </td>
+                            </tr>
+                            </table></div>
+                        </f:else>
+                    </f:if>	
+
+                    <div style="clear: left;"></div>
+                    </html>
 
 
 

@@ -2,7 +2,7 @@
 
 namespace Jro\Videoportal\Domain\Model;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013
@@ -23,7 +23,7 @@ namespace Jro\Videoportal\Domain\Model;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  *
@@ -32,8 +32,7 @@ namespace Jro\Videoportal\Domain\Model;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
-{
+class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
     /**
      * title
@@ -70,8 +69,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return Category
      */
-    public function __construct()
-    {
+    public function __construct() {
         //Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
     }
@@ -81,8 +79,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return void
      */
-    protected function initStorageObjects()
-    {
+    protected function initStorageObjects() {
         /**
          * Do not modify this method!
          * It will be rewritten on each save in the extension builder
@@ -96,8 +93,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $title
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -107,8 +103,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $title
      * @return void
      */
-    public function setTitle($title)
-    {
+    public function setTitle($title) {
         $this->title = $title;
     }
 
@@ -117,8 +112,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $description
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
@@ -128,8 +122,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $description
      * @return void
      */
-    public function setDescription($description)
-    {
+    public function setDescription($description) {
         $this->description = $description;
     }
 
@@ -138,8 +131,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return boolean $hidden
      */
-    public function getHidden()
-    {
+    public function getHidden() {
         return $this->hidden;
     }
 
@@ -149,8 +141,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param boolean $hidden
      * @return void
      */
-    public function setHidden($hidden)
-    {
+    public function setHidden($hidden) {
         $this->hidden = $hidden;
     }
 
@@ -159,8 +150,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return boolean
      */
-    public function isHidden()
-    {
+    public function isHidden() {
         return $this->getHidden();
     }
 
@@ -170,8 +160,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Category $parent
      * @return void
      */
-    public function addParent(\Jro\Videoportal\Domain\Model\Category $parent)
-    {
+    public function addParent(\Jro\Videoportal\Domain\Model\Category $parent) {
         $this->parent->attach($parent);
     }
 
@@ -181,8 +170,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Category $parentToRemove The Category to be removed
      * @return void
      */
-    public function removeParent(\Jro\Videoportal\Domain\Model\Category $parentToRemove)
-    {
+    public function removeParent(\Jro\Videoportal\Domain\Model\Category $parentToRemove) {
         $this->parent->detach($parentToRemove);
     }
 
@@ -191,8 +179,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Category> $parent
      */
-    public function getParent()
-    {
+    public function getParent() {
         return $this->parent;
     }
 
@@ -202,8 +189,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Category> $parent
      * @return void
      */
-    public function setParent(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $parent)
-    {
+    public function setParent(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $parent) {
         $this->parent = $parent;
     }
 

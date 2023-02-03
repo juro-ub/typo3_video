@@ -6,12 +6,12 @@ This Template is responsible for creating a table of domain objects.
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="content">
-	<f:render partial="FrontendComment/MyCommentMenu" />
-		<div class="Line" style="width: 100%;"></div>	
-<h1 class="h1" style="margin-bottom: -10px;">My Comments</h1>
+    <f:render partial="FrontendComment/MyCommentMenu" />
+    <div class="Line" style="width: 100%;"></div>	
+    <h1 class="h1" style="margin-bottom: -10px;">My Comments</h1>
 
-<f:flashMessages />
+    <f:flashMessages />
 
-<f:render partial="FrontendComment/ListManage" arguments="{comments: comments, listOption: listOption}" />	
-	
+    <f:render partial="FrontendComment/ListManage" arguments="{comments: comments, listOption: listOption}" />	
+
 </f:section>

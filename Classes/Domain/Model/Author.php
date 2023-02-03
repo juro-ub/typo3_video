@@ -2,7 +2,7 @@
 
 namespace Jro\Videoportal\Domain\Model;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013
@@ -23,7 +23,7 @@ namespace Jro\Videoportal\Domain\Model;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  *
@@ -32,8 +32,7 @@ namespace Jro\Videoportal\Domain\Model;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Author extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
-{
+class Author extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
     /**
      * firstname
@@ -51,14 +50,12 @@ class Author extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $lastname;
 
-
     /**
      * Returns the firstname
      *
      * @return string $firstname
      */
-    public function getFirstname()
-    {
+    public function getFirstname() {
         return $this->firstname;
     }
 
@@ -68,8 +65,7 @@ class Author extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $firstname
      * @return void
      */
-    public function setFirstname($firstname)
-    {
+    public function setFirstname($firstname) {
         $this->firstname = $firstname;
     }
 
@@ -78,8 +74,7 @@ class Author extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $lastname
      */
-    public function getLastname()
-    {
+    public function getLastname() {
         return $this->lastname;
     }
 
@@ -89,8 +84,7 @@ class Author extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $lastname
      * @return void
      */
-    public function setLastname($lastname)
-    {
+    public function setLastname($lastname) {
         $this->lastname = $lastname;
     }
 
@@ -99,8 +93,7 @@ class Author extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $fullname
      */
-    public function getFullname()
-    {
+    public function getFullname() {
         $fullname = $this->firstname . " " . $this->lastname;
         return $fullname;
     }

@@ -1,7 +1,8 @@
 <?php
 
 namespace Jro\Videoportal\Tests;
-/***************************************************************
+
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013 
@@ -22,7 +23,7 @@ namespace Jro\Videoportal\Tests;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  * Test case for class \Jro\Videoportal\Domain\Model\User.
@@ -36,192 +37,194 @@ namespace Jro\Videoportal\Tests;
  *
  */
 class UserTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
-	/**
-	 * @var \Jro\Videoportal\Domain\Model\User
-	 */
-	protected $fixture;
 
-	public function setUp() {
-		$this->fixture = new \Jro\Videoportal\Domain\Model\User();
-	}
+    /**
+     * @var \Jro\Videoportal\Domain\Model\User
+     */
+    protected $fixture;
 
-	public function tearDown() {
-		unset($this->fixture);
-	}
+    public function setUp() {
+        $this->fixture = new \Jro\Videoportal\Domain\Model\User();
+    }
 
-	/**
-	 * @test
-	 */
-	public function getObservedCommentsReturnsInitialValueForComment() { 
-		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$this->assertEquals(
-			$newObjectStorage,
-			$this->fixture->getObservedComments()
-		);
-	}
+    public function tearDown() {
+        unset($this->fixture);
+    }
 
-	/**
-	 * @test
-	 */
-	public function setObservedCommentsForObjectStorageContainingCommentSetsObservedComments() { 
-		$observedComment = new \Jro\Videoportal\Domain\Model\Comment();
-		$objectStorageHoldingExactlyOneObservedComments = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$objectStorageHoldingExactlyOneObservedComments->attach($observedComment);
-		$this->fixture->setObservedComments($objectStorageHoldingExactlyOneObservedComments);
+    /**
+     * @test
+     */
+    public function getObservedCommentsReturnsInitialValueForComment() {
+        $newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $this->assertEquals(
+                $newObjectStorage,
+                $this->fixture->getObservedComments()
+        );
+    }
 
-		$this->assertSame(
-			$objectStorageHoldingExactlyOneObservedComments,
-			$this->fixture->getObservedComments()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function addObservedCommentToObjectStorageHoldingObservedComments() {
-		$observedComment = new \Jro\Videoportal\Domain\Model\Comment();
-		$objectStorageHoldingExactlyOneObservedComment = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$objectStorageHoldingExactlyOneObservedComment->attach($observedComment);
-		$this->fixture->addObservedComment($observedComment);
+    /**
+     * @test
+     */
+    public function setObservedCommentsForObjectStorageContainingCommentSetsObservedComments() {
+        $observedComment = new \Jro\Videoportal\Domain\Model\Comment();
+        $objectStorageHoldingExactlyOneObservedComments = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $objectStorageHoldingExactlyOneObservedComments->attach($observedComment);
+        $this->fixture->setObservedComments($objectStorageHoldingExactlyOneObservedComments);
 
-		$this->assertEquals(
-			$objectStorageHoldingExactlyOneObservedComment,
-			$this->fixture->getObservedComments()
-		);
-	}
+        $this->assertSame(
+                $objectStorageHoldingExactlyOneObservedComments,
+                $this->fixture->getObservedComments()
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function removeObservedCommentFromObjectStorageHoldingObservedComments() {
-		$observedComment = new \Jro\Videoportal\Domain\Model\Comment();
-		$localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$localObjectStorage->attach($observedComment);
-		$localObjectStorage->detach($observedComment);
-		$this->fixture->addObservedComment($observedComment);
-		$this->fixture->removeObservedComment($observedComment);
+    /**
+     * @test
+     */
+    public function addObservedCommentToObjectStorageHoldingObservedComments() {
+        $observedComment = new \Jro\Videoportal\Domain\Model\Comment();
+        $objectStorageHoldingExactlyOneObservedComment = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $objectStorageHoldingExactlyOneObservedComment->attach($observedComment);
+        $this->fixture->addObservedComment($observedComment);
 
-		$this->assertEquals(
-			$localObjectStorage,
-			$this->fixture->getObservedComments()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getMyCommentsReturnsInitialValueForComment() { 
-		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$this->assertEquals(
-			$newObjectStorage,
-			$this->fixture->getMyComments()
-		);
-	}
+        $this->assertEquals(
+                $objectStorageHoldingExactlyOneObservedComment,
+                $this->fixture->getObservedComments()
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setMyCommentsForObjectStorageContainingCommentSetsMyComments() { 
-		$myComment = new \Jro\Videoportal\Domain\Model\Comment();
-		$objectStorageHoldingExactlyOneMyComments = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$objectStorageHoldingExactlyOneMyComments->attach($myComment);
-		$this->fixture->setMyComments($objectStorageHoldingExactlyOneMyComments);
+    /**
+     * @test
+     */
+    public function removeObservedCommentFromObjectStorageHoldingObservedComments() {
+        $observedComment = new \Jro\Videoportal\Domain\Model\Comment();
+        $localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $localObjectStorage->attach($observedComment);
+        $localObjectStorage->detach($observedComment);
+        $this->fixture->addObservedComment($observedComment);
+        $this->fixture->removeObservedComment($observedComment);
 
-		$this->assertSame(
-			$objectStorageHoldingExactlyOneMyComments,
-			$this->fixture->getMyComments()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function addMyCommentToObjectStorageHoldingMyComments() {
-		$myComment = new \Jro\Videoportal\Domain\Model\Comment();
-		$objectStorageHoldingExactlyOneMyComment = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$objectStorageHoldingExactlyOneMyComment->attach($myComment);
-		$this->fixture->addMyComment($myComment);
+        $this->assertEquals(
+                $localObjectStorage,
+                $this->fixture->getObservedComments()
+        );
+    }
 
-		$this->assertEquals(
-			$objectStorageHoldingExactlyOneMyComment,
-			$this->fixture->getMyComments()
-		);
-	}
+    /**
+     * @test
+     */
+    public function getMyCommentsReturnsInitialValueForComment() {
+        $newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $this->assertEquals(
+                $newObjectStorage,
+                $this->fixture->getMyComments()
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function removeMyCommentFromObjectStorageHoldingMyComments() {
-		$myComment = new \Jro\Videoportal\Domain\Model\Comment();
-		$localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$localObjectStorage->attach($myComment);
-		$localObjectStorage->detach($myComment);
-		$this->fixture->addMyComment($myComment);
-		$this->fixture->removeMyComment($myComment);
+    /**
+     * @test
+     */
+    public function setMyCommentsForObjectStorageContainingCommentSetsMyComments() {
+        $myComment = new \Jro\Videoportal\Domain\Model\Comment();
+        $objectStorageHoldingExactlyOneMyComments = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $objectStorageHoldingExactlyOneMyComments->attach($myComment);
+        $this->fixture->setMyComments($objectStorageHoldingExactlyOneMyComments);
 
-		$this->assertEquals(
-			$localObjectStorage,
-			$this->fixture->getMyComments()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getWatchCountReturnsInitialValueForVideo() { 
-		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$this->assertEquals(
-			$newObjectStorage,
-			$this->fixture->getWatchCount()
-		);
-	}
+        $this->assertSame(
+                $objectStorageHoldingExactlyOneMyComments,
+                $this->fixture->getMyComments()
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setWatchCountForObjectStorageContainingVideoSetsWatchCount() { 
-		$watchCount = new \Jro\Videoportal\Domain\Model\Video();
-		$objectStorageHoldingExactlyOneWatchCount = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$objectStorageHoldingExactlyOneWatchCount->attach($watchCount);
-		$this->fixture->setWatchCount($objectStorageHoldingExactlyOneWatchCount);
+    /**
+     * @test
+     */
+    public function addMyCommentToObjectStorageHoldingMyComments() {
+        $myComment = new \Jro\Videoportal\Domain\Model\Comment();
+        $objectStorageHoldingExactlyOneMyComment = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $objectStorageHoldingExactlyOneMyComment->attach($myComment);
+        $this->fixture->addMyComment($myComment);
 
-		$this->assertSame(
-			$objectStorageHoldingExactlyOneWatchCount,
-			$this->fixture->getWatchCount()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function addWatchCountToObjectStorageHoldingWatchCount() {
-		$watchCount = new \Jro\Videoportal\Domain\Model\Video();
-		$objectStorageHoldingExactlyOneWatchCount = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$objectStorageHoldingExactlyOneWatchCount->attach($watchCount);
-		$this->fixture->addWatchCount($watchCount);
+        $this->assertEquals(
+                $objectStorageHoldingExactlyOneMyComment,
+                $this->fixture->getMyComments()
+        );
+    }
 
-		$this->assertEquals(
-			$objectStorageHoldingExactlyOneWatchCount,
-			$this->fixture->getWatchCount()
-		);
-	}
+    /**
+     * @test
+     */
+    public function removeMyCommentFromObjectStorageHoldingMyComments() {
+        $myComment = new \Jro\Videoportal\Domain\Model\Comment();
+        $localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $localObjectStorage->attach($myComment);
+        $localObjectStorage->detach($myComment);
+        $this->fixture->addMyComment($myComment);
+        $this->fixture->removeMyComment($myComment);
 
-	/**
-	 * @test
-	 */
-	public function removeWatchCountFromObjectStorageHoldingWatchCount() {
-		$watchCount = new \Jro\Videoportal\Domain\Model\Video();
-		$localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$localObjectStorage->attach($watchCount);
-		$localObjectStorage->detach($watchCount);
-		$this->fixture->addWatchCount($watchCount);
-		$this->fixture->removeWatchCount($watchCount);
+        $this->assertEquals(
+                $localObjectStorage,
+                $this->fixture->getMyComments()
+        );
+    }
 
-		$this->assertEquals(
-			$localObjectStorage,
-			$this->fixture->getWatchCount()
-		);
-	}
-	
+    /**
+     * @test
+     */
+    public function getWatchCountReturnsInitialValueForVideo() {
+        $newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $this->assertEquals(
+                $newObjectStorage,
+                $this->fixture->getWatchCount()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setWatchCountForObjectStorageContainingVideoSetsWatchCount() {
+        $watchCount = new \Jro\Videoportal\Domain\Model\Video();
+        $objectStorageHoldingExactlyOneWatchCount = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $objectStorageHoldingExactlyOneWatchCount->attach($watchCount);
+        $this->fixture->setWatchCount($objectStorageHoldingExactlyOneWatchCount);
+
+        $this->assertSame(
+                $objectStorageHoldingExactlyOneWatchCount,
+                $this->fixture->getWatchCount()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function addWatchCountToObjectStorageHoldingWatchCount() {
+        $watchCount = new \Jro\Videoportal\Domain\Model\Video();
+        $objectStorageHoldingExactlyOneWatchCount = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $objectStorageHoldingExactlyOneWatchCount->attach($watchCount);
+        $this->fixture->addWatchCount($watchCount);
+
+        $this->assertEquals(
+                $objectStorageHoldingExactlyOneWatchCount,
+                $this->fixture->getWatchCount()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function removeWatchCountFromObjectStorageHoldingWatchCount() {
+        $watchCount = new \Jro\Videoportal\Domain\Model\Video();
+        $localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $localObjectStorage->attach($watchCount);
+        $localObjectStorage->detach($watchCount);
+        $this->fixture->addWatchCount($watchCount);
+        $this->fixture->removeWatchCount($watchCount);
+
+        $this->assertEquals(
+                $localObjectStorage,
+                $this->fixture->getWatchCount()
+        );
+    }
+
 }
+
 ?>

@@ -2,7 +2,7 @@
 
 namespace Jro\Videoportal\Domain\Model;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013
@@ -23,7 +23,7 @@ namespace Jro\Videoportal\Domain\Model;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  *
@@ -32,8 +32,7 @@ namespace Jro\Videoportal\Domain\Model;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
-{
+class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
     /**
      * link
@@ -48,8 +47,7 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $link
      */
-    public function getLink()
-    {
+    public function getLink() {
         return $this->link;
     }
 
@@ -59,8 +57,7 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $link
      * @return void
      */
-    public function setLink($link)
-    {
+    public function setLink($link) {
         $this->link = $link;
     }
 

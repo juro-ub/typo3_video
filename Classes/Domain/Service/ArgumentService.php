@@ -9,16 +9,14 @@ namespace Jro\Videoportal\Domain\Service;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class ArgumentService extends \TYPO3\CMS\Extbase\Persistence\Repository
-{
+class ArgumentService extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
     /**
      * return all POST & GET variables by pluginname
      * @param string $plugInName
      * @return array
      */
-    public function getArguments($plugInName)
-    {
+    public function getArguments($plugInName) {
         if (!empty($plugInName)) {
             if (array_key_exists($plugInName, $_POST)) {
                 $argsPlugin = $_POST[$plugInName];
@@ -40,8 +38,7 @@ class ArgumentService extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param string $key
      * @return string
      */
-    public function getArgument($plugInName, $key)
-    {
+    public function getArgument($plugInName, $key) {
         $argsKey = $this->getArguments($plugInName);
         if (!empty($key) && !empty($argsKey)) {
             if (array_key_exists($key, $argsKey)) {
@@ -56,8 +53,7 @@ class ArgumentService extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param string $key
      * @return boolean
      */
-    public function hasArgument($plugInName, $key)
-    {
+    public function hasArgument($plugInName, $key) {
         $argsPlugin = $this->getArguments($plugInName);
         if (!empty($key) && !empty($argsPlugin)) {
             if (array_key_exists($key, $argsPlugin)) {
@@ -66,6 +62,7 @@ class ArgumentService extends \TYPO3\CMS\Extbase\Persistence\Repository
         }
         return FALSE;
     }
+
 }
 
 ?>

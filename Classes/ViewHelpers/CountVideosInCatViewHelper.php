@@ -1,8 +1,10 @@
 <?php
 
 namespace Jro\Videoportal\ViewHelpers;
+
 use TYPO3\CMS\Core\Context\GeneralUtility;
 use TYPO3\CMS\Core\Context\Context;
+
 /**
  *
  *
@@ -10,8 +12,7 @@ use TYPO3\CMS\Core\Context\Context;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class CountVideosInCatViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
-{
+class CountVideosInCatViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper {
 
     /**
      * @var \Jro\Videoportal\Domain\Session\BackendSessionHandler
@@ -21,8 +22,7 @@ class CountVideosInCatViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstr
     /**
      * @param Jro\Videoportal\Domain\Session\BackendSessionHandler $session
      */
-    public function injectSession(\Jro\Videoportal\Domain\Session\BackendSessionHandler $session)
-    {
+    public function injectSession(\Jro\Videoportal\Domain\Session\BackendSessionHandler $session) {
         $this->session = $session;
     }
 
@@ -36,8 +36,7 @@ class CountVideosInCatViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstr
     /**
      * @param Jro\Videoportal\Domain\Repository\VideoRepository $video
      */
-    public function injectVideoRepository(\Jro\Videoportal\Domain\Repository\VideoRepository $video)
-    {
+    public function injectVideoRepository(\Jro\Videoportal\Domain\Repository\VideoRepository $video) {
         $this->videoRepository = $video;
     }
 
@@ -51,8 +50,7 @@ class CountVideosInCatViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstr
     /**
      * @param Jro\Videoportal\Domain\Repository\UserRepository $user
      */
-    public function injectUserRepository(\Jro\Videoportal\Domain\Repository\UserRepository $user)
-    {
+    public function injectUserRepository(\Jro\Videoportal\Domain\Repository\UserRepository $user) {
         $this->userRepository = $user;
     }
 
@@ -60,25 +58,24 @@ class CountVideosInCatViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstr
      * Arguments Initialization
      *
      */
-
-    public function initializeArguments()
-    {
+    public function initializeArguments() {
         $this->registerArgument('cat', 'string', 'the cat', TRUE);
     }
 
-    public function render()
-    {
+    public function render() {
         $count = 0;
         $cat = $this->arguments['cat'];
-        if ($cat == null) return 0;
+        if ($cat == null)
+            return 0;
         //get User Id
         $context = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(Context::class);
         $userUid = $context->getPropertyFromAspect('frontend.user', 'id');
-        $vids = $this->videoRepository->findByCatUid($cat->getUid(),$userUid=-1);
+        $vids = $this->videoRepository->findByCatUid($cat->getUid(), $userUid = -1);
         if ($vids != null)
             $count = $vids->count();
         return $count;
     }
+
 }
 
 ?>

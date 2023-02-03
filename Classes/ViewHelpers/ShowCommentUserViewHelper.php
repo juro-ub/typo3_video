@@ -1,6 +1,7 @@
 <?php
 
 namespace Jro\Videoportal\ViewHelpers;
+
 /**
  *
  *
@@ -8,8 +9,8 @@ namespace Jro\Videoportal\ViewHelpers;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class ShowCommentUserViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
-{
+class ShowCommentUserViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper {
+
     /**
      * commentRepository
      *
@@ -20,8 +21,7 @@ class ShowCommentUserViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstra
     /**
      * @param Jro\Videoportal\Domain\Repository\CommentRepository $comment
      */
-    public function injectCommentRepository(\Jro\Videoportal\Domain\Repository\CommentRepository $comment)
-    {
+    public function injectCommentRepository(\Jro\Videoportal\Domain\Repository\CommentRepository $comment) {
         $this->commentRepository = $comment;
     }
 
@@ -29,13 +29,11 @@ class ShowCommentUserViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstra
      * Arguments Initialization
      *
      */
-    public function initializeArguments()
-    {
+    public function initializeArguments() {
         $this->registerArgument('comment_uid', 'string', 'the uid', TRUE);
     }
 
-    public function render()
-    {
+    public function render() {
         $html = "";
         $html = $this->commentRepository->getOwnerByCommentId($this->arguments['comment_uid']);
 
@@ -43,6 +41,7 @@ class ShowCommentUserViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstra
             $html = "no user";
         return $html;
     }
+
 }
 
 ?>

@@ -5,7 +5,8 @@ namespace Jro\Videoportal\Controller;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Http\Response;
-/***************************************************************
+
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013
@@ -26,7 +27,7 @@ use TYPO3\CMS\Core\Http\Response;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  *
@@ -35,11 +36,12 @@ use TYPO3\CMS\Core\Http\Response;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class FrontendCategoryController extends \Jro\Videoportal\Controller\AbstractController
-{
+class FrontendCategoryController extends \Jro\Videoportal\Controller\AbstractController {
     #Ids of static Category Items that are not handled by the Video Category Plugin
+
     const showCommentsCatItem = 999999998;
     const showAllCatItem = 999999999;
+
     /**
      * categoryRepository
      *
@@ -62,24 +64,21 @@ class FrontendCategoryController extends \Jro\Videoportal\Controller\AbstractCon
     /**
      * @param Jro\Videoportal\Domain\Repository\CategoryRepository $rep
      */
-    public function injectCategoryRepository(\Jro\Videoportal\Domain\Repository\CategoryRepository $rep)
-    {
+    public function injectCategoryRepository(\Jro\Videoportal\Domain\Repository\CategoryRepository $rep) {
         $this->categoryRepository = $rep;
     }
 
     /**
      * @param Jro\Videoportal\Domain\Repository\VideoRepository $video
      */
-    public function injectVideoRepository(\Jro\Videoportal\Domain\Repository\VideoRepository $video)
-    {
+    public function injectVideoRepository(\Jro\Videoportal\Domain\Repository\VideoRepository $video) {
         $this->videoRepository = $video;
     }
 
     /**
      * @param Jro\Videoportal\Domain\Session\FrontendSessionHandler $session
      */
-    public function injectSession(\Jro\Videoportal\Domain\Session\FrontendSessionHandler $session)
-    {
+    public function injectSession(\Jro\Videoportal\Domain\Session\FrontendSessionHandler $session) {
         $this->session = $session;
     }
 
@@ -88,12 +87,11 @@ class FrontendCategoryController extends \Jro\Videoportal\Controller\AbstractCon
      *
      * @return void
      */
-    public function initializeAction()
-    {
+    public function initializeAction() {
         parent::initializeAction();
         // Storage Key setzen
         $this->session->setStorageKey(
-            'fe_sessiondata'
+                'fe_sessiondata'
         );
 
         //clear the category controller session data if user perform a search
@@ -108,8 +106,7 @@ class FrontendCategoryController extends \Jro\Videoportal\Controller\AbstractCon
      * @param integer $level_id
      * @return boolean
      */
-    private function isUidInLastLevel($uid, $level_id)
-    {
+    private function isUidInLastLevel($uid, $level_id) {
         $levels = unserialize($this->session->get('levels'));
         $i = count($levels['levels']) - 1;
         foreach ($levels['levels'][$i] as $cat) {
@@ -125,8 +122,7 @@ class FrontendCategoryController extends \Jro\Videoportal\Controller\AbstractCon
      * @param integer $level_id
      * @return void
      */
-    private function removeStatusActiveInLevel($level_id)
-    {
+    private function removeStatusActiveInLevel($level_id) {
         $active = unserialize($this->session->get('activeUids'));
         for ($i = 0; $i < count($active); $i++) {
             if ($active[$i]['level_id'] == $level_id) {
@@ -143,8 +139,7 @@ class FrontendCategoryController extends \Jro\Videoportal\Controller\AbstractCon
      * @param int $level_id
      * @return void
      */
-    private function setStatusActiveInLevel($uid, $level_id)
-    {
+    private function setStatusActiveInLevel($uid, $level_id) {
         if ($this->session->get('activeUids')) {
             $active = unserialize($this->session->get('activeUids'));
         } else {
@@ -169,8 +164,7 @@ class FrontendCategoryController extends \Jro\Videoportal\Controller\AbstractCon
      * @param int $level_id
      * @return void
      */
-    private function removeObsoleteLevels($uid, $level_id)
-    {
+    private function removeObsoleteLevels($uid, $level_id) {
         $levels = unserialize($this->session->get('levels'));
         $orig = $levels;
 
@@ -184,7 +178,6 @@ class FrontendCategoryController extends \Jro\Videoportal\Controller\AbstractCon
         $this->session->store('levels', serialize(array('levels' => $levels['levels'])));
     }
 
-
     /**
      * action list
      * @param int $uid
@@ -194,8 +187,7 @@ class FrontendCategoryController extends \Jro\Videoportal\Controller\AbstractCon
      * @param string $showall
      * @return Response
      */
-    public function listAction($uid = -1, $level_id = -1, $searchString = "", $submit = "", $showall = "0") : Response
-    {
+    public function listAction($uid = -1, $level_id = -1, $searchString = "", $submit = "", $showall = "0"): Response {
         $levels = array();
         if ((!$this->session->get('cat_id')) || $uid == self::showAllCatItem || $uid == self::showCommentsCatItem) {
             $this->cleanUpSessionData();
@@ -245,19 +237,16 @@ class FrontendCategoryController extends \Jro\Videoportal\Controller\AbstractCon
 
         $this->view->assign('showAllId', self::showAllCatItem);
         $this->view->assign('showCommentsId', self::showCommentsCatItem);
-        
+
         return $this->htmlResponse();
-
     }
-
 
     /**
      * Remove obsolete categories from the array
      *
      * @return array $newStructure
      */
-    private function removeDuplicatedCats($categories)
-    {
+    private function removeDuplicatedCats($categories) {
         $all = $this->categoryRepository->findAll();
         $newStructure = array();
         $categories = $categories->toArray();
@@ -276,8 +265,7 @@ class FrontendCategoryController extends \Jro\Videoportal\Controller\AbstractCon
      *
      * @return int
      */
-    private function countParentsByUid($cat, $categories)
-    {
+    private function countParentsByUid($cat, $categories) {
         $count = 0;
         foreach ($categories as $c1) {
             foreach ($c1->getParent() as $p) {
@@ -289,11 +277,11 @@ class FrontendCategoryController extends \Jro\Videoportal\Controller\AbstractCon
         return $count;
     }
 
-    protected function cleanUpSessionData()
-    {
+    protected function cleanUpSessionData() {
         $this->session->delete('levels');
         $this->session->delete('cat_id');
         $this->session->delete('level_id');
         $this->session->delete('activeUids');
     }
+
 }

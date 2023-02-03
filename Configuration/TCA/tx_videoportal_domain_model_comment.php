@@ -1,6 +1,7 @@
 <?php
+
 if (!defined('TYPO3')) {
-    die ('Access denied.');
+    die('Access denied.');
 }
 
 return array(
@@ -117,7 +118,6 @@ return array(
                 ]
             ],
         ],
-
         'text' => array(
             'exclude' => 0,
             'label' => 'LLL:EXT:videoportal/Resources/Private/Language/locallang_db.xlf:tx_videoportal_domain_model_comment.comment',
@@ -145,7 +145,6 @@ return array(
                 ),
             ),
         ),
-
         'video' => array(
             'config' => array(
                 'type' => 'passthrough',

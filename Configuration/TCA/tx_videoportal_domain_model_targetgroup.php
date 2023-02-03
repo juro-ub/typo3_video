@@ -1,6 +1,7 @@
 <?php
+
 if (!defined('TYPO3')) {
-    die ('Access denied.');
+    die('Access denied.');
 }
 
 return array(
@@ -11,7 +12,6 @@ return array(
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
         'dividers2tabs' => TRUE,
-
         'versioningWS' => 2,
         'versioning_followPages' => TRUE,
         'origUid' => 't3_origuid',
@@ -126,7 +126,6 @@ return array(
                 'eval' => 'trim,required'
             ),
         ),
-
         'video' => array(
             'config' => array(
                 'type' => 'passthrough',

@@ -1,7 +1,8 @@
 <?php
 
 namespace Jro\Videoportal\Tests;
-/***************************************************************
+
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013 
@@ -22,7 +23,7 @@ namespace Jro\Videoportal\Tests;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  * Test case for class \Jro\Videoportal\Domain\Model\Author.
@@ -36,52 +37,58 @@ namespace Jro\Videoportal\Tests;
  *
  */
 class AuthorTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
-	/**
-	 * @var \Jro\Videoportal\Domain\Model\Author
-	 */
-	protected $fixture;
 
-	public function setUp() {
-		$this->fixture = new \Jro\Videoportal\Domain\Model\Author();
-	}
+    /**
+     * @var \Jro\Videoportal\Domain\Model\Author
+     */
+    protected $fixture;
 
-	public function tearDown() {
-		unset($this->fixture);
-	}
+    public function setUp() {
+        $this->fixture = new \Jro\Videoportal\Domain\Model\Author();
+    }
 
-	/**
-	 * @test
-	 */
-	public function getFirstnameReturnsInitialValueForString() { }
+    public function tearDown() {
+        unset($this->fixture);
+    }
 
-	/**
-	 * @test
-	 */
-	public function setFirstnameForStringSetsFirstname() { 
-		$this->fixture->setFirstname('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getFirstnameReturnsInitialValueForString() {
+        
+    }
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getFirstname()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getLastnameReturnsInitialValueForString() { }
+    /**
+     * @test
+     */
+    public function setFirstnameForStringSetsFirstname() {
+        $this->fixture->setFirstname('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function setLastnameForStringSetsLastname() { 
-		$this->fixture->setLastname('Conceived at T3CON10');
+        $this->assertSame(
+                'Conceived at T3CON10',
+                $this->fixture->getFirstname()
+        );
+    }
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getLastname()
-		);
-	}
-	
+    /**
+     * @test
+     */
+    public function getLastnameReturnsInitialValueForString() {
+        
+    }
+
+    /**
+     * @test
+     */
+    public function setLastnameForStringSetsLastname() {
+        $this->fixture->setLastname('Conceived at T3CON10');
+
+        $this->assertSame(
+                'Conceived at T3CON10',
+                $this->fixture->getLastname()
+        );
+    }
+
 }
+
 ?>

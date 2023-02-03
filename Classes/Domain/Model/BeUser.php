@@ -2,7 +2,7 @@
 
 namespace Jro\Videoportal\Domain\Model;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013
@@ -23,9 +23,11 @@ namespace Jro\Videoportal\Domain\Model;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
+
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Annotation as Extbase;
+
 /**
  *
  *
@@ -33,8 +35,7 @@ use TYPO3\CMS\Extbase\Annotation as Extbase;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class BeUser extends AbstractEntity
-{
+class BeUser extends AbstractEntity {
 
     /**
      * watchedComments
@@ -55,7 +56,6 @@ class BeUser extends AbstractEntity
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Comment>
      */
-
     protected $myComments;
 
     /**
@@ -103,14 +103,13 @@ class BeUser extends AbstractEntity
      * @var \DateTime|null
      */
     protected $lastLoginDateAndTime;
-    
+
     /**
      * __construct
      *
      * @return User
      */
-    public function __construct()
-    {
+    public function __construct() {
         //Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
     }
@@ -120,8 +119,7 @@ class BeUser extends AbstractEntity
      *
      * @return void
      */
-    protected function initStorageObjects()
-    {
+    protected function initStorageObjects() {
         /**
          * Do not modify this method!
          * It will be rewritten on each save in the extension builder
@@ -132,8 +130,6 @@ class BeUser extends AbstractEntity
         $this->observedComments = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 
         $this->myComments = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-
-
     }
 
     /**
@@ -142,8 +138,7 @@ class BeUser extends AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Comment $watchedComment
      * @return void
      */
-    public function addWatchedComment(\Jro\Videoportal\Domain\Model\Comment $watchedComment)
-    {
+    public function addWatchedComment(\Jro\Videoportal\Domain\Model\Comment $watchedComment) {
         $this->watchedComments->attach($watchedComment);
     }
 
@@ -153,8 +148,7 @@ class BeUser extends AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Comment $watchedComment The Comment to be removed
      * @return void
      */
-    public function removeWatchedComment(\Jro\Videoportal\Domain\Model\Comment $watchedComment)
-    {
+    public function removeWatchedComment(\Jro\Videoportal\Domain\Model\Comment $watchedComment) {
         $this->watchedComments->detach($watchedComment);
     }
 
@@ -163,8 +157,7 @@ class BeUser extends AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Comment> $watchedComments
      */
-    public function getWatchedComments()
-    {
+    public function getWatchedComments() {
         return $this->watchedComments;
     }
 
@@ -174,8 +167,7 @@ class BeUser extends AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Comment> $watchedComments
      * @return void
      */
-    public function setWatchedComments(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $watchedComments)
-    {
+    public function setWatchedComments(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $watchedComments) {
         $this->watchedComments = $watchedComments;
     }
 
@@ -185,8 +177,7 @@ class BeUser extends AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Comment $observedComment
      * @return void
      */
-    public function addObservedComment(\Jro\Videoportal\Domain\Model\Comment $observedComment)
-    {
+    public function addObservedComment(\Jro\Videoportal\Domain\Model\Comment $observedComment) {
         $this->observedComments->attach($observedComment);
     }
 
@@ -196,8 +187,7 @@ class BeUser extends AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Comment $observedCommentToRemove The Comment to be removed
      * @return void
      */
-    public function removeObservedComment(\Jro\Videoportal\Domain\Model\Comment $observedCommentToRemove)
-    {
+    public function removeObservedComment(\Jro\Videoportal\Domain\Model\Comment $observedCommentToRemove) {
         $this->observedComments->detach($observedCommentToRemove);
     }
 
@@ -206,8 +196,7 @@ class BeUser extends AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Comment> $observedComments
      */
-    public function getObservedComments()
-    {
+    public function getObservedComments() {
         return $this->observedComments;
     }
 
@@ -217,8 +206,7 @@ class BeUser extends AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Comment> $observedComments
      * @return void
      */
-    public function setObservedComments(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $observedComments)
-    {
+    public function setObservedComments(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $observedComments) {
         $this->observedComments = $observedComments;
     }
 
@@ -228,8 +216,7 @@ class BeUser extends AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Comment $myComment
      * @return void
      */
-    public function addMyComment(\Jro\Videoportal\Domain\Model\Comment $myComment)
-    {
+    public function addMyComment(\Jro\Videoportal\Domain\Model\Comment $myComment) {
         $this->myComments->attach($myComment);
     }
 
@@ -239,8 +226,7 @@ class BeUser extends AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Comment $myCommentToRemove The Comment to be removed
      * @return void
      */
-    public function removeMyComment(\Jro\Videoportal\Domain\Model\Comment $myCommentToRemove)
-    {
+    public function removeMyComment(\Jro\Videoportal\Domain\Model\Comment $myCommentToRemove) {
         $this->myComments->detach($myCommentToRemove);
     }
 
@@ -249,8 +235,7 @@ class BeUser extends AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Comment> $myComments
      */
-    public function getMyComments()
-    {
+    public function getMyComments() {
         return $this->myComments;
     }
 
@@ -260,8 +245,7 @@ class BeUser extends AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Comment> $myComments
      * @return void
      */
-    public function setMyComments(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $myComments)
-    {
+    public function setMyComments(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $myComments) {
         $this->myComments = $myComments;
     }
 
@@ -270,8 +254,7 @@ class BeUser extends AbstractEntity
      *
      * @return string the user name, will not be empty
      */
-    public function getUserName()
-    {
+    public function getUserName() {
         return $this->userName;
     }
 
@@ -280,24 +263,21 @@ class BeUser extends AbstractEntity
      *
      * @param string $userName the user name to set, must not be empty
      */
-    public function setUserName($userName)
-    {
+    public function setUserName($userName) {
         $this->userName = $userName;
     }
 
     /**
      * @return string
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
     /**
      * @param string $description
      */
-    public function setDescription($description)
-    {
+    public function setDescription($description) {
         $this->description = $description;
     }
 
@@ -306,8 +286,7 @@ class BeUser extends AbstractEntity
      *
      * @return bool whether this user is an administrator
      */
-    public function getIsAdministrator()
-    {
+    public function getIsAdministrator() {
         return $this->isAdministrator;
     }
 
@@ -316,8 +295,7 @@ class BeUser extends AbstractEntity
      *
      * @param bool $isAdministrator whether this user should be an administrator
      */
-    public function setIsAdministrator($isAdministrator)
-    {
+    public function setIsAdministrator($isAdministrator) {
         $this->isAdministrator = $isAdministrator;
     }
 
@@ -326,8 +304,7 @@ class BeUser extends AbstractEntity
      *
      * @return bool whether this user is disabled
      */
-    public function getIsDisabled()
-    {
+    public function getIsDisabled() {
         return $this->isDisabled;
     }
 
@@ -336,8 +313,7 @@ class BeUser extends AbstractEntity
      *
      * @param bool $isDisabled whether this user is disabled
      */
-    public function setIsDisabled($isDisabled)
-    {
+    public function setIsDisabled($isDisabled) {
         $this->isDisabled = $isDisabled;
     }
 
@@ -346,8 +322,7 @@ class BeUser extends AbstractEntity
      *
      * @return \DateTime|null the start date and time
      */
-    public function getStartDateAndTime()
-    {
+    public function getStartDateAndTime() {
         return $this->startDateAndTime;
     }
 
@@ -356,8 +331,7 @@ class BeUser extends AbstractEntity
      *
      * @param \DateTime|null $dateAndTime the start date and time
      */
-    public function setStartDateAndTime(\DateTime $dateAndTime = null)
-    {
+    public function setStartDateAndTime(\DateTime $dateAndTime = null) {
         $this->startDateAndTime = $dateAndTime;
     }
 
@@ -366,8 +340,7 @@ class BeUser extends AbstractEntity
      *
      * @return \DateTime|null the end date and time
      */
-    public function getEndDateAndTime()
-    {
+    public function getEndDateAndTime() {
         return $this->endDateAndTime;
     }
 
@@ -376,8 +349,7 @@ class BeUser extends AbstractEntity
      *
      * @param \DateTime|null $dateAndTime the end date and time
      */
-    public function setEndDateAndTime(\DateTime $dateAndTime = null)
-    {
+    public function setEndDateAndTime(\DateTime $dateAndTime = null) {
         $this->endDateAndTime = $dateAndTime;
     }
 
@@ -386,8 +358,7 @@ class BeUser extends AbstractEntity
      *
      * @return string the e-mail address, might be empty
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
 
@@ -396,8 +367,7 @@ class BeUser extends AbstractEntity
      *
      * @param string $email the e-mail address, may be empty
      */
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = $email;
     }
 
@@ -406,8 +376,7 @@ class BeUser extends AbstractEntity
      *
      * @return string the real name. might be empty
      */
-    public function getRealName()
-    {
+    public function getRealName() {
         return $this->realName;
     }
 
@@ -416,8 +385,7 @@ class BeUser extends AbstractEntity
      *
      * @param string $name the user's real name, may be empty.
      */
-    public function setRealName($name)
-    {
+    public function setRealName($name) {
         $this->realName = $name;
     }
 
@@ -428,8 +396,7 @@ class BeUser extends AbstractEntity
      *
      * @return bool whether this user is currently activated
      */
-    public function isActivated()
-    {
+    public function isActivated() {
         return !$this->getIsDisabled() && $this->isActivatedViaStartDateAndTime() && $this->isActivatedViaEndDateAndTime();
     }
 
@@ -438,8 +405,7 @@ class BeUser extends AbstractEntity
      *
      * @return bool whether this user is activated as far as the start date and time is concerned
      */
-    protected function isActivatedViaStartDateAndTime()
-    {
+    protected function isActivatedViaStartDateAndTime() {
         if ($this->getStartDateAndTime() === null) {
             return true;
         }
@@ -452,8 +418,7 @@ class BeUser extends AbstractEntity
      *
      * @return bool whether this user is activated as far as the end date and time is concerned
      */
-    protected function isActivatedViaEndDateAndTime()
-    {
+    protected function isActivatedViaEndDateAndTime() {
         if ($this->getEndDateAndTime() === null) {
             return true;
         }
@@ -466,8 +431,7 @@ class BeUser extends AbstractEntity
      *
      * @return \DateTime|null this user's last login date and time, will be NULL if this user has never logged in before
      */
-    public function getLastLoginDateAndTime()
-    {
+    public function getLastLoginDateAndTime() {
         return $this->lastLoginDateAndTime;
     }
 
@@ -476,10 +440,10 @@ class BeUser extends AbstractEntity
      *
      * @param \DateTime|null $dateAndTime this user's last login date and time
      */
-    public function setLastLoginDateAndTime(\DateTime $dateAndTime = null)
-    {
+    public function setLastLoginDateAndTime(\DateTime $dateAndTime = null) {
         $this->lastLoginDateAndTime = $dateAndTime;
     }
+
 }
 
 ?>

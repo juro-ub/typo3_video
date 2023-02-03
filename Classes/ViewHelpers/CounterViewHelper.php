@@ -1,6 +1,7 @@
 <?php
 
 namespace Jro\Videoportal\ViewHelpers;
+
 /**
  *
  *
@@ -8,21 +9,19 @@ namespace Jro\Videoportal\ViewHelpers;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class CounterViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
-{
+class CounterViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper {
+
     /**
      * Arguments Initialization
      *
      */
     private static $counter = -1;
 
-    public function initializeArguments()
-    {
+    public function initializeArguments() {
         $this->registerArgument('reset', 'string', TRUE);
     }
 
-    public function render()
-    {
+    public function render() {
         $html = "";
         if ($this->arguments['reset'] != null) {
             $this->reset();
@@ -34,16 +33,15 @@ class CounterViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHe
         return $html;
     }
 
-    private function reset()
-    {
+    private function reset() {
         self::$counter = -1;
     }
 
-    private function increment()
-    {
+    private function increment() {
         self::$counter++;
         return self::$counter;
     }
+
 }
 
 ?>

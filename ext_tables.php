@@ -1,4 +1,5 @@
 <?php
+
 defined('TYPO3') || die();
 
 call_user_func(static function () {
@@ -29,11 +30,10 @@ call_user_func(static function () {
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_videoportal_domain_model_comment', 'EXT:videoportal/Resources/Private/Language/locallang_csh_tx_videoportal_domain_model_comment.xlf');
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_videoportal_domain_model_comment');
 
-
     /*
      * Extend the fe_user and be_user tables
-    *
-    * */
+     *
+     * */
     //define types when create a new user
     $GLOBALS['TCA']['fe_groups']['columns']['tx_extbase_type']['config']['items'] = "tx_videoportal_domain_model_group";
     $GLOBALS['TCA']['fe_users']['columns']['tx_extbase_type']['config']['items'] = "tx_videoportal_domain_model_user";
@@ -127,8 +127,6 @@ call_user_func(static function () {
                 'eval' => 'trim'
             ),
         )
-
     );
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('be_users', $tempColumns, 1);
-
 });

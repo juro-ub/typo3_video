@@ -18,8 +18,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class MyActionViewHelper extends AbstractTagBasedViewHelper
-{
+class MyActionViewHelper extends AbstractTagBasedViewHelper {
 
     /**
      * @var string

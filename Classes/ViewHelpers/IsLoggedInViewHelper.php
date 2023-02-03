@@ -11,8 +11,8 @@ use TYPO3\CMS\Core\Context\Context;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class IsLoggedInViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
-{
+class IsLoggedInViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper {
+
     /**
      * @var \Jro\Videoportal\Domain\Session\BackendSessionHandler
      */
@@ -21,8 +21,7 @@ class IsLoggedInViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractVie
     /**
      * @param Jro\Videoportal\Domain\Session\BackendSessionHandler $session
      */
-    public function injectSession(\Jro\Videoportal\Domain\Session\BackendSessionHandler $session)
-    {
+    public function injectSession(\Jro\Videoportal\Domain\Session\BackendSessionHandler $session) {
         $this->session = $session;
     }
 
@@ -30,20 +29,19 @@ class IsLoggedInViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractVie
      * Arguments Initialization
      *
      */
-    public function initializeArguments()
-    {
+    public function initializeArguments() {
+        
     }
 
-    public function render()
-    {
+    public function render() {
         $context = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(Context::class);
         if (!$context->getPropertyFromAspect('frontend.user', 'isLoggedIn') && !$context->getPropertyFromAspect('backend.user', 'isLoggedIn')) {
             return "0";
-
         } else {
             return "1";
         }
     }
+
 }
 
 ?>

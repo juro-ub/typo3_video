@@ -2,16 +2,14 @@
 
 namespace Jro\Videoportal\Controller;
 
+class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
-class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
-{
     /**
      * add Warning Flash Message
      *
      * @return void
      */
-    public function addWarning($header = "", $text = "")
-    {
+    public function addWarning($header = "", $text = "") {
         $this->addFlashMessage($text, $header, \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
     }
 
@@ -20,8 +18,7 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      *
      * @return void
      */
-    public function addInfo($header = "", $text = "")
-    {
+    public function addInfo($header = "", $text = "") {
         $this->addFlashMessage($text, $header, \TYPO3\CMS\Core\Messaging\FlashMessage::INFO);
     }
 
@@ -30,10 +27,10 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      *
      * @return void
      */
-    public function addOk($header = "", $text = "")
-    {
+    public function addOk($header = "", $text = "") {
         $this->addFlashMessage($text, $header, \TYPO3\CMS\Core\Messaging\FlashMessage::OK);
     }
+
 }
 
 ?>

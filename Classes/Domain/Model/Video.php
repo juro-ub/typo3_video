@@ -2,7 +2,7 @@
 
 namespace Jro\Videoportal\Domain\Model;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013
@@ -23,7 +23,7 @@ namespace Jro\Videoportal\Domain\Model;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  *
@@ -32,8 +32,7 @@ namespace Jro\Videoportal\Domain\Model;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
-{
+class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
     /**
      * pathMp4
@@ -237,14 +236,12 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $requirementVideos;
 
-
     /**
      * __construct
      *
      * @return Video
      */
-    public function __construct()
-    {
+    public function __construct() {
         //Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
     }
@@ -254,8 +251,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return void
      */
-    protected function initStorageObjects()
-    {
+    protected function initStorageObjects() {
         /**
          * Do not modify this method!
          * It will be rewritten on each save in the extension builder
@@ -289,8 +285,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return  \TYPO3\CMS\Extbase\Domain\Model\FileReference $pathMp4
      */
-    public function getPathMp4()
-    {
+    public function getPathMp4() {
         return $this->pathMp4;
     }
 
@@ -300,8 +295,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $pathMp4
      * @return void
      */
-    public function setPathMp4($pathMp4)
-    {
+    public function setPathMp4($pathMp4) {
         $this->pathMp4 = $pathMp4;
     }
 
@@ -310,8 +304,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return  \TYPO3\CMS\Extbase\Domain\Model\FileReference $pathWebm
      */
-    public function getPathWebm()
-    {
+    public function getPathWebm() {
         return $this->pathWebm;
     }
 
@@ -321,10 +314,8 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $pathWebm
      * @return void
      */
-    public function setPathWebm($pathWebm)
-    {
+    public function setPathWebm($pathWebm) {
         $this->pathWebm = $pathWebm;
-
     }
 
     /**
@@ -332,8 +323,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return  \TYPO3\CMS\Extbase\Domain\Model\FileReference $pathOgg
      */
-    public function getPathOgg()
-    {
+    public function getPathOgg() {
         return $this->pathOgg;
     }
 
@@ -343,8 +333,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $pathOgg
      * @return void
      */
-    public function setPathOgg($pathOgg)
-    {
+    public function setPathOgg($pathOgg) {
         $this->pathOgg = $pathOgg;
     }
 
@@ -353,8 +342,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return DateTime $crdate
      */
-    public function getCrdate()
-    {
+    public function getCrdate() {
         return $this->crdate;
     }
 
@@ -364,8 +352,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param DateTime $crdate
      * @return void
      */
-    public function setCrdate($crdate)
-    {
+    public function setCrdate($crdate) {
         $this->crdate = $crdate;
     }
 
@@ -374,8 +361,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $title
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -385,8 +371,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $title
      * @return void
      */
-    public function setTitle($title)
-    {
+    public function setTitle($title) {
         $this->title = $title;
     }
 
@@ -395,8 +380,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $about
      */
-    public function getAbout()
-    {
+    public function getAbout() {
         return $this->about;
     }
 
@@ -406,19 +390,16 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $about
      * @return void
      */
-    public function setAbout($about)
-    {
+    public function setAbout($about) {
         $this->about = $about;
     }
-
 
     /**
      * Returns the watchCount
      *
      * @return integer $watchCount
      */
-    public function getWatchCount()
-    {
+    public function getWatchCount() {
         return $this->watchCount;
     }
 
@@ -428,8 +409,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param integer $watchCount
      * @return void
      */
-    public function setWatchCount($watchCount)
-    {
+    public function setWatchCount($watchCount) {
         $this->watchCount = $watchCount;
     }
 
@@ -438,8 +418,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return boolean $examRelevant
      */
-    public function getExamRelevant()
-    {
+    public function getExamRelevant() {
         return $this->examRelevant;
     }
 
@@ -449,8 +428,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param boolean $examRelevant
      * @return void
      */
-    public function setExamRelevant($examRelevant)
-    {
+    public function setExamRelevant($examRelevant) {
         $this->examRelevant = $examRelevant;
     }
 
@@ -459,8 +437,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return boolean $hidden
      */
-    public function getHidden()
-    {
+    public function getHidden() {
         return $this->hidden;
     }
 
@@ -470,8 +447,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param boolean $hidden
      * @return void
      */
-    public function setHidden($hidden)
-    {
+    public function setHidden($hidden) {
         $this->hidden = $hidden;
     }
 
@@ -480,8 +456,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return boolean
      */
-    public function isHidden()
-    {
+    public function isHidden() {
         return $this->getHidden();
     }
 
@@ -490,8 +465,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return boolean
      */
-    public function isExamRelevant()
-    {
+    public function isExamRelevant() {
         return $this->getExamRelevant();
     }
 
@@ -500,8 +474,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $metaKeywords
      */
-    public function getMetaKeywords()
-    {
+    public function getMetaKeywords() {
         return $this->metaKeywords;
     }
 
@@ -511,8 +484,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $metaKeywords
      * @return void
      */
-    public function setMetaKeywords($metaKeywords)
-    {
+    public function setMetaKeywords($metaKeywords) {
         $this->metaKeywords = $metaKeywords;
     }
 
@@ -521,8 +493,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $metaDescription
      */
-    public function getMetaDescription()
-    {
+    public function getMetaDescription() {
         return $this->metaDescription;
     }
 
@@ -532,8 +503,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $metaDescription
      * @return void
      */
-    public function setMetaDescription($metaDescription)
-    {
+    public function setMetaDescription($metaDescription) {
         $this->metaDescription = $metaDescription;
     }
 
@@ -542,8 +512,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $metaTitle
      */
-    public function getMetaTitle()
-    {
+    public function getMetaTitle() {
         return $this->metaTitle;
     }
 
@@ -553,8 +522,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $metaTitle
      * @return void
      */
-    public function setMetaTitle($metaTitle)
-    {
+    public function setMetaTitle($metaTitle) {
         $this->metaTitle = $metaTitle;
     }
 
@@ -563,8 +531,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $learningObjectives
      */
-    public function getLearningObjectives()
-    {
+    public function getLearningObjectives() {
         return $this->learningObjectives;
     }
 
@@ -574,8 +541,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $learningObjectives
      * @return void
      */
-    public function setLearningObjectives($learningObjectives)
-    {
+    public function setLearningObjectives($learningObjectives) {
         $this->learningObjectives = $learningObjectives;
     }
 
@@ -584,8 +550,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $thumbnail
      */
-    public function getThumbnail()
-    {
+    public function getThumbnail() {
         return $this->thumbnail;
     }
 
@@ -595,8 +560,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $thumbnail
      * @return void
      */
-    public function setThumbnail($thumbnail)
-    {
+    public function setThumbnail($thumbnail) {
         $this->thumbnail = $thumbnail;
     }
 
@@ -605,8 +569,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Targetgroup> $targetgroups
      */
-    public function getTargetgroups()
-    {
+    public function getTargetgroups() {
         return $this->targetgroups;
     }
 
@@ -616,8 +579,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Targetgroup> $targetgroups
      * @return void
      */
-    public function setTargetgroups($targetgroups)
-    {
+    public function setTargetgroups($targetgroups) {
         $this->targetgroups = $targetgroups;
     }
 
@@ -627,8 +589,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Targetgroup $targetgroup
      * @return void
      */
-    public function addTargetgroup(\Jro\Videoportal\Domain\Model\Targetgroup $targetgroup)
-    {
+    public function addTargetgroup(\Jro\Videoportal\Domain\Model\Targetgroup $targetgroup) {
         $this->targetgroups->attach($targetgroup);
     }
 
@@ -638,8 +599,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Targetgroup $targetgroupToRemove The Targetgroup to be removed
      * @return void
      */
-    public function removeTargetgroup(\Jro\Videoportal\Domain\Model\Targetgroup $targetgroupToRemove)
-    {
+    public function removeTargetgroup(\Jro\Videoportal\Domain\Model\Targetgroup $targetgroupToRemove) {
         $this->targetgroups->detach($targetgroupToRemove);
     }
 
@@ -648,8 +608,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Group> $accessibilities
      */
-    public function getAccessibilities()
-    {
+    public function getAccessibilities() {
         return $this->accessibilities;
     }
 
@@ -659,8 +618,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Group> $accessibilities
      * @return void
      */
-    public function setAccessibilities($accessibilities)
-    {
+    public function setAccessibilities($accessibilities) {
         $this->accessibilities = $accessibilities;
     }
 
@@ -670,8 +628,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Group $accessibility
      * @return void
      */
-    public function addAccessibility(\Jro\Videoportal\Domain\Model\Group $accessibility)
-    {
+    public function addAccessibility(\Jro\Videoportal\Domain\Model\Group $accessibility) {
         $this->accessibilities->attach($accessibility);
     }
 
@@ -681,8 +638,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Group $AccessibilityToRemove The Accessibility to be removed
      * @return void
      */
-    public function removeAccessibility(\Jro\Videoportal\Domain\Model\Group $accessibilityToRemove)
-    {
+    public function removeAccessibility(\Jro\Videoportal\Domain\Model\Group $accessibilityToRemove) {
         $this->accessibilities->detach($accessibilityToRemove);
     }
 
@@ -692,8 +648,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Link $link
      * @return void
      */
-    public function addLink(\Jro\Videoportal\Domain\Model\Link $link)
-    {
+    public function addLink(\Jro\Videoportal\Domain\Model\Link $link) {
         $this->links->attach($link);
     }
 
@@ -703,19 +658,16 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Link $linkToRemove The Link to be removed
      * @return void
      */
-    public function removeLink(\Jro\Videoportal\Domain\Model\Link $linkToRemove)
-    {
+    public function removeLink(\Jro\Videoportal\Domain\Model\Link $linkToRemove) {
         $this->links->detach($linkToRemove);
     }
-
 
     /**
      * Returns the links
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Link> $links
      */
-    public function getLinks()
-    {
+    public function getLinks() {
         return $this->links;
     }
 
@@ -725,8 +677,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Link> $links
      * @return void
      */
-    public function setLinks(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $links)
-    {
+    public function setLinks(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $links) {
         $this->links = $links;
     }
 
@@ -736,8 +687,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Level $level
      * @return void
      */
-    public function addLevel(\Jro\Videoportal\Domain\Model\Level $level)
-    {
+    public function addLevel(\Jro\Videoportal\Domain\Model\Level $level) {
         $this->levels->attach($level);
     }
 
@@ -747,19 +697,16 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Level $levelToRemove The Level to be removed
      * @return void
      */
-    public function removeLevel(\Jro\Videoportal\Domain\Model\Level $levelToRemove)
-    {
+    public function removeLevel(\Jro\Videoportal\Domain\Model\Level $levelToRemove) {
         $this->levels->detach($levelToRemove);
     }
-
 
     /**
      * Returns the levels
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Level> $levels
      */
-    public function getLevels()
-    {
+    public function getLevels() {
         return $this->levels;
     }
 
@@ -769,8 +716,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Level> $levels
      * @return void
      */
-    public function setLevels(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $levels)
-    {
+    public function setLevels(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $levels) {
         $this->levels = $levels;
     }
 
@@ -780,8 +726,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Category $category
      * @return void
      */
-    public function addCategory(\Jro\Videoportal\Domain\Model\Category $category)
-    {
+    public function addCategory(\Jro\Videoportal\Domain\Model\Category $category) {
         $this->categories->attach($category);
     }
 
@@ -791,8 +736,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Category $categoryToRemove The Category to be removed
      * @return void
      */
-    public function removeCategory(\Jro\Videoportal\Domain\Model\Category $categoryToRemove)
-    {
+    public function removeCategory(\Jro\Videoportal\Domain\Model\Category $categoryToRemove) {
         $this->categories->detach($categoryToRemove);
     }
 
@@ -801,8 +745,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Category> $categories
      */
-    public function getCategories()
-    {
+    public function getCategories() {
         return $this->categories;
     }
 
@@ -812,8 +755,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Category> $categories
      * @return void
      */
-    public function setCategories(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $categories)
-    {
+    public function setCategories(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $categories) {
         $this->categories = $categories;
     }
 
@@ -823,8 +765,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $file
      * @return void
      */
-    public function addFile(\TYPO3\CMS\Extbase\Domain\Model\FileReference $file)
-    {
+    public function addFile(\TYPO3\CMS\Extbase\Domain\Model\FileReference $file) {
         $this->files->attach($file);
     }
 
@@ -834,8 +775,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $fileToRemove The File to be removed
      * @return void
      */
-    public function removeFile(\TYPO3\CMS\Extbase\Domain\Model\FileReference $fileToRemove)
-    {
+    public function removeFile(\TYPO3\CMS\Extbase\Domain\Model\FileReference $fileToRemove) {
         $this->files->detach($fileToRemove);
     }
 
@@ -844,8 +784,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $files
      */
-    public function getFiles()
-    {
+    public function getFiles() {
         return $this->files;
     }
 
@@ -855,19 +794,16 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $files
      * @return void
      */
-    public function setFiles(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $files)
-    {
+    public function setFiles(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $files) {
         $this->files = $files;
     }
-
 
     /**
      * Returns the transcripts
      *
      * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $transcripts
      */
-    public function getTranscripts()
-    {
+    public function getTranscripts() {
         return $this->transcripts;
     }
 
@@ -877,19 +813,16 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $transcripts
      * @return void
      */
-    public function setTranscripts(\TYPO3\CMS\Extbase\Domain\Model\FileReference $transcripts)
-    {
+    public function setTranscripts(\TYPO3\CMS\Extbase\Domain\Model\FileReference $transcripts) {
         $this->transcripts = $transcripts;
     }
-
 
     /**
      * Returns the chapters
      *
      * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $chapters
      */
-    public function getChapters()
-    {
+    public function getChapters() {
         return $this->chapters;
     }
 
@@ -899,8 +832,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $chapters
      * @return void
      */
-    public function setChapters(\TYPO3\CMS\Extbase\Domain\Model\FileReference $chapters)
-    {
+    public function setChapters(\TYPO3\CMS\Extbase\Domain\Model\FileReference $chapters) {
         $this->chapters = $chapters;
     }
 
@@ -910,8 +842,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Author $author
      * @return void
      */
-    public function addAuthor(\Jro\Videoportal\Domain\Model\Author $author)
-    {
+    public function addAuthor(\Jro\Videoportal\Domain\Model\Author $author) {
         $this->authors->attach($author);
     }
 
@@ -921,8 +852,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Author $authorToRemove The Author to be removed
      * @return void
      */
-    public function removeAuthor(\Jro\Videoportal\Domain\Model\Author $authorToRemove)
-    {
+    public function removeAuthor(\Jro\Videoportal\Domain\Model\Author $authorToRemove) {
         $this->authors->detach($authorToRemove);
     }
 
@@ -931,8 +861,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Author> $authors
      */
-    public function getAuthors()
-    {
+    public function getAuthors() {
         return $this->authors;
     }
 
@@ -942,8 +871,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Author> $authors
      * @return void
      */
-    public function setAuthors(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $authors)
-    {
+    public function setAuthors(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $authors) {
         $this->authors = $authors;
     }
 
@@ -953,8 +881,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Comment $comment
      * @return void
      */
-    public function addComment(\Jro\Videoportal\Domain\Model\Comment $comment)
-    {
+    public function addComment(\Jro\Videoportal\Domain\Model\Comment $comment) {
         $this->comments->attach($comment);
     }
 
@@ -964,8 +891,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Comment $commentToRemove The Comment to be removed
      * @return void
      */
-    public function removeComment(\Jro\Videoportal\Domain\Model\Comment $commentToRemove)
-    {
+    public function removeComment(\Jro\Videoportal\Domain\Model\Comment $commentToRemove) {
         $this->comments->detach($commentToRemove);
     }
 
@@ -974,8 +900,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Comment> $comments
      */
-    public function getComments()
-    {
+    public function getComments() {
         return $this->comments;
     }
 
@@ -985,11 +910,9 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Comment> $comments
      * @return void
      */
-    public function setComments(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $comments)
-    {
+    public function setComments(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $comments) {
         $this->comments = $comments;
     }
-
 
     /**
      * Sets the next videos
@@ -997,8 +920,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Video> $videos
      * @return void
      */
-    public function setNextVideos(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $videos)
-    {
+    public function setNextVideos(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $videos) {
         $this->nextVideos = $videos;
     }
 
@@ -1008,8 +930,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Video $video
      * @return void
      */
-    public function addNextVideo(\Jro\Videoportal\Domain\Model\Video $video)
-    {
+    public function addNextVideo(\Jro\Videoportal\Domain\Model\Video $video) {
         $this->nextVideos->attach($video);
     }
 
@@ -1019,8 +940,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Video $videoToRemove The Videos to be removed
      * @return void
      */
-    public function removeNextVideo(\Jro\Videoportal\Domain\Model\Video $videoToRemove)
-    {
+    public function removeNextVideo(\Jro\Videoportal\Domain\Model\Video $videoToRemove) {
         $this->nextVideos->detach($videoToRemove);
     }
 
@@ -1029,11 +949,9 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Video> $videos
      */
-    public function getNextVideos()
-    {
+    public function getNextVideos() {
         return $this->nextVideos;
     }
-
 
     /**
      * Sets the Requirement videos
@@ -1041,8 +959,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Video> $videos
      * @return void
      */
-    public function setRequirementVideos(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $videos)
-    {
+    public function setRequirementVideos(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $videos) {
         $this->requirementVideos = $videos;
     }
 
@@ -1052,8 +969,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Video $video
      * @return void
      */
-    public function addRequirementVideo(\Jro\Videoportal\Domain\Model\Video $video)
-    {
+    public function addRequirementVideo(\Jro\Videoportal\Domain\Model\Video $video) {
         $this->requirementVideos->attach($video);
     }
 
@@ -1063,8 +979,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Video $videoToRemove The Videos to be removed
      * @return void
      */
-    public function removeRequirementVideo(\Jro\Videoportal\Domain\Model\Video $videoToRemove)
-    {
+    public function removeRequirementVideo(\Jro\Videoportal\Domain\Model\Video $videoToRemove) {
         $this->requirementVideos->detach($videoToRemove);
     }
 
@@ -1073,11 +988,9 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Video> $videos
      */
-    public function getRequirementVideos()
-    {
+    public function getRequirementVideos() {
         return $this->requirementVideos;
     }
-
 
     /**
      * Sets the Extension videos
@@ -1085,8 +998,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Video> $videos
      * @return void
      */
-    public function setExtensionVideos(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $videos)
-    {
+    public function setExtensionVideos(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $videos) {
         $this->extensionVideos = $videos;
     }
 
@@ -1096,8 +1008,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Video $video
      * @return void
      */
-    public function addExtensionVideo(\Jro\Videoportal\Domain\Model\Video $video)
-    {
+    public function addExtensionVideo(\Jro\Videoportal\Domain\Model\Video $video) {
         $this->extensionVideos->attach($video);
     }
 
@@ -1107,8 +1018,7 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Video $videoToRemove The Videos to be removed
      * @return void
      */
-    public function removeExtensionVideo(\Jro\Videoportal\Domain\Model\Video $videoToRemove)
-    {
+    public function removeExtensionVideo(\Jro\Videoportal\Domain\Model\Video $videoToRemove) {
         $this->extensionVideos->detach($videoToRemove);
     }
 
@@ -1117,11 +1027,9 @@ class Video extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Video> $videos
      */
-    public function getExtensionVideos()
-    {
+    public function getExtensionVideos() {
         return $this->extensionVideos;
     }
-
 
 }
 

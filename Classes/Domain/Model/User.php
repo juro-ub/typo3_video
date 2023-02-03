@@ -2,7 +2,7 @@
 
 namespace Jro\Videoportal\Domain\Model;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013
@@ -23,9 +23,11 @@ namespace Jro\Videoportal\Domain\Model;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
+
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
 /**
  *
  *
@@ -33,8 +35,7 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class User extends AbstractEntity
-{
+class User extends AbstractEntity {
 
     /**
      * observedComments
@@ -158,17 +159,14 @@ class User extends AbstractEntity
      * @var \DateTime|null
      */
     protected $lastlogin;
-    
 
-    
-     /**
+    /**
      * Constructs a new Front-End User
      *
      * @param string $username
      * @param string $password
      */
-    public function __construct($username = '', $password = '')
-    {
+    public function __construct($username = '', $password = '') {
         //Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
         $this->username = $username;
@@ -180,8 +178,7 @@ class User extends AbstractEntity
     /**
      * Called again with initialize object, as fetching an entity from the DB does not use the constructor
      */
-    public function initializeObject()
-    {
+    public function initializeObject() {
         $this->usergroup = $this->usergroup ?? new ObjectStorage();
         $this->image = $this->image ?? new ObjectStorage();
     }
@@ -191,8 +188,7 @@ class User extends AbstractEntity
      *
      * @return void
      */
-    protected function initStorageObjects()
-    {
+    protected function initStorageObjects() {
         /**
          * Do not modify this method!
          * It will be rewritten on each save in the extension builder
@@ -213,8 +209,7 @@ class User extends AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Comment $observedComment
      * @return void
      */
-    public function addObservedComment(\Jro\Videoportal\Domain\Model\Comment $observedComment)
-    {
+    public function addObservedComment(\Jro\Videoportal\Domain\Model\Comment $observedComment) {
         $this->observedComments->attach($observedComment);
     }
 
@@ -224,8 +219,7 @@ class User extends AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Comment $observedCommentToRemove The Comment to be removed
      * @return void
      */
-    public function removeObservedComment(\Jro\Videoportal\Domain\Model\Comment $observedCommentToRemove)
-    {
+    public function removeObservedComment(\Jro\Videoportal\Domain\Model\Comment $observedCommentToRemove) {
         $this->observedComments->detach($observedCommentToRemove);
     }
 
@@ -234,8 +228,7 @@ class User extends AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Comment> $observedComments
      */
-    public function getObservedComments()
-    {
+    public function getObservedComments() {
         return $this->observedComments;
     }
 
@@ -245,8 +238,7 @@ class User extends AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Comment> $observedComments
      * @return void
      */
-    public function setObservedComments(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $observedComments)
-    {
+    public function setObservedComments(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $observedComments) {
         $this->observedComments = $observedComments;
     }
 
@@ -256,8 +248,7 @@ class User extends AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Comment $myComment
      * @return void
      */
-    public function addMyComment(\Jro\Videoportal\Domain\Model\Comment $myComment)
-    {
+    public function addMyComment(\Jro\Videoportal\Domain\Model\Comment $myComment) {
         $this->myComments->attach($myComment);
     }
 
@@ -267,8 +258,7 @@ class User extends AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Comment $myCommentToRemove The Comment to be removed
      * @return void
      */
-    public function removeMyComment(\Jro\Videoportal\Domain\Model\Comment $myCommentToRemove)
-    {
+    public function removeMyComment(\Jro\Videoportal\Domain\Model\Comment $myCommentToRemove) {
         $this->myComments->detach($myCommentToRemove);
     }
 
@@ -277,8 +267,7 @@ class User extends AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Comment> $myComments
      */
-    public function getMyComments()
-    {
+    public function getMyComments() {
         return $this->myComments;
     }
 
@@ -288,8 +277,7 @@ class User extends AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Comment> $myComments
      * @return void
      */
-    public function setMyComments(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $myComments)
-    {
+    public function setMyComments(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $myComments) {
         $this->myComments = $myComments;
     }
 
@@ -299,8 +287,7 @@ class User extends AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Video $watchVideo
      * @return void
      */
-    public function addWatchedVideo(\Jro\Videoportal\Domain\Model\Video $watchVideo)
-    {
+    public function addWatchedVideo(\Jro\Videoportal\Domain\Model\Video $watchVideo) {
         $this->watchedVideos->attach($watchVideo);
     }
 
@@ -310,8 +297,7 @@ class User extends AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Video $watchVideoToRemove The Video to be removed
      * @return void
      */
-    public function removeWatchedVideo(\Jro\Videoportal\Domain\Model\Video $watchVideoToRemove)
-    {
+    public function removeWatchedVideo(\Jro\Videoportal\Domain\Model\Video $watchVideoToRemove) {
         $this->watchedVideos->detach($watchVideoToRemove);
     }
 
@@ -320,8 +306,7 @@ class User extends AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Video> $watchedVideos
      */
-    public function getWatchedVideos()
-    {
+    public function getWatchedVideos() {
         return $this->watchedVideos;
     }
 
@@ -331,8 +316,7 @@ class User extends AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Video> $watchedVideos
      * @return void
      */
-    public function setWatchedVideos(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $watchedVideos)
-    {
+    public function setWatchedVideos(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $watchedVideos) {
         $this->watchedVideos = $watchedVideos;
     }
 
@@ -342,8 +326,7 @@ class User extends AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Watchcount $watchVideo
      * @return void
      */
-    public function addWatchcount(\Jro\Videoportal\Domain\Model\Watchcount $watchVideo)
-    {
+    public function addWatchcount(\Jro\Videoportal\Domain\Model\Watchcount $watchVideo) {
         $this->watchcount->attach($watchVideo);
     }
 
@@ -353,8 +336,7 @@ class User extends AbstractEntity
      * @param \Jro\Videoportal\Domain\Model\Watchcount $watchVideoToRemove The Video to be removed
      * @return void
      */
-    public function removeWatchcount(\Jro\Videoportal\Domain\Model\Watchcount $watchVideoToRemove)
-    {
+    public function removeWatchcount(\Jro\Videoportal\Domain\Model\Watchcount $watchVideoToRemove) {
         $this->watchcount->detach($watchVideoToRemove);
     }
 
@@ -363,8 +345,7 @@ class User extends AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Watchcount> $watchedVideos
      */
-    public function getWatchcount()
-    {
+    public function getWatchcount() {
         return $this->watchcount;
     }
 
@@ -374,18 +355,16 @@ class User extends AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jro\Videoportal\Domain\Model\Watchcount> $watchedVideos
      * @return void
      */
-    public function setWatchcount(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $watchedVideos)
-    {
+    public function setWatchcount(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $watchedVideos) {
         $this->watchcount = $watchedVideos;
     }
-    
+
     /**
      * Sets the username value
      *
      * @param string $username
      */
-    public function setUsername($username)
-    {
+    public function setUsername($username) {
         $this->username = $username;
     }
 
@@ -394,8 +373,7 @@ class User extends AbstractEntity
      *
      * @return string
      */
-    public function getUsername()
-    {
+    public function getUsername() {
         return $this->username;
     }
 
@@ -404,8 +382,7 @@ class User extends AbstractEntity
      *
      * @param string $password
      */
-    public function setPassword($password)
-    {
+    public function setPassword($password) {
         $this->password = $password;
     }
 
@@ -414,8 +391,7 @@ class User extends AbstractEntity
      *
      * @return string
      */
-    public function getPassword()
-    {
+    public function getPassword() {
         return $this->password;
     }
 
@@ -425,8 +401,7 @@ class User extends AbstractEntity
      *
      * @param ObjectStorage<Group> $usergroup
      */
-    public function setUsergroup(ObjectStorage $usergroup)
-    {
+    public function setUsergroup(ObjectStorage $usergroup) {
         $this->usergroup = $usergroup;
     }
 
@@ -435,8 +410,7 @@ class User extends AbstractEntity
      *
      * @param Group $usergroup
      */
-    public function addUsergroup(Group $usergroup)
-    {
+    public function addUsergroup(Group $usergroup) {
         $this->usergroup->attach($usergroup);
     }
 
@@ -445,8 +419,7 @@ class User extends AbstractEntity
      *
      * @param Group $usergroup
      */
-    public function removeUsergroup(Group $usergroup)
-    {
+    public function removeUsergroup(Group $usergroup) {
         $this->usergroup->detach($usergroup);
     }
 
@@ -456,8 +429,7 @@ class User extends AbstractEntity
      *
      * @return ObjectStorage<Group> An object storage containing the usergroup
      */
-    public function getUsergroup()
-    {
+    public function getUsergroup() {
         return $this->usergroup;
     }
 
@@ -466,8 +438,7 @@ class User extends AbstractEntity
      *
      * @param string $name
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
     }
 
@@ -476,8 +447,7 @@ class User extends AbstractEntity
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -486,8 +456,7 @@ class User extends AbstractEntity
      *
      * @param string $firstName
      */
-    public function setFirstName($firstName)
-    {
+    public function setFirstName($firstName) {
         $this->firstName = $firstName;
     }
 
@@ -496,8 +465,7 @@ class User extends AbstractEntity
      *
      * @return string
      */
-    public function getFirstName()
-    {
+    public function getFirstName() {
         return $this->firstName;
     }
 
@@ -506,8 +474,7 @@ class User extends AbstractEntity
      *
      * @param string $middleName
      */
-    public function setMiddleName($middleName)
-    {
+    public function setMiddleName($middleName) {
         $this->middleName = $middleName;
     }
 
@@ -516,8 +483,7 @@ class User extends AbstractEntity
      *
      * @return string
      */
-    public function getMiddleName()
-    {
+    public function getMiddleName() {
         return $this->middleName;
     }
 
@@ -526,8 +492,7 @@ class User extends AbstractEntity
      *
      * @param string $lastName
      */
-    public function setLastName($lastName)
-    {
+    public function setLastName($lastName) {
         $this->lastName = $lastName;
     }
 
@@ -536,8 +501,7 @@ class User extends AbstractEntity
      *
      * @return string
      */
-    public function getLastName()
-    {
+    public function getLastName() {
         return $this->lastName;
     }
 
@@ -546,8 +510,7 @@ class User extends AbstractEntity
      *
      * @param string $address
      */
-    public function setAddress($address)
-    {
+    public function setAddress($address) {
         $this->address = $address;
     }
 
@@ -556,8 +519,7 @@ class User extends AbstractEntity
      *
      * @return string
      */
-    public function getAddress()
-    {
+    public function getAddress() {
         return $this->address;
     }
 
@@ -566,8 +528,7 @@ class User extends AbstractEntity
      *
      * @param string $telephone
      */
-    public function setTelephone($telephone)
-    {
+    public function setTelephone($telephone) {
         $this->telephone = $telephone;
     }
 
@@ -576,8 +537,7 @@ class User extends AbstractEntity
      *
      * @return string
      */
-    public function getTelephone()
-    {
+    public function getTelephone() {
         return $this->telephone;
     }
 
@@ -586,8 +546,7 @@ class User extends AbstractEntity
      *
      * @param string $fax
      */
-    public function setFax($fax)
-    {
+    public function setFax($fax) {
         $this->fax = $fax;
     }
 
@@ -596,8 +555,7 @@ class User extends AbstractEntity
      *
      * @return string
      */
-    public function getFax()
-    {
+    public function getFax() {
         return $this->fax;
     }
 
@@ -606,8 +564,7 @@ class User extends AbstractEntity
      *
      * @param string $email
      */
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = $email;
     }
 
@@ -616,8 +573,7 @@ class User extends AbstractEntity
      *
      * @return string
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
 
@@ -626,8 +582,7 @@ class User extends AbstractEntity
      *
      * @param string $title
      */
-    public function setTitle($title)
-    {
+    public function setTitle($title) {
         $this->title = $title;
     }
 
@@ -636,8 +591,7 @@ class User extends AbstractEntity
      *
      * @return string
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -646,8 +600,7 @@ class User extends AbstractEntity
      *
      * @param string $zip
      */
-    public function setZip($zip)
-    {
+    public function setZip($zip) {
         $this->zip = $zip;
     }
 
@@ -656,8 +609,7 @@ class User extends AbstractEntity
      *
      * @return string
      */
-    public function getZip()
-    {
+    public function getZip() {
         return $this->zip;
     }
 
@@ -666,8 +618,7 @@ class User extends AbstractEntity
      *
      * @param string $city
      */
-    public function setCity($city)
-    {
+    public function setCity($city) {
         $this->city = $city;
     }
 
@@ -676,8 +627,7 @@ class User extends AbstractEntity
      *
      * @return string
      */
-    public function getCity()
-    {
+    public function getCity() {
         return $this->city;
     }
 
@@ -686,8 +636,7 @@ class User extends AbstractEntity
      *
      * @param string $country
      */
-    public function setCountry($country)
-    {
+    public function setCountry($country) {
         $this->country = $country;
     }
 
@@ -696,8 +645,7 @@ class User extends AbstractEntity
      *
      * @return string
      */
-    public function getCountry()
-    {
+    public function getCountry() {
         return $this->country;
     }
 
@@ -706,8 +654,7 @@ class User extends AbstractEntity
      *
      * @param string $www
      */
-    public function setWww($www)
-    {
+    public function setWww($www) {
         $this->www = $www;
     }
 
@@ -716,8 +663,7 @@ class User extends AbstractEntity
      *
      * @return string
      */
-    public function getWww()
-    {
+    public function getWww() {
         return $this->www;
     }
 
@@ -726,8 +672,7 @@ class User extends AbstractEntity
      *
      * @param string $company
      */
-    public function setCompany($company)
-    {
+    public function setCompany($company) {
         $this->company = $company;
     }
 
@@ -736,8 +681,7 @@ class User extends AbstractEntity
      *
      * @return string
      */
-    public function getCompany()
-    {
+    public function getCompany() {
         return $this->company;
     }
 
@@ -746,8 +690,7 @@ class User extends AbstractEntity
      *
      * @param ObjectStorage<FileReference> $image
      */
-    public function setImage(ObjectStorage $image)
-    {
+    public function setImage(ObjectStorage $image) {
         $this->image = $image;
     }
 
@@ -756,8 +699,7 @@ class User extends AbstractEntity
      *
      * @return ObjectStorage<FileReference>
      */
-    public function getImage()
-    {
+    public function getImage() {
         return $this->image;
     }
 
@@ -766,8 +708,7 @@ class User extends AbstractEntity
      *
      * @param \DateTime $lastlogin
      */
-    public function setLastlogin(\DateTime $lastlogin)
-    {
+    public function setLastlogin(\DateTime $lastlogin) {
         $this->lastlogin = $lastlogin;
     }
 
@@ -776,8 +717,7 @@ class User extends AbstractEntity
      *
      * @return \DateTime
      */
-    public function getLastlogin()
-    {
+    public function getLastlogin() {
         return $this->lastlogin;
     }
 

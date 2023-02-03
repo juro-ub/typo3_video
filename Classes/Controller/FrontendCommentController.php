@@ -1,11 +1,13 @@
 <?php
+
 namespace Jro\Videoportal\Controller;
 
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Http\Response;
 use TYPO3\CMS\Core\Http\RedirectResponse;
-/***************************************************************
+
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013
@@ -26,7 +28,7 @@ use TYPO3\CMS\Core\Http\RedirectResponse;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  *
@@ -35,8 +37,8 @@ use TYPO3\CMS\Core\Http\RedirectResponse;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractController
-{
+class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractController {
+
     /**
      * @var TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
      */
@@ -56,7 +58,6 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      */
     protected $userRepository;
 
-
     /**
      * commentRepository
      *
@@ -67,32 +68,28 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
     /**
      * @param Jro\Videoportal\Domain\Repository\VideoRepository $video
      */
-    public function injectVideoRepository(\Jro\Videoportal\Domain\Repository\VideoRepository $video)
-    {
+    public function injectVideoRepository(\Jro\Videoportal\Domain\Repository\VideoRepository $video) {
         $this->videoRepository = $video;
     }
 
     /**
      * @param Jro\Videoportal\Domain\Repository\CommentRepository $comment
      */
-    public function injectCommentRepository(\Jro\Videoportal\Domain\Repository\CommentRepository $comment)
-    {
+    public function injectCommentRepository(\Jro\Videoportal\Domain\Repository\CommentRepository $comment) {
         $this->commentRepository = $comment;
     }
 
     /**
      * @param Jro\Videoportal\Domain\Repository\UserRepository $user
      */
-    public function injectUserRepository(\Jro\Videoportal\Domain\Repository\UserRepository $user)
-    {
+    public function injectUserRepository(\Jro\Videoportal\Domain\Repository\UserRepository $user) {
         $this->userRepository = $user;
     }
 
     /**
      * @param TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $pm
      */
-    public function injectPersistenceManager(\TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $pm)
-    {
+    public function injectPersistenceManager(\TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $pm) {
         $this->persistenceManager = $pm;
     }
 
@@ -101,11 +98,10 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      *
      * @return Response
      */
-    public function listAction() : Response
-    {
+    public function listAction(): Response {
         $comments = $this->commentRepository->findAll();
         $this->view->assign('comments', $comments);
-        
+
         return $this->htmlResponse();
     }
 
@@ -114,8 +110,7 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      *
      * @return Response
      */
-    public function listMyCommentsAction() : Response
-    {
+    public function listMyCommentsAction(): Response {
         $this->forwardIfNotLoggedIn();
         $context = GeneralUtility::makeInstance(Context::class);
         $userUid = $context->getPropertyFromAspect('frontend.user', 'id');
@@ -132,7 +127,7 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
         $comments = $this->commentRepository->findByUids($uids);
         $this->view->assign('comments', $comments);
         $this->view->assign('listOption', 'myquestions');
-        
+
         return $this->htmlResponse();
     }
 
@@ -141,8 +136,7 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      *
      * @return Response
      */
-    public function listObservedCommentsAction() : Response
-    {
+    public function listObservedCommentsAction(): Response {
         $this->forwardIfNotLoggedIn();
         $context = GeneralUtility::makeInstance(Context::class);
         $userUid = $context->getPropertyFromAspect('frontend.user', 'id');
@@ -158,7 +152,7 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
         }
         $comments = $this->commentRepository->findByUids($uids);
         $this->view->assign('comments', $comments);
-        
+
         return $this->htmlResponse();
     }
 
@@ -168,10 +162,9 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      * @param Jro\Videoportal\Domain\Model\Comment $comment
      * @return Response
      */
-    public function showAction(\Jro\Videoportal\Domain\Model\Comment $comment = null) : Response
-    {
+    public function showAction(\Jro\Videoportal\Domain\Model\Comment $comment = null): Response {
         $this->view->assign('comment', $comment);
-        
+
         return $this->htmlResponse();
     }
 
@@ -184,8 +177,7 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("newComment")
      * @return Response
      */
-    public function newAction(\Jro\Videoportal\Domain\Model\Comment $newComment = null, \Jro\Videoportal\Domain\Model\Video $video = null, $parentCommentUid = 0) : Response
-    {
+    public function newAction(\Jro\Videoportal\Domain\Model\Comment $newComment = null, \Jro\Videoportal\Domain\Model\Video $video = null, $parentCommentUid = 0): Response {
         if ($newComment == null) {
             // workaround for fluid bug ##5636
             $newComment = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Jro\Videoportal\Domain\Model\Comment');
@@ -193,7 +185,7 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
         $this->view->assign('newComment', $newComment);
         $this->view->assign('parentCommentUid', $parentCommentUid);
         $this->view->assign('video', $video);
-        
+
         return $this->htmlResponse();
     }
 
@@ -205,15 +197,14 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("newComment")
      * @return Response
      */
-    public function newMyCommentAction(\Jro\Videoportal\Domain\Model\Comment $newComment = null, $parentCommentUid = 0) : Response
-    {
+    public function newMyCommentAction(\Jro\Videoportal\Domain\Model\Comment $newComment = null, $parentCommentUid = 0): Response {
         if ($newComment == null) {
             // workaround for fluid bug ##5636
             $newComment = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Jro\Videoportal\Domain\Model\Comment');
         }
         $this->view->assign('newComment', $newComment);
         $this->view->assign('parentCommentUid', $parentCommentUid);
-        
+
         return $this->htmlResponse();
     }
 
@@ -224,8 +215,7 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      * @param integer $parentCommentUid     
      * @return Response
      */
-    public function createAction(\Jro\Videoportal\Domain\Model\Comment $newComment, \Jro\Videoportal\Domain\Model\Video $video = null, int $parentCommentUid = 0) : Response
-    {
+    public function createAction(\Jro\Videoportal\Domain\Model\Comment $newComment, \Jro\Videoportal\Domain\Model\Video $video = null, int $parentCommentUid = 0): Response {
         $this->forwardIfNotLoggedIn();
         $this->createComment($parentCommentUid, $newComment);
         $this->addCommentToUser($newComment);
@@ -239,15 +229,13 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
         return new RedirectResponse($uri);
     }
 
-
-    /** 
+    /**
      * action createMyComment
      * @param Jro\Videoportal\Domain\Model\Comment $newComment
      * @param integer $parentCommentUid     
      * @return Response
      */
-    public function createMyCommentAction(\Jro\Videoportal\Domain\Model\Comment $newComment, int $parentCommentUid = 0) : Response
-    {
+    public function createMyCommentAction(\Jro\Videoportal\Domain\Model\Comment $newComment, int $parentCommentUid = 0): Response {
         $this->forwardIfNotLoggedIn();
         $this->createComment($parentCommentUid, $newComment);
         $this->addCommentToUser($newComment);
@@ -277,8 +265,7 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      * @param Jro\Videoportal\Domain\Model\Video $video
      * @return Response
      */
-    public function switchObserveStatusAction(\Jro\Videoportal\Domain\Model\Comment $comment, \Jro\Videoportal\Domain\Model\Video $video) : Response
-    {
+    public function switchObserveStatusAction(\Jro\Videoportal\Domain\Model\Comment $comment, \Jro\Videoportal\Domain\Model\Video $video): Response {
         $this->forwardIfNotLoggedIn();
         $this->switchObservedStatus($comment);
         parent::addInfo('Status for Comment was updated.');
@@ -289,15 +276,13 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
         return new RedirectResponse($uri);
     }
 
-
     /**
      * action switchObserveStatus MyCommentsTemplate
      *
      * @param Jro\Videoportal\Domain\Model\Comment $comment
      * @return Response
      */
-    public function switchObserveStatusMyCommentsAction(\Jro\Videoportal\Domain\Model\Comment $comment) : Response
-    {
+    public function switchObserveStatusMyCommentsAction(\Jro\Videoportal\Domain\Model\Comment $comment): Response {
         $this->forwardIfNotLoggedIn();
         $this->switchObservedStatus($comment);
         parent::addInfo('Status for Comment was updated.');
@@ -315,9 +300,8 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("comment")
      * @return Response
      */
-    public function editAction(\Jro\Videoportal\Domain\Model\Comment $comment) : Response
-    {
-        $this->view->assign('comment', $comment); 
+    public function editAction(\Jro\Videoportal\Domain\Model\Comment $comment): Response {
+        $this->view->assign('comment', $comment);
         return $this->htmlResponse();
     }
 
@@ -327,8 +311,7 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      * @param Jro\Videoportal\Domain\Model\Comment $comment     
      * @return Response
      */
-    public function updateAction(\Jro\Videoportal\Domain\Model\Comment $comment) : Response
-    {
+    public function updateAction(\Jro\Videoportal\Domain\Model\Comment $comment): Response {
         $this->commentRepository->update($comment);
         parent::addInfo('Your Comment was updated.');
         $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder::class);
@@ -354,8 +337,7 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      * @param Jro\Videoportal\Domain\Model\Comment $comment
      * @return Response
      */
-    public function deleteAction(\Jro\Videoportal\Domain\Model\Comment $comment) : Response
-    {
+    public function deleteAction(\Jro\Videoportal\Domain\Model\Comment $comment): Response {
         $this->commentRepository->remove($comment);
         parent::addInfo('Your Comment was removed.');
         $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder::class);
@@ -369,8 +351,7 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      * checks user login
      * @return : Response
      */
-    private function forwardIfNotLoggedIn() : Response
-    {
+    private function forwardIfNotLoggedIn(): Response {
         $context = GeneralUtility::makeInstance(Context::class);
         $loggedIn = $context->getPropertyFromAspect('frontend.user', 'isLoggedIn');
         $userUid = $context->getPropertyFromAspect('frontend.user', 'id');
@@ -388,8 +369,7 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
     /**
      * @return Response
      */
-    public function notAllowedAction() : Response
-    {
+    public function notAllowedAction(): Response {
         return $this->htmlResponse();
     }
 
@@ -397,8 +377,7 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      * create comment
      * @return void
      */
-    private function createComment($parentCommentUid, $newComment)
-    {
+    private function createComment($parentCommentUid, $newComment) {
         $parent = $this->commentRepository->findByUid($parentCommentUid);
         if ($parent != null) {
             $parent->addChild($newComment);
@@ -415,8 +394,7 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      * add comment to logged in user
      * @return void
      */
-    private function addCommentToUser($newComment)
-    {
+    private function addCommentToUser($newComment) {
         $context = GeneralUtility::makeInstance(Context::class);
         $loggedIn = $context->getPropertyFromAspect('frontend.user', 'isLoggedIn');
         $userUid = $context->getPropertyFromAspect('frontend.user', 'id');
@@ -433,8 +411,7 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      * add comment to a video
      * @return void
      */
-    private function addCommentToVideo($newComment, $video, $parentCommentUid)
-    {
+    private function addCommentToVideo($newComment, $video, $parentCommentUid) {
         $parent = $this->commentRepository->findByUid($parentCommentUid);
         //add comment to video
         $video = $this->videoRepository->findByUid($video->getUid());
@@ -448,8 +425,7 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
      * switch observed status for the user
      * @return void
      */
-    private function switchObservedStatus($comment)
-    {
+    private function switchObservedStatus($comment) {
         $context = GeneralUtility::makeInstance(Context::class);
         $userUid = $context->getPropertyFromAspect('frontend.user', 'id');
         $user = $this->userRepository->findByUid($userUid);
@@ -467,4 +443,5 @@ class FrontendCommentController extends \Jro\Videoportal\Controller\AbstractCont
         }
         $this->userRepository->update($user);
     }
+
 }

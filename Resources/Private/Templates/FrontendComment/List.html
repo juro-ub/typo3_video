@@ -1,64 +1,66 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en"
-	  xmlns:fed="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
-	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
-	  xmlns:videoportal="http://typo3.org/ns/Jro/Videoportal/ViewHelpers"
->
-<f:layout name="Default" />
+      xmlns:fed="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+      xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+      xmlns:videoportal="http://typo3.org/ns/Jro/Videoportal/ViewHelpers"
+      >
+    <f:layout name="Default" />
 
-This Template is responsible for creating a table of domain objects.
+    This Template is responsible for creating a table of domain objects.
 
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
+    If you modify this template, do not forget to change the overwrite settings
+    in /Configuration/ExtensionBuilder/settings.yaml:
+    Resources:
     Private:
-      Templates:
-        List.html: keep
+    Templates:
+    List.html: keep
 
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+    Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
-<f:section name="content">
-<h1 class="h1">Video comments</h1>
+    <f:section name="content">
+        <h1 class="h1">Video comments</h1>
 
-<f:flashMessages />
+        <f:flashMessages />
 
 
-<f:render section="commentList" arguments="{comments: comments}" />
+        <f:render section="commentList" arguments="{comments: comments}" />
 
-<f:section name="commentList">
-	<ul class="commentTreeUl">
-	<f:for each="{comments}" as="comment">
-		<li class="commentTreeLi">
-			
-		
-		
-			<div class="commentTreeDiv">
-				<div style="float:left; max-width: 300px; min-height: 50; overflow: auto; margin-right: 10px;">{comment.text}</div>
-			<f:link.action action="edit" controller="FrontendComment" arguments="{comment: comment}" >Edit</f:link.action>
-			<f:if condition="{comment.childs}">
-			<f:then>
-			<f:link.action onclick="javascript: if(confirmDelete('Are you sure you want to delete the comment and all child') return true; else return false;" action="delete" controller="FrontendComment" arguments="{comment: comment}" >Delete</f:link.action>
-			</f:then>
-			<f:else>
-			<f:link.action onclick="javascript: if(confirmDelete('Are you sure you want to delete the comment') return true; else return false;" action="delete" controller="FrontendComment" arguments="{comment: comment}" >Delete</f:link.action>
-			</f:else>
-			</f:if>
-			<f:link.action action="new" controller="FrontendComment" arguments="{parentCommentUid: comment.uid}" >Answer </f:link.action>
-			</div>
-			
-			<f:if condition="{comment.childs}">
-			<div class="commentTreeDiv">
-			<div id="marker{comment.uid}"></div>&nbsp;
-			<a href="#marker{comment.uid}" class="commentTreeExpand" >  Hide answers(<f:count subject="{comment.childs}" />)</a>
-			<a href="#marker{comment.uid}" class="commentTreeCollapse" > Show answers(<f:count subject="{comment.childs}" />)</a>
-			</div>
+        <f:section name="commentList">
+            <ul class="commentTreeUl">
+                <f:for each="{comments}" as="comment">
+                    <li class="commentTreeLi">
 
-			</f:if>
-			<f:if condition="{comment.childs}">
-			<f:render section="commentList" arguments="{comments: comment.childs}" />
-			</f:if>
-		</li>
-	</f:for>
-	</ul>
-</f:section>
-</f:section>
+
+
+                        <div class="commentTreeDiv">
+                            <div style="float:left; max-width: 300px; min-height: 50; overflow: auto; margin-right: 10px;">{comment.text}</div>
+                            <f:link.action action="edit" controller="FrontendComment" arguments="{comment: comment}" >Edit</f:link.action>
+                            <f:if condition="{comment.childs}">
+                                <f:then>
+                                    <f:link.action onclick="javascript: if (confirmDelete('Are you sure you want to delete the comment and all child') return true; else return false;" action="delete" controller="FrontendComment" arguments="{comment: comment}" >Delete</f:link.action>
+                                </f:then>
+                                <f:else>
+                                    <f:link.action onclick="javascript: if (confirmDelete('Are you sure you want to delete the comment') return true; else return false;" action="delete" controller="FrontendComment" arguments="{comment: comment}" >Delete</f:link.action>
+                                </f:else>
+                            </f:if>
+                            <f:link.action action="new" controller="FrontendComment" arguments="{parentCommentUid: comment.uid}" >Answer </f:link.action>
+                        </div>
+
+                        <f:if condition="{comment.childs}">
+                            <div class="commentTreeDiv">
+                                <div id="marker{
+                                    comment.uid
+                                }"></div>&nbsp;
+                                <a href="#marker{comment.uid}" class="commentTreeExpand" >  Hide answers(<f:count subject="{comment.childs}" />)</a>
+                                <a href="#marker{comment.uid}" class="commentTreeCollapse" > Show answers(<f:count subject="{comment.childs}" />)</a>
+                            </div>
+
+                        </f:if>
+                        <f:if condition="{comment.childs}">
+                            <f:render section="commentList" arguments="{comments: comment.childs}" />
+                        </f:if>
+                    </li>
+                </f:for>
+            </ul>
+        </f:section>
+    </f:section>
 </html>

@@ -1,7 +1,8 @@
 <?php
 
 namespace Jro\Videoportal\Tests;
-/***************************************************************
+
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013 
@@ -22,7 +23,7 @@ namespace Jro\Videoportal\Tests;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  * Test case for class \Jro\Videoportal\Domain\Model\Category.
@@ -36,120 +37,130 @@ namespace Jro\Videoportal\Tests;
  *
  */
 class CategoryTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
-	/**
-	 * @var \Jro\Videoportal\Domain\Model\Category
-	 */
-	protected $fixture;
 
-	public function setUp() {
-		$this->fixture = new \Jro\Videoportal\Domain\Model\Category();
-	}
+    /**
+     * @var \Jro\Videoportal\Domain\Model\Category
+     */
+    protected $fixture;
 
-	public function tearDown() {
-		unset($this->fixture);
-	}
+    public function setUp() {
+        $this->fixture = new \Jro\Videoportal\Domain\Model\Category();
+    }
 
-	/**
-	 * @test
-	 */
-	public function getTitleReturnsInitialValueForString() { }
+    public function tearDown() {
+        unset($this->fixture);
+    }
 
-	/**
-	 * @test
-	 */
-	public function setTitleForStringSetsTitle() { 
-		$this->fixture->setTitle('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getTitleReturnsInitialValueForString() {
+        
+    }
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getTitle()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getDescriptionReturnsInitialValueForString() { }
+    /**
+     * @test
+     */
+    public function setTitleForStringSetsTitle() {
+        $this->fixture->setTitle('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function setDescriptionForStringSetsDescription() { 
-		$this->fixture->setDescription('Conceived at T3CON10');
+        $this->assertSame(
+                'Conceived at T3CON10',
+                $this->fixture->getTitle()
+        );
+    }
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getDescription()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getStatusReturnsInitialValueForOolean() { }
+    /**
+     * @test
+     */
+    public function getDescriptionReturnsInitialValueForString() {
+        
+    }
 
-	/**
-	 * @test
-	 */
-	public function setStatusForOoleanSetsStatus() { }
-	
-	/**
-	 * @test
-	 */
-	public function getParentReturnsInitialValueForCategory() { 
-		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$this->assertEquals(
-			$newObjectStorage,
-			$this->fixture->getParent()
-		);
-	}
+    /**
+     * @test
+     */
+    public function setDescriptionForStringSetsDescription() {
+        $this->fixture->setDescription('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function setParentForObjectStorageContainingCategorySetsParent() { 
-		$parent = new \Jro\Videoportal\Domain\Model\Category();
-		$objectStorageHoldingExactlyOneParent = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$objectStorageHoldingExactlyOneParent->attach($parent);
-		$this->fixture->setParent($objectStorageHoldingExactlyOneParent);
+        $this->assertSame(
+                'Conceived at T3CON10',
+                $this->fixture->getDescription()
+        );
+    }
 
-		$this->assertSame(
-			$objectStorageHoldingExactlyOneParent,
-			$this->fixture->getParent()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function addParentToObjectStorageHoldingParent() {
-		$parent = new \Jro\Videoportal\Domain\Model\Category();
-		$objectStorageHoldingExactlyOneParent = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$objectStorageHoldingExactlyOneParent->attach($parent);
-		$this->fixture->addParent($parent);
+    /**
+     * @test
+     */
+    public function getStatusReturnsInitialValueForOolean() {
+        
+    }
 
-		$this->assertEquals(
-			$objectStorageHoldingExactlyOneParent,
-			$this->fixture->getParent()
-		);
-	}
+    /**
+     * @test
+     */
+    public function setStatusForOoleanSetsStatus() {
+        
+    }
 
-	/**
-	 * @test
-	 */
-	public function removeParentFromObjectStorageHoldingParent() {
-		$parent = new \Jro\Videoportal\Domain\Model\Category();
-		$localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$localObjectStorage->attach($parent);
-		$localObjectStorage->detach($parent);
-		$this->fixture->addParent($parent);
-		$this->fixture->removeParent($parent);
+    /**
+     * @test
+     */
+    public function getParentReturnsInitialValueForCategory() {
+        $newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $this->assertEquals(
+                $newObjectStorage,
+                $this->fixture->getParent()
+        );
+    }
 
-		$this->assertEquals(
-			$localObjectStorage,
-			$this->fixture->getParent()
-		);
-	}
-	
+    /**
+     * @test
+     */
+    public function setParentForObjectStorageContainingCategorySetsParent() {
+        $parent = new \Jro\Videoportal\Domain\Model\Category();
+        $objectStorageHoldingExactlyOneParent = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $objectStorageHoldingExactlyOneParent->attach($parent);
+        $this->fixture->setParent($objectStorageHoldingExactlyOneParent);
+
+        $this->assertSame(
+                $objectStorageHoldingExactlyOneParent,
+                $this->fixture->getParent()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function addParentToObjectStorageHoldingParent() {
+        $parent = new \Jro\Videoportal\Domain\Model\Category();
+        $objectStorageHoldingExactlyOneParent = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $objectStorageHoldingExactlyOneParent->attach($parent);
+        $this->fixture->addParent($parent);
+
+        $this->assertEquals(
+                $objectStorageHoldingExactlyOneParent,
+                $this->fixture->getParent()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function removeParentFromObjectStorageHoldingParent() {
+        $parent = new \Jro\Videoportal\Domain\Model\Category();
+        $localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $localObjectStorage->attach($parent);
+        $localObjectStorage->detach($parent);
+        $this->fixture->addParent($parent);
+        $this->fixture->removeParent($parent);
+
+        $this->assertEquals(
+                $localObjectStorage,
+                $this->fixture->getParent()
+        );
+    }
+
 }
+
 ?>

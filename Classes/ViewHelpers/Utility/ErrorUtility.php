@@ -16,10 +16,10 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Exception;
  *
  * Utility to assist with error throwing on different TYPO3 version
  */
-class ErrorUtility
-{
-    public static function throwViewHelperException(?string $message = null, ?int $code = null): void
-    {
+class ErrorUtility {
+
+    public static function throwViewHelperException(?string $message = null, ?int $code = null): void {
         throw new Exception((string) $message, (integer) $code);
     }
+
 }

@@ -1,299 +1,315 @@
 .h1{
-	font-family: Arial;
-	font-size: 18px;
-	font-weight: bold;
-	font-style: normal;
-	text-decoration: none;
-	color: #2D97CE;
+    font-family: Arial;
+    font-size: 18px;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+    color: #2D97CE;
 }
 
-a:link { color:blue; text-decoration:underline; }
-a:visited { color:blue; text-decoration:none; }
-a:focus { color:blue; text-decoration:underline; }
-a:hover { color:blue; text-decoration:none; }
-a:active { color:blue; text-decoration:underline; }
+a:link {
+    color:blue;
+    text-decoration:underline;
+}
+a:visited {
+    color:blue;
+    text-decoration:none;
+}
+a:focus {
+    color:blue;
+    text-decoration:underline;
+}
+a:hover {
+    color:blue;
+    text-decoration:none;
+}
+a:active {
+    color:blue;
+    text-decoration:underline;
+}
 
 
 #paginateContainer a{
-	font-family: Arial;
-font-size: 13px;
-font-style: normal;
-color:blue;
-text-decoration:underline;
+    font-family: Arial;
+    font-size: 13px;
+    font-style: normal;
+    color:blue;
+    text-decoration:underline;
 }
 
 .formTitle{
-	font-family: Arial;
-	font-size: 13px;
-	font-weight: bold;
-	font-style: normal;
-	text-decoration: none;
-	color: #333333;
-	margin-right: 10px;
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+    color: #333333;
+    margin-right: 10px;
 }
 .Line{
-	width: 100%;
-	background-repeat: repeat-x;
-	height: 2px;
-	margin-top: 15px;
-	margin-bottom: 15px;
-	background-color: #BDBDBD;
+    width: 100%;
+    background-repeat: repeat-x;
+    height: 2px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: #BDBDBD;
 }
 .FontGreyTitle{
-	font-family: Arial;
-	font-size: 14px;
-	font-weight: bold;
-	font-style: normal;
-	text-decoration: none;
-	color: #181818;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+    color: #181818;
 
 }
 
 .FontGreyText{
-	font-family: Arial;
-	font-size: 12px;
-	font-style: normal;
-	text-decoration: none;
-	color: #181818;
+    font-family: Arial;
+    font-size: 12px;
+    font-style: normal;
+    text-decoration: none;
+    color: #181818;
 
 }
 
 .formRequired{
-	font-family: Arial;
-	font-size: 10px;
-	font-weight: bold;
-	font-style: normal;
-	text-decoration: none;
-	color: red;
+    font-family: Arial;
+    font-size: 10px;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+    color: red;
 }
 p,table{
-	list-style-type:none; 
-	font-family: Arial;
-	font-size: 13px;
-	font-style: normal;
-	text-decoration: none;
-	color: #333333;
+    list-style-type:none;
+    font-family: Arial;
+    font-size: 13px;
+    font-style: normal;
+    text-decoration: none;
+    color: #333333;
 }
 
 .catsTreeFont{
-	list-style-type:none; 
-	padding-left:15px;
-	font-family: Arial;
-	font-size: 13px;
-	font-style: normal;
-	text-decoration: none;
-	color: #333333;
+    list-style-type:none;
+    padding-left:15px;
+    font-family: Arial;
+    font-size: 13px;
+    font-style: normal;
+    text-decoration: none;
+    color: #333333;
 }
-        
-.catsTreeUl { 
-	list-style:none; 
-	float:left;
-	width:100%;
+
+.catsTreeUl {
+    list-style:none;
+    float:left;
+    width:100%;
 }
-    
-.catsTreeLi { 
-	padding-top:10px;
-	float:left;
-	width:100%;
+
+.catsTreeLi {
+    padding-top:10px;
+    float:left;
+    width:100%;
 }
 
 .catsTreeDiv{
-	float: left;
+    float: left;
 }
 .commentTreeDiv{
-	float: left;
+    float: left;
 }
-.catsTreeExpand { 
-	width:15px;height:15px; 
-}
-    
-.catsTreeCollapse { 
-	width:15px;
-	height:15px;
-	display:none;
+.catsTreeExpand {
+    width:15px;
+    height:15px;
 }
 
-.commentTreeLi { 
-	padding-top:10px;
-	float:left;
-	width:300px;
+.catsTreeCollapse {
+    width:15px;
+    height:15px;
+    display:none;
 }
-.commentTreeUl { 
-	list-style:none; 
-	float:left;
-	width:300px;
-}
-.commentTreeExpand { 
-	
-}
-    
-.commentTreeCollapse { 
 
-	display:none;
+.commentTreeLi {
+    padding-top:10px;
+    float:left;
+    width:300px;
+}
+.commentTreeUl {
+    list-style:none;
+    float:left;
+    width:300px;
+}
+.commentTreeExpand {
+
+}
+
+.commentTreeCollapse {
+
+    display:none;
 }
 
 #tableVideoShow{
-	font-family: Arial;
-	font-size: 13px;
-	font-weight: normal;
-	font-style: normal;
-	text-decoration: none;
-	color: #333333;
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none;
+    color: #333333;
 }
 
 #tableCommentShow{
-	font-family: Arial;
-	font-size: 13px;
-	font-weight: normal;
-	font-style: normal;
-	text-decoration: none;
-	color: #333333;
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none;
+    color: #333333;
 }
 #tableCommentShow th{
-	min-width: 30px;
-	height: 20px;
-	background-color: #F2F2F2;
-	text-align: center;
-	
+    min-width: 30px;
+    height: 20px;
+    background-color: #F2F2F2;
+    text-align: center;
+
 }
 #tableCommentShow td{
-	vertical-align: middle;
-	min-width: 30px;
-	min-height: 15px;	
-	padding-left: 5px;
-	padding-right: 5px;
-	text-align: center;
-	border-right: 1px solid black;
-	border-bottom: 1px solid black;
+    vertical-align: middle;
+    min-width: 30px;
+    min-height: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
 }
 #tableVideoShow tr{
-	
+
 }
 #tableVideoShow th{
-	min-width: 30px;
-	height: 20px;
-	background-color: #F2F2F2;
-	text-align: center;
-	
+    min-width: 30px;
+    height: 20px;
+    background-color: #F2F2F2;
+    text-align: center;
+
 }
 #tableVideoShow td{
-	vertical-align: middle;
-	min-width: 30px;
-	min-height: 15px;	
-	padding-left: 5px;
-	padding-right: 5px;
-	text-align: center;
-	border-right: 1px solid black;
-	border-bottom: 1px solid black;
+    vertical-align: middle;
+    min-width: 30px;
+    min-height: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
 }
 #filesContainer ul{
-	
+
 }
 #filesContainer li{
-	font-family: Arial;
-	font-size: 13px;
-	font-weight: bold;
-	font-style: normal;
-	text-decoration: none;
-	color: #333333;
-	list-style: square;
-	margin-top: 5px;
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+    color: #333333;
+    list-style: square;
+    margin-top: 5px;
 }
 
 
 #tableVideoProperties{
-	font-family: Arial;
-	font-size: 13px;
-	font-weight: normal;
-	font-style: normal;
-	text-decoration: none;
-	color: #333333;
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none;
+    color: #333333;
 }
 #tableVideoProperties tr{
-	
+
 }
 #tableVideoProperties th{
-	min-width: 30px;
-	height: 20px;
-	background-color: #F2F2F2;
-	text-align: center;
-	
+    min-width: 30px;
+    height: 20px;
+    background-color: #F2F2F2;
+    text-align: center;
+
 }
 #tableVideoProperties td{
-	vertical-align: middle;
-	min-width: 30px;
-	min-height: 15px;	
-	padding-left: 5px;
-	padding-right: 5px;
-	text-align: left;
-	border-right: 1px solid black;
-	border-bottom: 1px solid black;
+    vertical-align: middle;
+    min-width: 30px;
+    min-height: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: left;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 
 
 #tableRelatedVideo{
-	font-family: Arial;
-	font-size: 13px;
-	font-weight: normal;
-	font-style: normal;
-	text-decoration: none;
-	color: #333333;
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none;
+    color: #333333;
 }
 #tableRelatedVideo tr{
-	
+
 }
 #tableRelatedVideo th{
-	min-width: 30px;
-	height: 20px;
-	background-color: #F2F2F2;
-	text-align: center;
-	
+    min-width: 30px;
+    height: 20px;
+    background-color: #F2F2F2;
+    text-align: center;
+
 }
 #tableRelatedVideo td{
-	vertical-align: middle;
-	min-width: 30px;
-	min-height: 15px;	
-	padding: 5px;
-	text-align: left;
-	border-right: 1px solid black;
-	border-bottom: 1px solid black;
+    vertical-align: middle;
+    min-width: 30px;
+    min-height: 15px;
+    padding: 5px;
+    text-align: left;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 #updateMenuBar a  {
-font-family: Arial;
-font-size: 13px;
-font-weight: normal;
-font-style: normal;
-color: #999999;
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    color: #999999;
 }
 
 #tableCommentProperties{
-	font-family: Arial;
-	font-size: 13px;
-	font-weight: normal;
-	font-style: normal;
-	text-decoration: none;
-	color: #333333;
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none;
+    color: #333333;
 }
 #tableCommentProperties tr{
-	
+
 }
 #tableCommentProperties th{
-	min-width: 30px;
-	height: 20px;
-	background-color: #F2F2F2;
-	text-align: center;
-	
+    min-width: 30px;
+    height: 20px;
+    background-color: #F2F2F2;
+    text-align: center;
+
 }
 
 #tableCommentProperties td{
-	vertical-align: middle;
-	min-width: 30px;
-	min-height: 15px;	
-	padding-left: 5px;
-	padding-right: 5px;
-	text-align: left;
-	border-right: 1px solid black;
-	border-bottom: 1px solid black;
+    vertical-align: middle;
+    min-width: 30px;
+    min-height: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: left;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
 }

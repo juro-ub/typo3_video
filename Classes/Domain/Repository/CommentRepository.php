@@ -2,7 +2,7 @@
 
 namespace Jro\Videoportal\Domain\Repository;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013
@@ -23,7 +23,7 @@ namespace Jro\Videoportal\Domain\Repository;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  *
@@ -32,23 +32,21 @@ namespace Jro\Videoportal\Domain\Repository;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class CommentRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepository
-{
+class CommentRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepository {
 
     /**
      * find the owner for a comment
      *
      * @return $user
      */
-    public function getOwnerByCommentId($uid)
-    {
+    public function getOwnerByCommentId($uid) {
         if ($uid != null && is_numeric($uid)) {
             $userUid = -1;
             $backendUser = false;
             $builder = $this->getQueryBuilder('tx_videoportal_video_my_comment_mm');
             $query = $builder->select('uid_local')->from('tx_videoportal_video_my_comment_mm')->where($builder->expr()->eq('uid_foreign', $builder->createNamedParameter($uid)));
             $val = $query->setMaxResults(1)->execute()->fetchOne();
-            if($val != null)
+            if ($val != null)
                 $userUid = $val;
             if ($userUid == -1) {
                 $builder = $this->getQueryBuilder('tx_videoportal_video_beuser_my_comment_mm');
@@ -83,8 +81,7 @@ class CommentRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepos
      * @param string $sortingType
      * @return \TYPO3\CMS\Extbase\Persistence\Generic\Query
      */
-    public function findAll($sortingField = 'uid', $sortingType = 'DESCENDING')
-    {
+    public function findAll($sortingField = 'uid', $sortingType = 'DESCENDING') {
         $query = $this->createQuery();
         if (isset($sortingField, $sortingType)) {
             if ($sortingType == "DESCENDING")
@@ -101,13 +98,12 @@ class CommentRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepos
      * @param array $uids
      * @return \TYPO3\CMS\Extbase\Persistence\Generic\Query
      */
-    public function findByUids($uids)
-    {
+    public function findByUids($uids) {
         if (is_array($uids) && count($uids) > 0) {
             $query = $this->createQuery();
             $query->setOrderings(array('crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
             $query->matching(
-                $query->in('uid', $uids)
+                    $query->in('uid', $uids)
             );
             return $query->execute();
         }
@@ -120,8 +116,7 @@ class CommentRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepos
      * @param array $comments
      * @return array $uids
      */
-    private function getAllCommentUids($comments, $uids)
-    {
+    private function getAllCommentUids($comments, $uids) {
         foreach ($comments as $c) {
             array_push($uids, $c->getUid());
             if ($c->getChilds()->count() > 0) {
@@ -137,8 +132,7 @@ class CommentRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepos
      * @param \Jro\Videoportal\Domain\Model\Video $video
      * @return \TYPO3\CMS\Extbase\Persistence\Generic\Query
      */
-    public function findByStr($string, $video)
-    {
+    public function findByStr($string, $video) {
         $validCommentUids = array();
         if ($video != null) {
             foreach ($video->getComments() as $c) {
@@ -148,7 +142,7 @@ class CommentRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepos
         }
         $feUsersUids = array();
         $beUsersUids = array();
-        if(!empty($string)){
+        if (!empty($string)) {
 
             $builder = $this->getQueryBuilder('fe_users');
             $stringPdo = $builder->createNamedParameter('%' . $builder->escapeLikeWildcards($string) . '%');
@@ -156,7 +150,7 @@ class CommentRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepos
             $rows = $query->execute()->fetchAll();
             if (($count = count($rows)) > 0) {
                 foreach ($rows as $row) {
-                    array_push($feUsersUids,$row['uid']);
+                    array_push($feUsersUids, $row['uid']);
                 }
             }
 
@@ -168,7 +162,7 @@ class CommentRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepos
             if (($count = count($rows)) > 0) {
                 $i = 1;
                 foreach ($rows as $row) {
-                    array_push($beUsersUids,$row['uid']);
+                    array_push($beUsersUids, $row['uid']);
                 }
             }
         }
@@ -212,24 +206,23 @@ class CommentRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepos
                 }
                 $uids = $uidsNew;
                 $query->matching(
-                    $query->logicalAnd(
-                        $query->like('text', '%'.$string.'%'),
-                        $query->in('uid', $uids)
-                    )
+                        $query->logicalAnd(
+                                $query->like('text', '%' . $string . '%'),
+                                $query->in('uid', $uids)
+                        )
                 );
             } else {
                 $uids = $validCommentUids;
                 $query->matching(
-                    count($uids) > 0 ? $query->in('uid', $uids) : $query->in('uid', array(0))
+                        count($uids) > 0 ? $query->in('uid', $uids) : $query->in('uid', array(0))
                 );
             }
-
         } else {
             $query->matching(
-                $query->logicalOr(
-                    $query->like('text', '%'.$string.'%'),
-                    count($uids) > 0 ? $query->in('uid', $uids) : $query->in('uid', array(0))
-                )
+                    $query->logicalOr(
+                            $query->like('text', '%' . $string . '%'),
+                            count($uids) > 0 ? $query->in('uid', $uids) : $query->in('uid', array(0))
+                    )
             );
         }
 
@@ -241,8 +234,7 @@ class CommentRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepos
      * @param string $uid
      * @return \TYPO3\CMS\Extbase\Persistence\Generic\Query
      */
-    public function findByVideoId($uid)
-    {
+    public function findByVideoId($uid) {
         $uids = array();
         $builder = $this->getQueryBuilder('tx_videoportal_video_comment_mm');
         $query = $builder->select('uid_foreign')->from('tx_videoportal_video_comment_mm')->where($builder->expr()->eq('uid_local', $uid));
@@ -257,10 +249,11 @@ class CommentRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepos
         $query = $this->createQuery();
         $query->setOrderings(array('crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING));
         $query->matching(
-            count($uids) > 0 ? $query->in('uid', $uids) : $query->in('uid', array(0))
+                count($uids) > 0 ? $query->in('uid', $uids) : $query->in('uid', array(0))
         );
         return $query->execute();
     }
+
 }
 
 ?>

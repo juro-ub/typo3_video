@@ -5,7 +5,7 @@ namespace Jro\Videoportal\Domain\Repository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013
@@ -26,7 +26,7 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  *
@@ -35,26 +35,25 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class AbstractRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
-{
+class AbstractRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+
     /**
      * dont respect on storage page
      * @param string $tableName
      * @return \TYPO3\CMS\Core\Database\Query\QueryBuilder
      */
-    protected function getQueryBuilder($tableName = "tt_content",$hidden = false)
-    {
+    protected function getQueryBuilder($tableName = "tt_content", $hidden = false) {
         $querySettings = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings::class);
         $querySettings->setRespectStoragePage(FALSE);
         $this->setDefaultQuerySettings($querySettings);
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($tableName);
         // Remove all default restrictions (delete, hidden, starttime, stoptime), but add DeletedRestriction again
         $queryBuilder->getRestrictions()
-            ->removeAll()
-            ->add(GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction::class));
-        if($hidden){
+                ->removeAll()
+                ->add(GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction::class));
+        if ($hidden) {
             $queryBuilder->getRestrictions()
-                ->add(GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction::class));
+                    ->add(GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction::class));
         }
         return $queryBuilder;
     }
@@ -64,8 +63,7 @@ class AbstractRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      *
      * @return void
      */
-    public function initializeObject()
-    {
+    public function initializeObject() {
         $querySettings = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings::class);
         $querySettings->setRespectStoragePage(FALSE);
         $querySettings->setRespectSysLanguage(FALSE);
@@ -81,10 +79,9 @@ class AbstractRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param string $fieldname Fieldname in table tt_content
      * @param string $tablenames Name of the table containing the related record.
      */
-    protected function fileReferenceCreate($fileUid, $elementUid, $elementPid, $fieldname, $tablenames = "tt_content"): bool
-    {
+    protected function fileReferenceCreate($fileUid, $elementUid, $elementPid, $fieldname, $tablenames = "tt_content"): bool {
         // Early return if either item is missing
-        if ((int)$fileUid === 0 || (int)$elementUid === 0) {
+        if ((int) $fileUid === 0 || (int) $elementUid === 0) {
             return false;
         }
         // Assemble DataHandler data
@@ -113,27 +110,28 @@ class AbstractRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             return false;
         }
     }
+
     /**
      * remove file reference and file for a comment
      * @return void
      */
-    public function removeFile($uid)
-    {
+    public function removeFile($uid) {
         $queryBuilder = $this->getQueryBuilder("sys_file_reference");
         $statement = $queryBuilder
-            ->select('uid_local')
-            ->from('sys_file_reference')
-            ->where(
-                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter(intval($uid)))
-            )
-            ->execute();
+                ->select('uid_local')
+                ->from('sys_file_reference')
+                ->where(
+                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter(intval($uid)))
+                )
+                ->execute();
         $row = $statement->fetch(0);
-        if($row['uid_local'] > 0){
+        if ($row['uid_local'] > 0) {
             $resourceFactory = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Resource\ResourceFactory::class);
             $file = $resourceFactory->getFileObject($row['uid_local']);
             $file->getStorage()->deleteFile($file);
         }
     }
+
 }
 
 ?>

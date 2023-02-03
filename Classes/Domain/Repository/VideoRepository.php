@@ -5,7 +5,7 @@ namespace Jro\Videoportal\Domain\Repository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013
@@ -26,7 +26,7 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  *
@@ -35,18 +35,17 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class VideoRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepository
-{
+class VideoRepository extends \Jro\Videoportal\Domain\Repository\AbstractRepository {
+
     /**
      * Create a file reference for a video
      *
      * @return int uid of sys_file
      */
-    public function myFileOperationsFal($filename, $filetype, $filesize, $uidNew, $fieldname): int
-    {
+    public function myFileOperationsFal($filename, $filetype, $filesize, $uidNew, $fieldname): int {
         $contentElement = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord(
-            'tx_videoportal_domain_model_video',
-            (int)$uidNew
+                        'tx_videoportal_domain_model_video',
+                        (int) $uidNew
         );
         $newSysFields = array(
             'pid' => $contentElement['pid'],
@@ -57,9 +56,9 @@ class VideoRepository extends \Jro\Videoportal\Domain\Repository\AbstractReposit
             'storage' => 1
         );
         $affectedRows = $this->getQueryBuilder("sys_file")
-            ->insert('sys_file')
-            ->values($newSysFields)
-            ->execute();
+                ->insert('sys_file')
+                ->values($newSysFields)
+                ->execute();
         $uid_local = $this->getQueryBuilder("sys_file")->getConnection()->lastInsertId();
         $this->fileReferenceCreate($uid_local, $uidNew, $contentElement['pid'], $fieldname, 'tx_videoportal_domain_model_video');
         return $uid_local;
@@ -71,8 +70,7 @@ class VideoRepository extends \Jro\Videoportal\Domain\Repository\AbstractReposit
      * @param boolean $hidden
      * @return \TYPO3\CMS\Extbase\Persistence\Generic\Query
      */
-    public function findByStr($string, $hidden = true)
-    {
+    public function findByStr($string, $hidden = true) {
         //fetch machting author ids
         $builder = $this->getQueryBuilder('tx_videoportal_domain_model_author', $hidden);
         $stringPdo = $builder->createNamedParameter('%' . $builder->escapeLikeWildcards($string) . '%');
@@ -127,27 +125,25 @@ class VideoRepository extends \Jro\Videoportal\Domain\Repository\AbstractReposit
         $query = $this->createQuery();
         $query->setOrderings(array('crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
         $query->matching(
-            $query->logicalOr(
                 $query->logicalOr(
-                    $query->logicalOr(
-                        $query->like('title', '%' . $string . '%'),
-                        $query->like('about', '%' . $string . '%')
-                    ),
-                    $query->logicalOr(
-                        $query->like('meta_description', '%' . $string . '%'),
-                        $query->like('meta_keywords', '%' . $string . '%')
-                    )
-                ),
-                count($uids) > 0 ? $query->in('uid', $uids) : $query->in('uid', array(0))
-            )
+                        $query->logicalOr(
+                                $query->logicalOr(
+                                        $query->like('title', '%' . $string . '%'),
+                                        $query->like('about', '%' . $string . '%')
+                                ),
+                                $query->logicalOr(
+                                        $query->like('meta_description', '%' . $string . '%'),
+                                        $query->like('meta_keywords', '%' . $string . '%')
+                                )
+                        ),
+                        count($uids) > 0 ? $query->in('uid', $uids) : $query->in('uid', array(0))
+                )
         );
         return $query->execute();
     }
 
-    public function deleteFilesWithNoRefs($file = null)
-    {
-
-
+    public function deleteFilesWithNoRefs($file = null) {
+        
     }
 
     /**
@@ -157,8 +153,7 @@ class VideoRepository extends \Jro\Videoportal\Domain\Repository\AbstractReposit
      * @param boolean $watched
      * @return \TYPO3\CMS\Extbase\Persistence\Generic\Query
      */
-    public function findByCatUid($uid, $userId, $watched = false)
-    {
+    public function findByCatUid($uid, $userId, $watched = false) {
         //get Watched video uids
         $watchedUids = $this->getWachedVideoUidsByUserUid($userId);
         //video uids which are associated with category
@@ -176,7 +171,6 @@ class VideoRepository extends \Jro\Videoportal\Domain\Repository\AbstractReposit
         if ($watched) {
             $unwatchedUids = array_diff($allUids, $watchedUids);
             $uids = array_diff($allUids, $unwatchedUids);
-
         } else {
             $uids = array_diff($allUids, $watchedUids);
         }
@@ -196,8 +190,7 @@ class VideoRepository extends \Jro\Videoportal\Domain\Repository\AbstractReposit
      * @param string $uid
      * @return \TYPO3\CMS\Extbase\Persistence\Generic\Query
      */
-    public function findAllByCatUid($uid)
-    {
+    public function findAllByCatUid($uid) {
         $builder = $this->getQueryBuilder('tx_videoportal_video_category_mm');
         $query = $builder->select('uid_local')->from('tx_videoportal_video_category_mm')->where($builder->expr()->eq('uid_foreign', $uid));
         $rows = $query->execute()->fetchAll();
@@ -224,9 +217,9 @@ class VideoRepository extends \Jro\Videoportal\Domain\Repository\AbstractReposit
      * @param array $cats
      * @return \TYPO3\CMS\Extbase\Persistence\Generic\Query
      */
-    public function findByCats($cats)
-    {
-        if (count($cats) == 0) return null;
+    public function findByCats($cats) {
+        if (count($cats) == 0)
+            return null;
         $catsUid = array();
         foreach ($cats as $c) {
             array_push($catsUid, $c->getUid());
@@ -258,9 +251,9 @@ class VideoRepository extends \Jro\Videoportal\Domain\Repository\AbstractReposit
      * @param \Jro\Videoportal\Domain\Model\Video $video
      * @return \TYPO3\CMS\Extbase\Persistence\Generic\Query
      */
-    public function findRelatedVideos($video)
-    {
-        if ($video->getCategories()->count() == 0) return null;
+    public function findRelatedVideos($video) {
+        if ($video->getCategories()->count() == 0)
+            return null;
         $cats = $video->getCategories();
         $catsUid = array();
         foreach ($cats as $c) {
@@ -271,7 +264,7 @@ class VideoRepository extends \Jro\Videoportal\Domain\Repository\AbstractReposit
         $rows = $query->execute()->fetchAll();
 
         //print_r($rows);
-      //  exit;
+        //  exit;
 
         $uids = array();
         if (count($rows) > 0) {
@@ -298,14 +291,12 @@ class VideoRepository extends \Jro\Videoportal\Domain\Repository\AbstractReposit
      * @param string $sortingType
      * @return \TYPO3\CMS\Extbase\Persistence\Generic\Query
      */
-    public function findAll($sortingField = 'uid', $sortingType = 'DESCENDING')
-    {
+    public function findAll($sortingField = 'uid', $sortingType = 'DESCENDING') {
         $query = $this->createQuery();
         if ($sortingType == "DESCENDING")
             return $query->setOrderings(array($sortingField => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING))->execute();
         else
             return $query->setOrderings(array($sortingField => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING))->execute();
-
     }
 
     /**
@@ -313,8 +304,7 @@ class VideoRepository extends \Jro\Videoportal\Domain\Repository\AbstractReposit
      * @param string $userId
      * @return \TYPO3\CMS\Extbase\Persistence\Generic\Query
      */
-    public function findAllWatchedVideos($userId)
-    {
+    public function findAllWatchedVideos($userId) {
         $uids = $this->getWachedVideoUidsByUserUid($userId);
         $videos = null;
         $query = $this->createQuery();
@@ -332,8 +322,7 @@ class VideoRepository extends \Jro\Videoportal\Domain\Repository\AbstractReposit
      * @param string $userId
      * @return array
      */
-    private function getWachedVideoUidsByUserUid($userId)
-    {
+    private function getWachedVideoUidsByUserUid($userId) {
         $builder = $this->getQueryBuilder('tx_videoportal_video_watched_video_mm');
         $query = $builder->select('uid_foreign')->from('tx_videoportal_video_watched_video_mm')->where($builder->expr()->eq('uid_local', $userId));
         $rows = $query->execute()->fetchAll();
@@ -350,17 +339,16 @@ class VideoRepository extends \Jro\Videoportal\Domain\Repository\AbstractReposit
      * @param string $userId
      * @return array
      */
-    private function getAllVideoUids()
-    {
-      $builder = $this->getQueryBuilder('tx_videoportal_domain_model_video');
-      $query = $builder->select('uid')->from('tx_videoportal_domain_model_video')->where($builder->expr()->gt('uid', 0));
-      $rows = $query->execute()->fetchAll();
+    private function getAllVideoUids() {
+        $builder = $this->getQueryBuilder('tx_videoportal_domain_model_video');
+        $query = $builder->select('uid')->from('tx_videoportal_domain_model_video')->where($builder->expr()->gt('uid', 0));
+        $rows = $query->execute()->fetchAll();
 
-      $uids = array();
-      foreach ($rows as $row) {
-          array_push($uids, $row['uid']);
-      }
-      return $uids;
+        $uids = array();
+        foreach ($rows as $row) {
+            array_push($uids, $row['uid']);
+        }
+        return $uids;
     }
 
     /**
@@ -368,8 +356,7 @@ class VideoRepository extends \Jro\Videoportal\Domain\Repository\AbstractReposit
      * @param string $userId
      * @return \TYPO3\CMS\Extbase\Persistence\Generic\Query
      */
-    public function findAllUnwatchedVideos($userId)
-    {
+    public function findAllUnwatchedVideos($userId) {
         $allUids = $this->getAllVideoUids();
         $watchedUids = $this->getWachedVideoUidsByUserUid($userId);
         $uids = array_diff($allUids, $watchedUids);
@@ -383,6 +370,7 @@ class VideoRepository extends \Jro\Videoportal\Domain\Repository\AbstractReposit
         }
         return null;
     }
+
 }
 
 ?>

@@ -1,6 +1,7 @@
 <?php
 
 namespace Jro\Videoportal\ViewHelpers;
+
 /**
  *
  *
@@ -8,13 +9,12 @@ namespace Jro\Videoportal\ViewHelpers;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class LinkViewHelper extends \Jro\Videoportal\ViewHelpers\MyActionViewHelper
-{
+class LinkViewHelper extends \Jro\Videoportal\ViewHelpers\MyActionViewHelper {
+
     /**
      * @return string Rendered link
      */
-    public function render() : string
-    {
+    public function render(): string {
         if ($this->matchesCurrentRequest($this->arguments['action'], $this->arguments['arguments'], $this->arguments['controller'])) {
             $cssClass = '	font-family: Arial;
 			font-size: 13px;
@@ -28,8 +28,7 @@ class LinkViewHelper extends \Jro\Videoportal\ViewHelpers\MyActionViewHelper
         return call_user_func_array('parent::render', func_get_args());
     }
 
-    protected function matchesCurrentRequest($action, $arguments, $controller)
-    {
+    protected function matchesCurrentRequest($action, $arguments, $controller) {
         $renderingContext = $this->renderingContext;
         $request = $renderingContext->getRequest();
         $text = $request->getControllerName();
@@ -39,6 +38,7 @@ class LinkViewHelper extends \Jro\Videoportal\ViewHelpers\MyActionViewHelper
         }
         return false;
     }
+
 }
 
 ?>

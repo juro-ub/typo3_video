@@ -2,12 +2,12 @@
       xmlns:fed="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
       xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
       xmlns:videoportal="http://typo3.org/ns/Jro/Videoportal/ViewHelpers"
->
-<f:layout name="Default" />
+      >
+    <f:layout name="Default" />
 
-<f:section name="content">
-    <f:flashMessages />
-    <f:render partial="FrontendVideo/ListPublic" arguments="{unwatched: unwatched}" />
+    <f:section name="content">
+        <f:flashMessages />
+        <f:render partial="FrontendVideo/ListPublic" arguments="{unwatched: unwatched}" />
 
-</f:section>
+    </f:section>
 </html>

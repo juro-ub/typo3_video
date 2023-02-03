@@ -15,3 +15,14 @@ Brauneggerstr. 55\
 ### [Betreuer]
 Betreuer: Prof. Dr. Christian Johner\
 Prof. Dr. Oliver Eck
+
+### Set Up TYPO3
+
+Create a folder names "Data". This folder will contain all data records of the videoportal.
+Inside the folder you must create three website user groups: public, partial and full.
+Now you can create website users and add them to the groups.
+
+A video is associated with a category, a level and a targetgroup.
+This records must be created inside the "Data" folder (s. screenshot)
+
+![alt text](https://github.com/juro-ub/typo3_video/raw/main/ReadmeImages/Backend/Records.png)
